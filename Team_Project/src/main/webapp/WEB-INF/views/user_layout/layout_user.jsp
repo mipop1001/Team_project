@@ -42,8 +42,8 @@ margin-top: 100px;
 </head>
 <body>
 	<div id="container">
-		<div id="top">
-			<t:insertAttribute name="top"/>
+		<div id="top_user">
+			<t:insertAttribute name="top_user"/>
 		</div>
 		<div id="body">
 			<t:insertAttribute name="body"/>
