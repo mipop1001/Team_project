@@ -229,7 +229,6 @@
     <div class="intro-wrap">
         <h1 class="logo">
         <!-- 상단 logo -->
-            <img src="/view1002/pokeimage/피카츄.png" alt="EZEN CAMPING">
         </h1>
         <div class="thumbnail-wrap">
             <ul class="thumbnail">
@@ -237,7 +236,7 @@
                     <div class="blur"></div>
                     <div class="cont">
                     <!-- 좌측 글자 -->
-                        <p class="title">Outdoor Life Value<br>Apparel &amp; Camp</p>
+                        <p class="title">판매자 페이지<br></p>
                         <p class="more">자세히 보기</p>
                     </div>
                 </li> 
@@ -245,7 +244,7 @@
                     <div class="blur"></div>
                     <div class="cont">
                     <!-- 우측 글자 -->
-                        <p class="title">Outdoor Life Active<br>Apparel</p>
+                        <p class="title">사용자 페이지<br></p>
                         <p class="more">자세히 보기</p>
                     </div>
                 </li>
