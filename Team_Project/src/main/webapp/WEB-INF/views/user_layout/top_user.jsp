@@ -59,7 +59,7 @@ body {
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">사용자 로그인</a>
+  <a href="customer_login">사용자 로그인</a>
   <a href="#">사용자 정보조회(수정탈퇴)</a>
   <a href="#">사용자 게시물관리(수정삭제)</a>
   <a href="#">shop(상품출력)</a>

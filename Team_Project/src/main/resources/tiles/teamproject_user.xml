@@ -16,5 +16,15 @@
 		<put-attribute name="body" value="/WEB-INF/views/user_layout/user_page.jsp"/>
 	</definition>
 
+	<definition name="customer_login_form" extends="baseLayout_user">
+		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_login_form.jsp"/>
+	</definition>
+
+	<definition name="customer_join_form" extends="baseLayout_user">
+		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_join_form.jsp"/>
+	</definition>
+
 	
 </tiles-definitions>
