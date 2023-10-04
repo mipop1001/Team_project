@@ -30,26 +30,27 @@ public class BoardController {
 		
 		String community_board_title = mul.getParameter("community_board_title");
 		String community_board_content = mul.getParameter("community_board_content");
+		String community_board_date = mul.getParameter("community_board_date");
 		String community_board_location = mul.getParameter("community_board_location");
 		int community_board_grade = Integer.parseInt(mul.getParameter("community_board_grade"));
-		String sum_image = mul.getParameter("community_board_sum_image");
-		MultipartFile mf = mul.getFile("sum_image");
+		
+		MultipartFile mf = mul.getFile("community_board_sum_image");
 		String community_board_sum_image = mf.getOriginalFilename();
 		
-		String detail_image1 = mul.getParameter("community_board_detail_image1");
-		MultipartFile mf1 = mul.getFile("detail_image1");
+		
+		MultipartFile mf1 = mul.getFile("community_board_detail_image1");
 		String community_board_detail_image1 = mf1.getOriginalFilename();
 		
-		String detail_image2 = mul.getParameter("community_board_detail_image2");
-		MultipartFile mf2 = mul.getFile("detail_image2");
+		
+		MultipartFile mf2 = mul.getFile("community_board_detail_image2");
 		String community_board_detail_image2 = mf2.getOriginalFilename();
 		
-		String detail_image3 = mul.getParameter("community_board_detail_image3");
-		MultipartFile mf3 = mul.getFile("detail_image3");
+		
+		MultipartFile mf3 = mul.getFile("community_board_detail_image3");
 		String community_board_detail_image3 = mf3.getOriginalFilename();
 		
 		BoardService ss = sqlSession.getMapper(BoardService.class);
-		ss.customer_community_input_save(community_board_title,community_board_content,community_board_location,community_board_grade,community_board_sum_image,community_board_detail_image1,community_board_detail_image2,community_board_detail_image3);
+		ss.customer_community_input_save(community_board_title,community_board_content,community_board_date,community_board_location,community_board_grade,community_board_sum_image,community_board_detail_image1,community_board_detail_image2,community_board_detail_image3);
 		
 		mf.transferTo(new File(image_sum_path+"\\"+community_board_sum_image));
 		mf1.transferTo(new File(image_intro_path+"\\"+community_board_detail_image1));

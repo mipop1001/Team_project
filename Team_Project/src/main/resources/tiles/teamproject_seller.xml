@@ -16,5 +16,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/seller_layout/seller_page.jsp"/>
 	</definition>
 
+	<definition name="seller_product_join" extends="baseLayout_seller">
+		<put-attribute name="title" value="상품등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_product_join.jsp"/>
+	</definition>
+	
+	<definition name="seller_login" extends="baseLayout_seller">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login.jsp"/>
+	</definition>
+	
+	<definition name="seller_join" extends="baseLayout_seller">
+		<put-attribute name="title" value="회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_join.jsp"/>
+	</definition>
 	
 </tiles-definitions>

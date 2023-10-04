@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.team.project.seller.SellerService">
+
+<insert id="seller_join_save">
+insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_password},#{seller_name},#{seller_phone_number},#{seller_email},#{seller_role},#{seller_company_number},#{seller_company_address})
+</insert>
+
+</mapper>
