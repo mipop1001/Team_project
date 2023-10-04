@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
+<mapper namespace="com.team.project.member.MemberService">
+
+<select id="emailcheck" resultType="int">
+    SELECT COUNT(*) FROM member_project WHERE member_email = #{param1}
+</select>
+
+<select id="idcheck" resultType="int">
+    SELECT COUNT(*) FROM member_project WHERE member_id = #{param1}
+</select>
+
+</mapper>
