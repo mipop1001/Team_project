@@ -283,30 +283,14 @@
                             $(this).siblings().css('right','0');
                             $('.thumbnail').css('justify-content','flex-end')
                             setTimeout(function(){
-                                location.href = '/##';
+                                location.href = 'seller_page';
                             }, 1000)
                         }
                         else{
                             $(this).css('right','0');
                             $(this).siblings().css('left','0');
                             setTimeout(function(){
-                                location.href = '##';
-                            }, 1000)
-                        }
-                    }
-                    else{
-                        $('.thumbnail').css({'height':'100vh'})
-                        if($(this).hasClass('brand')){
-                            $(this).siblings().css({'bottom':'0', 'position':'absolute'})
-                            $(this).css('height','100vh')
-                            setTimeout(function(){
-                                location.href = '/##';
-                            }, 1000)
-                        }
-                        else{
-                            $(this).css({'height':'100vh', 'bottom':'0'})
-                            setTimeout(function(){
-                                location.href = '##';
+                                location.href = 'user_page';
                             }, 1000)
                         }
                     }

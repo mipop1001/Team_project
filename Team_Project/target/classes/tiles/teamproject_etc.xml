@@ -11,9 +11,9 @@
 	</definition>
 	
 	<!-- 연결하려는 jsp를 추가해야함. -->
-	<definition name="mainpage" extends="baseLayout_etc">
-		<put-attribute name="title" value="메인화면"/>
-		<put-attribute name="body" value="/WEB-INF/views/mainpage.jsp"/>
+	<definition name="main_page" extends="baseLayout_etc">
+		<put-attribute name="title" value="이젠 캠핑"/>
+		<put-attribute name="body" value="/WEB-INF/views/main_page.jsp"/>
 	</definition>
 
 	

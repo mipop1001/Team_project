@@ -8,8 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String home() {
-		return "mainpage";
+	public String main_page() {
+		return "main_page";
+	}
+	
+	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
+	public String user_page() {
+		return "user_page";
+	}
+
+	@RequestMapping(value = "/seller_page", method = RequestMethod.GET)
+	public String seller_page() {
+		return "seller_page";
 	}
 	
 }
