@@ -11,10 +11,10 @@
 	</definition>
 	
 	<!-- 연결하려는 jsp를 추가해야함. -->
-<!-- 	<definition name="mainpage" extends="baseLayout_user"> -->
-<!-- 		<put-attribute name="title" value="메인화면"/> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/views/#.jsp"/> -->
-<!-- 	</definition> -->
+	<definition name="seller_page" extends="baseLayout_seller">
+		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller_layout/seller_page.jsp"/>
+	</definition>
 
 	
 </tiles-definitions>
