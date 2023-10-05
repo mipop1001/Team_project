@@ -8,4 +8,27 @@
 insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_password},#{seller_name},#{seller_phone_number},#{seller_email},#{seller_role},#{seller_company_number},#{seller_company_address})
 </insert>
 
+<select id="seller_login_save" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_id=#{param1} and seller_password=#{param2}
+</select>
+
+<select id="seller_info" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_number=#{param1}
+</select>
+
+<select id="seller_info_modify" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_number=#{param1}
+</select>
+
+<update id="seller_info_modify_update">
+update seller set seller_password=#{param1},seller_phone_number=#{param2},seller_company_number=#{param3},seller_company_address=#{param4} where seller_number=#{param5}
+</update>
+
+<delete id="seller_info_exit">
+delete seller where seller_number=#{param1}
+</delete>
+
+<select id="seller_password_check" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_number=#{param1} and seller_password=#{param2}
+</select>
 </mapper>

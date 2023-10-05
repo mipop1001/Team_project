@@ -1,13 +1,18 @@
 package com.team.project.seller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SellerController {
@@ -21,10 +26,44 @@ public class SellerController {
 	{
 		return "seller_login";
 	}
+	
+	//로그아웃
+	@RequestMapping(value = "/seller_logout")
+	public String seller_logout(HttpServletRequest request)
+	{
+		HttpSession hs = request.getSession();
+		hs.removeAttribute("loginstate");
+		hs.setAttribute("loginstate", false);
+		return "seller_page";
+	}
+	
 	//로그인 데이터 DB에 저장
 	@RequestMapping(value = "/seller_login_save",method=RequestMethod.POST)
-	public void seller_login_save()
+	public String seller_login_save(HttpServletRequest request,Model mo)
 	{
+		String seller_id=request.getParameter("seller_id");
+		String seller_password=request.getParameter("seller_password");
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		SellerDTO dto = ss.seller_login_save(seller_id,seller_password);
+		
+		System.out.println(dto);
+		if(dto != null)
+		{
+			HttpSession hs=request.getSession();
+			hs.setAttribute("loginstate",true);
+			String seller_name=dto.seller_name;
+			int seller_number=dto.seller_number;
+			hs.setAttribute("seller_name",seller_name);
+			hs.setAttribute("seller_number",seller_number);
+			hs.setMaxInactiveInterval(1800);
+			return "seller_page";
+		}
+		else
+		{
+			mo.addAttribute("msg","아이디 또는 비밀번호가 일치하지 않습니다.");
+			return "seller_login";
+		}
+		
 		
 	}
 	//회원가입 화면
@@ -62,4 +101,98 @@ public class SellerController {
 		
 		return "seller_page";
 	}
+	
+	//아이디 찾기 화면
+	@RequestMapping(value = "/seller_login_find_id")
+	public String seller_login_find_id()
+	{
+		return "seller_login_find_id";
+	}
+	
+	//DB에서 아이디 찾기
+	@RequestMapping(value = "/seller_login_find_id_save",method=RequestMethod.POST)
+	public void seller_login_find_id_save(HttpServletRequest request)
+	{
+		String seller_name=request.getParameter("seller_name");
+		String seller_email=request.getParameter("seller_email");
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ss.seller_login_find_id_save(seller_name, seller_email); 
+		
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping(value = "/seller_login_find_password")
+	public String seller_login_find_password()
+	{
+		return "seller_login_find_password";
+	}
+	
+	//마이 페이지 seller_number를 통해 검색
+	@RequestMapping(value = "/seller_info")
+	public String seller_info(HttpServletRequest request,Model mo)
+	{
+		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ArrayList<SellerDTO> list = ss.seller_info(seller_number);
+		mo.addAttribute("list", list);
+		return "seller_info";
+	}
+	
+	//판매자 정보 수정 폼
+	@RequestMapping(value = "/seller_info_modify")
+	public String seller_info_modify(int seller_number,Model mo)
+	{
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ArrayList<SellerDTO> list = ss.seller_info_modify(seller_number);
+		mo.addAttribute("list", list);
+		return "seller_info_modify_view";
+	}
+	
+	//판매자 정보 수정 DB 저장
+	@RequestMapping(value = "/seller_info_modify_update",method=RequestMethod.POST)
+	public String seller_info_modify_update(HttpServletRequest request)
+	{
+		String seller_password=request.getParameter("seller_password");
+		String seller_phone_number=request.getParameter("seller_phone_number");
+		String seller_company_number=request.getParameter("seller_company_number");
+		String seller_company_address=request.getParameter("seller_company_address");
+		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ss.seller_info_modify_update(seller_password,seller_phone_number,seller_company_number,seller_company_address,seller_number);
+		return "seller_info";
+	}
+	
+	//판매자 회원 탈퇴
+	@ResponseBody
+	@RequestMapping(value = "/seller_info_exit",method=RequestMethod.POST)
+	public String seller_info_exit(HttpServletRequest request)
+	{
+		System.out.println("123");
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
+		String seller_password=request.getParameter("seller_password");
+		System.out.println("회원번호"+seller_number+seller_password);
+		
+		SellerDTO dto = ss.seller_password_check(seller_number,seller_password);//DB에 비밀번호가 있는지 체크
+		ss.seller_info_exit(seller_number);//삭제
+		HttpSession hs = request.getSession();
+		hs.removeAttribute("loginstate");
+		hs.setAttribute("loginstate",false);
+		
+		if(dto!=null)
+		{
+			return "ok";
+		}
+		else
+		{
+			return "no";
+		}
+		
+	}
+	@RequestMapping(value = "/seller_password_check")
+	public void seller_password_check(String seller_password)
+	{
+		
+	}
+	
 }

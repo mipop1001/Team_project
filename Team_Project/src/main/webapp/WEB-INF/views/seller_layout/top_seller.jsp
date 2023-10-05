@@ -1,8 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+function checkLogin(){
+	var loginstate = "${sessionScope.loginstate}";
+	if (loginstate !== "true") {
+		alert("로그인 후 이용 가능합니다.");
+		location.href="seller_login";
+	}
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -56,16 +66,28 @@ body {
 </style>
 </head>
 <body>
-
+<c:choose>
+<c:when test="${loginstate==true }">
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="seller_login">판매자 로그인</a>
-  <a href="seller_info">판매자 마이페이지</a>
+  <a href="seller_logout">판매자 로그아웃</a>
+  <a href="seller_info?seller_number=${seller_number}">${seller_name }님판매자 마이페이지</a>
   <a href="seller_product_join">판매자 상품등록</a>
   <a href="#">판매자 상품 수정삭제조회</a>
   <a href="seller_product_sales">판매자 판매내역</a>
 </div>
-
+</c:when>
+<c:otherwise>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="seller_login">판매자 로그인</a>
+  <a href="#" onclick="checkLogin()">판매자 마이페이지</a>
+  <a href="seller_product_join">판매자 상품등록</a>
+  <a href="#">판매자 상품 수정삭제조회</a>
+  <a href="seller_product_sales">판매자 판매내역</a>
+</div>
+</c:otherwise>
+</c:choose>
 <div id="main">
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 </div>

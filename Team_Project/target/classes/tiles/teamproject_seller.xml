@@ -31,4 +31,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/seller/seller_join.jsp"/>
 	</definition>
 	
+	<definition name="seller_info" extends="baseLayout_seller">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_info.jsp"/>
+	</definition>
+	
+	<definition name="seller_info_modify_view" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 정보수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_info_modify_view.jsp"/>
+	</definition>
+	
+	<definition name="seller_login_find_id" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 아이디 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_id.jsp"/>
+	</definition>
+	
 </tiles-definitions>

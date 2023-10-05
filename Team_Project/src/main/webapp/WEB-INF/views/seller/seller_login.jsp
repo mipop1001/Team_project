@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function() {
+    let message = "${msg}";
+    if (message.trim() !== "") {
+        alert(message);
+    }
+});
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
