@@ -1,5 +1,7 @@
+<%@page import="com.team.project.member.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,16 +58,29 @@ body {
 </style>
 </head>
 <body>
-
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="customer_login">사용자 로그인</a>
-  <a href="#">사용자 정보조회(수정탈퇴)</a>
-  <a href="#">사용자 게시물관리(수정삭제)</a>
-  <a href="#">shop(상품출력)</a>
-  <a href="#">community(게시글)</a>
-  <a href="#">QnA(자주묻는질문)</a>
-</div>
+<c:choose>
+	<c:when test="${loginstatus == true}">
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <p style="color: white;">${memberDTO.member_name}님 반갑습니다.</p>
+		  <a href="customer_logout">로그아웃</a>
+		  <a href="#">사용자 정보조회(수정탈퇴)</a>
+		  <a href="#">사용자 게시물관리(수정삭제)</a>
+		  <a href="#">shop(상품출력)</a>
+		  <a href="#">community(게시글)</a>
+		  <a href="#">QnA(자주묻는질문)</a>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <a href="customer_login">사용자 로그인</a>
+		  <a href="#">shop(상품출력)</a>
+		  <a href="#">community(게시글)</a>
+		  <a href="#">QnA(자주묻는질문)</a>
+		</div>
+	</c:otherwise>
+</c:choose>
 
 <div id="main">
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>

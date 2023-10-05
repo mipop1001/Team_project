@@ -5,12 +5,29 @@
 <!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
 <mapper namespace="com.team.project.member.MemberService">
 
+<insert id="customer_join_save" parameterType="com.team.project.member.MemberDTO">
+	insert into member_project(member_id, member_number, member_password, member_name, member_personal_number, member_age, member_gender, member_phone_number, member_address, member_email, member_birthday, member_point, member_buy, member_role)
+ 	values(#{member_id},member_number_seq.nextval,#{member_password},#{member_name},#{member_personal_number},#{member_age},#{member_gender},#{member_phone_number},#{member_address},#{member_email},#{member_birthday},0,0,0)
+</insert>
+
 <select id="emailcheck" resultType="int">
     SELECT COUNT(*) FROM member_project WHERE member_email = #{param1}
 </select>
 
 <select id="idcheck" resultType="int">
     SELECT COUNT(*) FROM member_project WHERE member_id = #{param1}
+</select>
+
+<select id="login_check" resultType="com.team.project.member.MemberDTO">
+	select * from member_project where member_id = #{param1} and member_password = #{param2}
+</select>
+
+<select id="member_id_search" resultType="com.team.project.member.MemberDTO">
+	select * from member_project where member_name = #{param1} and member_email = #{param2}
+</select>
+
+<select id="member_pw_search" resultType="com.team.project.member.MemberDTO">
+	select * from member_project where member_id = #{param1} and member_name = #{param2} and member_email = #{param3}
 </select>
 
 </mapper>
