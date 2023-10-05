@@ -4,7 +4,11 @@
     
 <mapper namespace="com.team.project.board.BoardService">
 <insert id="customer_community_input_save">
-	insert into board values(community_board_number_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
+	insert into board values(community_board_number_seq.nextval,#{param1},#{param2},sysdate,#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 </insert>
+
+<select id="customer_community_out" resultType="com.team.project.board.BoardDTO">
+	select * from board
+</select>
 
 </mapper>
