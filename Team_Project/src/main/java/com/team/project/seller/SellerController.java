@@ -111,13 +111,22 @@ public class SellerController {
 	
 	//DB에서 아이디 찾기
 	@RequestMapping(value = "/seller_login_find_id_save",method=RequestMethod.POST)
-	public void seller_login_find_id_save(HttpServletRequest request)
+	public String seller_login_find_id_save(HttpServletRequest request,Model mo)
 	{
 		String seller_name=request.getParameter("seller_name");
 		String seller_email=request.getParameter("seller_email");
 		SellerService ss = sqlSession.getMapper(SellerService.class);
-		ss.seller_login_find_id_save(seller_name, seller_email); 
-		
+		ArrayList<SellerDTO> list = ss.seller_login_find_id_save(seller_name, seller_email);
+		if(list != null)
+		{
+		mo.addAttribute("list",list);
+		return "seller_login_find_id_view";
+		}
+		else
+		{
+			mo.addAttribute("msg","이름 또는 이메일이 일치하지 않습니다.");
+			return "redirect:seller_login_find_id";
+		}
 	}
 	
 	//비밀번호 찾기
@@ -125,6 +134,19 @@ public class SellerController {
 	public String seller_login_find_password()
 	{
 		return "seller_login_find_password";
+	}
+	
+	//DB에서 비밀번호 찾기
+	@RequestMapping(value = "/seller_login_find_password_save",method=RequestMethod.POST)
+	public String seller_login_find_password_save(HttpServletRequest request,Model mo)
+	{
+		String seller_id=request.getParameter("seller_id");
+		String seller_email=request.getParameter("seller_email");
+		
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ArrayList<SellerDTO> list = ss.seller_login_find_password_save(seller_id,seller_email);
+		mo.addAttribute("list", list);
+		return "seller_login_find_password_view";
 	}
 	
 	//마이 페이지 seller_number를 통해 검색
@@ -150,7 +172,7 @@ public class SellerController {
 	
 	//판매자 정보 수정 DB 저장
 	@RequestMapping(value = "/seller_info_modify_update",method=RequestMethod.POST)
-	public String seller_info_modify_update(HttpServletRequest request)
+	public String seller_info_modify_update(HttpServletRequest request,Model mo)
 	{
 		String seller_password=request.getParameter("seller_password");
 		String seller_phone_number=request.getParameter("seller_phone_number");
@@ -159,6 +181,8 @@ public class SellerController {
 		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ss.seller_info_modify_update(seller_password,seller_phone_number,seller_company_number,seller_company_address,seller_number);
+		ArrayList<SellerDTO> list = ss.seller_info(seller_number);
+		mo.addAttribute("list", list);
 		return "seller_info";
 	}
 	
@@ -187,11 +211,6 @@ public class SellerController {
 		{
 			return "no";
 		}
-		
-	}
-	@RequestMapping(value = "/seller_password_check")
-	public void seller_password_check(String seller_password)
-	{
 		
 	}
 	

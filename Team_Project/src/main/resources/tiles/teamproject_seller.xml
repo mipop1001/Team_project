@@ -46,4 +46,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_id.jsp"/>
 	</definition>
 	
+	<definition name="seller_login_find_id_view" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 아이디 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_id_view.jsp"/>
+	</definition>
+	
+	<definition name="seller_login_find_password" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 비밀번호 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_password.jsp"/>
+	</definition>
+	
+	<definition name="seller_login_find_password_view" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 비밀번호 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_password_view.jsp"/>
+	</definition>
+	
 </tiles-definitions>

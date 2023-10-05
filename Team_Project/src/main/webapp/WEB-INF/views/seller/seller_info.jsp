@@ -51,8 +51,8 @@ color:black;
   function confirmPassword() {
 	    // 비밀번호 확인 로직을 구현합니다.
 	    // 이 함수에서 확인 버튼의 동작을 정의하세요.
-	    var seller_password = $("dropdown-input").val();
-	    var seller_number = $("seller_number").val();
+	    var seller_password = $(".dropdown-input").val();
+	    var seller_number = $(".seller_number").val();
 	    if(confirm("정말 탈퇴하시겠습니까?")==true)
 	    	{
 	    	$.ajax({
@@ -60,15 +60,18 @@ color:black;
 	    		url:"seller_info_exit",
 	    		data:{
 	    			"seller_password":seller_password,
+	    			"seller_number":seller_number
 	    		},
 	    		success:function(data){
 	    			if(data=="ok")
 	    				{
 	    				alert("회원 탈퇴가 완료되었습니다.");
+	    				window.location="seller_page";
 	    				}
 	    			else
 	    				{
 	    				alert("비밀번호가 다릅니다.");
+	    				
 	    				}
 	    		},
 	    		error:function(){
@@ -83,6 +86,10 @@ color:black;
 	    closeDropdown();
 	  }
 
+  	function seller_page(){
+  		location.href="seller_page";
+  	}
+  
 	  function closeDropdown() {
 	    var dropdown = document.getElementById("passwordDropdown");
 	    dropdown.style.display = "none";
