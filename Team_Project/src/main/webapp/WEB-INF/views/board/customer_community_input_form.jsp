@@ -11,7 +11,6 @@
 <table border="2" align="center" >
 <tr><th>제목</th><td><input type="text" name="community_board_title"></td></tr>
 <tr><th>글내용</th><td><textarea cols="10" rows="10" name="community_board_content"></textarea></td></tr>
-<tr><th>작성일자</th><td><input type="text" name="community_board_date"></td></tr>
 <tr><th>지역</th><td>
 <select name="community_board_location">
 <option  value="서울특별시">서울특별시</option>
