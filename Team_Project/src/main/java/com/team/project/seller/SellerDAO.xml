@@ -31,4 +31,12 @@ delete seller where seller_number=#{param1}
 <select id="seller_password_check" resultType="com.team.project.seller.SellerDTO">
 select * from seller where seller_number=#{param1} and seller_password=#{param2}
 </select>
+
+<select id="seller_login_find_id_save" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_name=#{param1} and seller_email=#{param2}
+</select>
+
+<select id="seller_login_find_password_save" resultType="com.team.project.seller.SellerDTO">
+select * from seller where seller_id=#{param1} and seller_email=#{param2}
+</select>
 </mapper>
