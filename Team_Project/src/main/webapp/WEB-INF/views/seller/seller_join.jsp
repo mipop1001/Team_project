@@ -43,7 +43,7 @@
 </tr>
 
 <tr>
-<th>사업자주소</th>
+<th>사업장주소</th>
 <td><input type="text" name="seller_company_address"></td>
 </tr>
 
