@@ -1,25 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-$(document).ready(function() {
-    let message = "${msg}";
-    if (message.trim() !== "") {
-        alert(message);
-    }
-});
-</script>
 <body>
-
+	<table align="center">
+		<c:forEach items="${list}" var="a">
+		    <tr>
+		        <th>
+		            <h2>${a.member_name}님의 가입하신 <span style="color: red">${a.member_id}</span>의 패스워드는 
+		                <span style="color: red">${a.member_password}</span> 입니다.
+		            </h2>
+		        </th>
+		    </tr>
+		</c:forEach>
+	</table>
+	<hr>
 	<form action="customer_login_check" method="get">
 		<table align="center">
-		<caption>사용자 로그인</caption>
 			<tr>
 				<th>아이디</th>
 				<td> <input type="text" name="login_id"> </td>
@@ -39,6 +41,5 @@ $(document).ready(function() {
 			</tr>
 		</table>
 	</form>
-
 </body>
 </html>

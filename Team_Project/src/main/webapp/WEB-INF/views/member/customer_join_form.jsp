@@ -58,6 +58,7 @@ function checkemail() {
         }
     });
 }
+
 function checkid() {
     var id = document.getElementById('member_id').value;
     var idCheckDiv = document.getElementById('id_check');
@@ -88,12 +89,12 @@ function checkid() {
         }
     });
 }
- 
+
 </script>
 
 <body>
 
-	<form action="customer_join_save">
+	<form action="customer_join_save" method="get">
 		<table align="center">
 		<caption>회원가입</caption>
 			<tr>
@@ -120,7 +121,7 @@ function checkid() {
 			</tr>
 			<tr>
 				<th>주민번호</th>
-				<td> <input type="text" id="member_personal_number" name="member_personal_number"> </td>
+				<td> <input type="text" id="member_personal_number" name="member_personal_number" placeholder=" - 빼고 입력해주세요"> </td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
@@ -145,8 +146,8 @@ function checkid() {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" id="joinbtn" value="가입" onclick="joincheck()">
-					<input type="reset" value="취소">
+					<input type="submit" value="가입">
+					<input type="reset" value="취소" onclick="user_page">
 				</td>
 			</tr>
 		</table>

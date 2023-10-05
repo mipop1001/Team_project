@@ -12,18 +12,38 @@
 	
 	<!-- 연결하려는 jsp를 추가해야함. -->
 	<definition name="user_page" extends="baseLayout_user">
-		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="title" value="사용자 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/user_layout/user_page.jsp"/>
 	</definition>
 
 	<definition name="customer_login_form" extends="baseLayout_user">
-		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/customer_login_form.jsp"/>
 	</definition>
 
 	<definition name="customer_join_form" extends="baseLayout_user">
-		<put-attribute name="title" value="메인화면"/>
+		<put-attribute name="title" value="회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/customer_join_form.jsp"/>
+	</definition>
+
+	<definition name="customer_find_id_form" extends="baseLayout_user">
+		<put-attribute name="title" value="아이디 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_find_id_form.jsp"/>
+	</definition>
+
+	<definition name="customer_find_pw_form" extends="baseLayout_user">
+		<put-attribute name="title" value="패스워드 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_find_pw_form.jsp"/>
+	</definition>
+
+	<definition name="customer_id_search_form" extends="baseLayout_user">
+		<put-attribute name="title" value="아이디 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_id_search_form.jsp"/>
+	</definition>
+
+	<definition name="customer_pw_search_form" extends="baseLayout_user">
+		<put-attribute name="title" value="패스워드 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_pw_search_form.jsp"/>
 	</definition>
 
 	

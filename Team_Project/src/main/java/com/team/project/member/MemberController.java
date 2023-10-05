@@ -1,10 +1,15 @@
 package com.team.project.member;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +28,104 @@ public class MemberController {
 	@RequestMapping(value = "/customer_join")
 	public String customer_join() {
 		return "customer_join_form";
+	}
+	
+	@RequestMapping(value = "/customer_login_check", method = {RequestMethod.GET, RequestMethod.POST})
+	public String customer_login_check(HttpServletRequest request, Model mo) {
+		String login_id = request.getParameter("login_id");
+		String login_pw = request.getParameter("login_pw");
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		MemberDTO memberDTO = ms.login_check(login_id,login_pw);
+		if(memberDTO != null) {
+			HttpSession hs = request.getSession();
+			hs.setAttribute("loginstatus", true);
+			hs.setAttribute("memberDTO", memberDTO);
+			hs.setMaxInactiveInterval(300);
+			return "redirect:/user_page";
+		} else {
+			mo.addAttribute("msg","아이디 또는 비밀번호가 일치하지 않습니다.");
+			return "customer_login_form";
+		}
+	}
+	
+	@RequestMapping(value = "/customer_logout")
+	public String customer_logout(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		hs.removeAttribute("loginstatus");
+		hs.removeAttribute("memberDTO");
+		return "redirect:/user_page";
+	}
+	
+	@RequestMapping(value = "/customer_join_save")
+	public String customer_join_save(HttpServletRequest request) {
+		LocalDate now = LocalDate.now();
+	    int year = now.getYear();
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setMember_id(request.getParameter("member_id"));
+		memberDTO.setMember_password(request.getParameter("member_password"));
+		memberDTO.setMember_name(request.getParameter("member_name"));
+		String jumin = request.getParameter("member_personal_number");
+		memberDTO.setMember_personal_number(jumin);
+		if(jumin.substring(6, 7).equals("1") || jumin.substring(6, 7).equals("3")) {
+			memberDTO.setMember_gender("남자");
+		} else {
+			memberDTO.setMember_gender("여자");
+		}
+		if(jumin.substring(6, 7).equals("1") || jumin.substring(6, 7).equals("2") ) {
+			memberDTO.setMember_age(year-(1900+ Integer.parseInt(jumin.substring(0, 2))));
+		} else {
+			memberDTO.setMember_age(year-(2000+ Integer.parseInt(jumin.substring(0, 2))));
+		}
+		memberDTO.setMember_phone_number(request.getParameter("member_phone_number"));
+		memberDTO.setMember_address(request.getParameter("member_address"));
+		memberDTO.setMember_email(request.getParameter("member_email"));
+		memberDTO.setMember_birthday(request.getParameter("member_birthday"));
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		ms.customer_join_save(memberDTO);
+		return "redirect:/user_page";
+	}
+	
+	@RequestMapping(value = "/customer_find_id")
+	public String customer_find_id() {
+		return "customer_find_id_form";
+	}
+
+	@RequestMapping(value = "/customer_id_search", method = {RequestMethod.GET, RequestMethod.POST})
+	public String customer_id_search(HttpServletRequest request, Model mo) {
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		MemberDTO dto = ms.member_id_search(member_name,member_email);
+		if(dto != null) {
+			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+			list.add(dto);
+			mo.addAttribute("list", list);
+			return "customer_id_search_form";
+		} else {
+			return"redirect:/customer_find_id";
+		}
+	}
+	
+	@RequestMapping(value = "/customer_find_pw")
+	public String customer_find_pw() {
+		return "customer_find_pw_form";
+	}
+
+	@RequestMapping(value = "/customer_pw_search", method = {RequestMethod.GET, RequestMethod.POST})
+	public String customer_pw_search(HttpServletRequest request, Model mo) {
+		String member_id = request.getParameter("member_id");
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");		
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		MemberDTO dto = ms.member_pw_search(member_id,member_name,member_email);
+		if(dto != null) {
+			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+			list.add(dto);			
+			mo.addAttribute("list", list);
+			return "customer_pw_search_form";
+		} else {
+			return"redirect:/customer_find_pw";
+		}
 	}
 	
 	@ResponseBody
