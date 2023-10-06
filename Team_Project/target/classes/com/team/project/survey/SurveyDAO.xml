@@ -5,8 +5,8 @@
 <!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
 <mapper namespace="com.team.project.survey.SurveyService">
 
-<insert id="survey_input_save" parameterType="com.team.project.survey.SurveyDTO">
-
+<insert id="survey_input_save">
+	insert into survey_project values(survey_number_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
 </insert>
 
 </mapper>
