@@ -15,6 +15,5 @@
 		<put-attribute name="title" value="설문 조사"/>
 		<put-attribute name="body" value="/WEB-INF/views/survey/survey_input_form.jsp"/>
 	</definition>
-
 	
 </tiles-definitions>
