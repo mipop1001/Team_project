@@ -74,7 +74,7 @@ body {
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="seller_logout">판매자 로그아웃</a>
   <a href="seller_info?seller_number=${seller_number}">${seller_name }님판매자 마이페이지</a>
-  <a href="seller_product_join">판매자 상품등록</a>
+  <a href="seller_product_join?seller_id=${seller_id }">판매자 상품등록</a>
   <a href="#">판매자 상품 수정삭제조회</a>
   <a href="seller_product_sales">판매자 판매내역</a>
 </div>

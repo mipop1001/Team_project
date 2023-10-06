@@ -71,7 +71,7 @@ color:black;
 	    			else
 	    				{
 	    				alert("비밀번호가 다릅니다.");
-	    				
+						window.location="redirect:seller_info";
 	    				}
 	    		},
 	    		error:function(){

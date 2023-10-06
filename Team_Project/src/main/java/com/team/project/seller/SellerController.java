@@ -45,8 +45,6 @@ public class SellerController {
 		String seller_password=request.getParameter("seller_password");
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		SellerDTO dto = ss.seller_login_save(seller_id,seller_password);
-		
-		System.out.println(dto);
 		if(dto != null)
 		{
 			HttpSession hs=request.getSession();
@@ -55,6 +53,7 @@ public class SellerController {
 			int seller_number=dto.seller_number;
 			hs.setAttribute("seller_name",seller_name);
 			hs.setAttribute("seller_number",seller_number);
+			hs.setAttribute("seller_id", seller_id);
 			hs.setMaxInactiveInterval(1800);
 			return "seller_page";
 		}
@@ -84,9 +83,7 @@ public class SellerController {
 		String seller_company_number=request.getParameter("seller_company_number");
 		String seller_company_address=request.getParameter("seller_company_address");
 		int role=1;
-		
 		SellerDTO dto=new SellerDTO();
-		
 		dto.setSeller_id(seller_id);
 		dto.setSeller_password(seller_password);
 		dto.setSeller_name(seller_name);
@@ -95,7 +92,6 @@ public class SellerController {
 		dto.setSeller_company_number(seller_company_number);
 		dto.setSeller_compnay_address(seller_company_address);
 		dto.setSeller_role(role);
-		
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ss.seller_join_save(dto);
 		
@@ -164,10 +160,8 @@ public class SellerController {
 	{
 		String seller_id=request.getParameter("seller_id");
 		String seller_email=request.getParameter("seller_email");
-		
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ArrayList<SellerDTO> list = ss.seller_login_find_password_save(seller_id,seller_email);
-		
 		if(list.size() != 0)
 		{
 		mo.addAttribute("list",list);
@@ -222,27 +216,22 @@ public class SellerController {
 	@RequestMapping(value = "/seller_info_exit",method=RequestMethod.POST)
 	public String seller_info_exit(HttpServletRequest request)
 	{
-		System.out.println("123");
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
 		String seller_password=request.getParameter("seller_password");
-		System.out.println("회원번호"+seller_number+seller_password);
-		
 		SellerDTO dto = ss.seller_password_check(seller_number,seller_password);//DB에 비밀번호가 있는지 체크
-		ss.seller_info_exit(seller_number);//삭제
 		HttpSession hs = request.getSession();
-		hs.removeAttribute("loginstate");
-		hs.setAttribute("loginstate",false);
-		
 		if(dto!=null)
 		{
+			ss.seller_info_exit(seller_number);//삭제
+			hs.removeAttribute("loginstate");
+			hs.setAttribute("loginstate",false);
 			return "ok";
 		}
 		else
 		{
 			return "no";
 		}
-		
 	}
 	
 }
