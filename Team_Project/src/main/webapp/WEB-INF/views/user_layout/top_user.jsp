@@ -68,7 +68,7 @@ body {
 		  <a href="#">사용자 게시물관리(수정삭제)</a>
 		  <a href="#">shop(상품출력)</a>
 		  <a href="customer_community_out">community(게시글)</a>
-		  <a href="#">QnA(자주묻는질문)</a>
+		  <a href="customer_qna">QnA(자주묻는질문)</a>
 		</div>
 	</c:when>
 	<c:otherwise>
@@ -77,7 +77,7 @@ body {
 		  <a href="customer_login">사용자 로그인</a>
 		  <a href="#">shop(상품출력)</a>
 		  <a href="customer_community_out">community(게시글)</a>
-		  <a href="#">QnA(자주묻는질문)</a>
+		  <a href="customer_qna">QnA(자주묻는질문)</a>
 		</div>
 	</c:otherwise>
 </c:choose>
