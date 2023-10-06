@@ -192,7 +192,7 @@ function seller_join_check() {
 
 <tr>
 <th>사업자번호</th>
-<td><input type="text" id="seller_company_number" name="seller_company_number" placeholder="-를뺀 10자리 사업자번호를 입력하세요."></td>
+<td><input type="text" id="seller_company_number" name="seller_company_number" placeholder="-를뺀 10자리 사업자번호를 입력하세요." maxlength="10"></td>
 </tr>
 
 <tr>

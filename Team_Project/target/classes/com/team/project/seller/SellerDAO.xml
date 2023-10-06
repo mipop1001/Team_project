@@ -29,7 +29,7 @@ update seller set seller_password=#{param1},seller_phone_number=#{param2},seller
 </update>
 
 <delete id="seller_info_exit">
-delete seller where seller_number=#{param1}
+delete seller where seller_number=#{param1} 
 </delete>
 
 <select id="seller_password_check" resultType="com.team.project.seller.SellerDTO">

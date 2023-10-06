@@ -39,7 +39,7 @@
 
 <tr>
 <th>사업자 번호</th>
-<td><input type="text" name="seller_company_number" value="${i.seller_company_number }"></td>
+<td><input type="text" name="seller_company_number" value="${i.seller_company_number }" maxlength="10"></td>
 </tr>
 
 <tr>

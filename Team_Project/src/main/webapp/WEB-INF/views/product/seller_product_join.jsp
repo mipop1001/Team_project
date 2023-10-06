@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="seller_product_join_save" enctype="multipart/form-data">
+<form action="seller_product_join_save" method="post" enctype="multipart/form-data">
 <table align="center">
 <h3>상품 등록</h3>
+
+<input type="hidden" value="${seller_id }" name="seller_id">
+
 <tr>
 <th>상품명</th>
 <td><input type="text" name="product_name"></td>
@@ -51,6 +54,12 @@
 <th>상세이미지3</th>
 <td><input type="file" name="product_detail_image3"></td>
 </tr>
+
+
+<tr>
+<td colspan="2"><input type="submit" value="등록"></td>
+</tr>
+
 
 </table>
 </form>
