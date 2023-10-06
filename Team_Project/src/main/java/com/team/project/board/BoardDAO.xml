@@ -11,4 +11,29 @@
 	select * from board
 </select>
 
+<select id="customer_community_detail" resultType="com.team.project.board.BoardDTO">
+	select * from board where community_board_number = #{param1}
+</select>
+
+<delete id="customer_community_delete">
+	delete from board where community_board_number = #{param1}
+</delete>
+
+<select id="customer_community_modify_get" resultType="com.team.project.board.BoardDTO">
+	select * from board where community_board_number = #{param1}
+</select>
+
+<update id="customer_community_modify_input_save" parameterType="com.team.project.board.BoardDTO">
+	update board set
+	 community_board_title = #{param2},
+	 community_board_content = #{param3},
+	 community_board_location = #{param5},
+	 community_board_grade = #{param6},
+	 community_board_sum_image = #{param7},
+	 community_board_detail_image1 = #{param8},
+	 community_board_detail_image2 = #{param9},
+	 community_board_detail_image3 = #{param10}
+	 where community_board_number = #{param1}
+</update>
+
 </mapper>

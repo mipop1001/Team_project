@@ -21,102 +21,6 @@
 	<script async="" src="https://rua-api.ncloud.com/api/v1/beacon/boomerang/collect/01573125-5fb7-4229-916d-e16c50c295b4"></script>
 
 	<style type="text/css">
-	const itemList = document.getElementById("item-list");
-	.paging {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 40px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-	}
-	.paging-wrapper .paging {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-	}
-
-	@media screen and (max-width: 1280px)
-	.breadcrumb {
-    padding: 0 15px;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 60px;
-	}
-	.breadcrumb {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    max-width: 1170px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin: 40px auto 56px;
-    font-size: 12px;
-	}
-	.breadcrumb a + a {
-    position: relative;
-	}
-	@media screen and (max-width: 1280px)
-	.breadcrumb a {
-    margin-bottom: 10px;
-	}
-	@media screen and (max-width: 1280px)
-	.contact .button-group.paging-wrapper .button {
-    position: static;
-    width: 100%;
-    margin-top: 30px;
-	}
-	.body .body-title {
-    margin: 0 0 62px;
-    text-align: center;
-    font-size: 30px;
-    font-family: "rb","Roboto",sans-serif;
-    font-weight: 700;
-	}
-	.button.black, .button.red, .button.gray {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-width: 80px;
-    height: 40px;
-    padding: 0 10px;
-    color: #fff;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background-color: #4b4b4b;
-	}
-	.button.red {
-    background-color: #a40000;
-	}
-	select, input, button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    background: none;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    text-align: center;
-    font-family: inherit;
-    font-size: 100%;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-	}
-	@media screen and (max-width: 724px)
-	.button.big {
-    min-width: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-	}
 	
 	ul {
     display: block;
@@ -133,9 +37,9 @@
 	}
 	body {
     line-height: 1;
+        margin: 0;
 	}
-
-	.content-item-list ul {
+	.community_travel_list ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -145,12 +49,11 @@
     margin-left: -26px;
     justify-content: center;
 	align-item: center;
-	
 	}
 	ol, ul {
     list-style: none;
 	}
-	.content-item-list .pic img {
+	.community_travel_list .pic img {
     vertical-align: top;
     -o-object-fit: cover;
     object-fit: cover;
@@ -166,72 +69,52 @@
     overflow-clip-margin: content-box;
     overflow: clip;
 	}
-	.content-item-list .pic {
+	.community_travel_list .pic {
     margin-bottom: 22px;
     overflow: hidden;
     text-align: center;
 	}
-    .content-item-list .item-tit {
+    .community_travel_list .board_title {
     font-size: 16px;
     line-height: 18px;
     color: #222;
     font-weight: 700;
 	}
-	.content-item-list .item-txt {
+	.community_travel_list .board_location {
     margin: 8px 0;
     font-size: 13px;
     line-height: 18px;
     color: #555;
 	}
-	.content-item-list .item-date {
+	.community_travel_list .board_date {
     font-size: 13px;
     line-height: 16px;
     color: #555;
 	}
 	.scroll-container {
     overflow-y: scroll; /* 세로 스크롤만 활성화 */
-    height: 400px; /* 스크롤 컨테이너의 높이를 조절 */
+    height: auto; /* 스크롤 컨테이너의 높이를 조절 */
     /* 다른 스타일 속성을 추가할 수 있습니다. */
-}
+	}
 	</style>
-	
-	<!-- NCP Real User Analytics (RUA) -->
-	<script>
-	  (function() {
-		var s = document.getElementsByTagName('script')[0]
-		  , p = document.createElement('script');
-		p.async = 'async';
-		p.src = 'https://rua-api.ncloud.com/api/v1/beacon/boomerang/collect/'+
-		  '01573125-5fb7-4229-916d-e16c50c295b4';
-		s.parentNode.insertBefore(p, s);
-	  })();
-	</script>
-	<!-- websIdid 세션 값 05/11 신태일 -->
-	<script>const sysId = 'null';</script>
-	<!-- 05/11 신태일 포인트 약관 동의 체크 스크립트  -->
-	<script src="/js/terms/index.js"></script>
 	</head>
 
 	<body>
 	<div class="scroll-container">
 	<div class="body-wrapper mobile-padding">
-	<div class="body page brand contact">
-		<div class="breadcrumb">
-			<a href="/#">추천캠핑장</a>
-			<a href="/#">캠핑경험담</a>
-		</div>
+	<div class="body page">
 		<h2 class="body-title">
 			캠핑경험담
 		</h2>
-			<div class="content-item-list brand-contents">
+			<div class="community_travel_list">
 				<ul>
 				<c:forEach items="${list }" var="community">
                    <li>
-                       <a href="#">
+                       <a href="customer_community_detail?community_board_number=${community.community_board_number }">
                            <div class="pic"><img src="product_sum_image/${community.community_board_sum_image }"></div>
-                           <strong class="item-tit">${community.community_board_title }</strong>
-                           <p class="item-txt">${community.community_board_location } </p>
-                           <span class="item-date">${community.community_board_date }</span>
+                           <strong class="board_title">${community.community_board_title }</strong>
+                           <p class="board_location">${community.community_board_location } </p>
+                           <span class="board_date">${community.community_board_date }</span>
                        </a>
                    </li>
 				</c:forEach>
@@ -253,4 +136,6 @@
 	</div>
 	<!-- /body-wrapper +end+ -->
 
-	 </div></body></html>
+	 </div>
+	 </body>
+	 </html>
