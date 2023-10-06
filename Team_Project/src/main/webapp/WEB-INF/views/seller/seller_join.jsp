@@ -177,7 +177,7 @@ function seller_join_check() {
 
 <tr>
 <th>이름</th>
-<td><input type="text" id="seller_name" name="seller_name" placeholder="이름을 입력하세요."></td>
+<td><input type="text" id="seller_name" name="seller_name" placeholder="이름을 입력하세요..."></td>
 </tr>
 
 <tr>
