@@ -94,55 +94,55 @@ function checkid() {
 <body>
 <hr>
 	<form action="customer_join_save" method="get">
-		<table align="center">
+		<table align="center" width="600px">
 		<caption>회원가입</caption>
 			<tr>
 				<th>아이디</th>
-				<td><hr> <input type="text" id="member_id" name="member_id" oninput="checkid()"> </td>
+				<td><hr> <input type="text" id="member_id" name="member_id" oninput="checkid()" style="width: 300px;" > </td>
 			</tr>
 			<tr>
 				<td colspan="2"> <div id="id_check"></div> </td>				
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td><hr> <input type="password" id="join_pw1"> </td>
+				<td><hr> <input type="password" id="join_pw1" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 	        	<th>패스워드 확인</th>
-	       		<td><hr> <input id="join_pw2" type="password" oninput="checkPassword()" name="member_password"> </td>
+	       		<td><hr> <input id="join_pw2" type="password" oninput="checkPassword()" name="member_password" style="width: 300px;"> </td>
 	        </tr>
 	        <tr>
 	       		<td colspan="2"><div id="pw_check" ></div></td>
 	        </tr>
 			<tr>
 				<th>이름</th>
-				<td><hr> <input type="text" id="name" name="member_name"> </td>
+				<td><hr> <input type="text" id="name" name="member_name" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 				<th>주민번호</th>
-				<td><hr> <input type="text" id="member_personal_number" name="member_personal_number" placeholder=" - 빼고 입력해주세요"> </td>
+				<td><hr> <input type="text" id="member_personal_number" name="member_personal_number" placeholder=" - 빼고 입력해주세요" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><hr> <input type="text" id="member_phone_number" name="member_phone_number"> </td>
+				<td><hr> <input type="text" id="member_phone_number" name="member_phone_number" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 				<th>주소</th>
 				<td>
 				<hr> 
-					<input type="text" id="member_address" name="member_address"> 
+					<input type="text" id="member_address" name="member_address" style="width: 300px;"> 
 				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><hr> <input type="email" id="member_email" name="member_email" oninput="checkemail()"> </td>
+				<td><hr> <input type="email" id="member_email" name="member_email" oninput="checkemail()" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 				<td colspan="2"><div id="email_check"></div></td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><hr> <input type="date" id="member_birthday" name="member_birthday"> </td>
+				<td><hr> <input type="date" id="member_birthday" name="member_birthday" style="width: 300px;"> </td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

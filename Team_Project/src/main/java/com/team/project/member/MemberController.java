@@ -128,6 +128,33 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "/customer_info")
+	public String customer_info(HttpServletRequest request, Model mo) {
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		mo.addAttribute("dto", dto);
+		return "customer_info_form";
+	}
+	
+	//ajax 처리
+	@ResponseBody
+	@RequestMapping(value = "/customer_info_exit")
+	public String customer_info_exit(HttpServletRequest request) {
+		String member_password = request.getParameter("password");
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		boolean a = ms.customer_info_exit(dto.getMember_id(),dto.getMember_name(),dto.getMember_email(), member_password);
+		
+		if(a == true) {
+			hs.removeAttribute("loginstatus");
+			hs.removeAttribute("memberDTO");
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
 	public String emailcheck(HttpServletRequest request) {
@@ -146,6 +173,23 @@ public class MemberController {
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		int idcheck = ms.idcheck(request.getParameter("id"));
 		if(idcheck == 0) {
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/customer_phone_number_modify", method = RequestMethod.POST)
+	public String customer_phone_number_modify(HttpServletRequest request, Model mo) {
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		boolean a = ms.customer_phone_number_modify(request.getParameter("newPhoneNumber"),dto.getMember_id(),dto.getMember_email());
+		if(a == true) {
+	        // 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
+	        MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
+	        mo.addAttribute("dto", newdto);
 			return "ok";
 		} else {
 			return "no";

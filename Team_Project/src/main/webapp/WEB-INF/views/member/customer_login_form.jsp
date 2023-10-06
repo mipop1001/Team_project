@@ -26,7 +26,7 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td> <hr> <input type="text" name="login_pw"> </td>
+				<td> <hr> <input type="password" name="login_pw"> </td>
 			</tr>
 			<tr>
 				<td colspan="2">
