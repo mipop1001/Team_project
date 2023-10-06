@@ -30,6 +30,11 @@ public class MemberController {
 		return "customer_join_form";
 	}
 	
+	@RequestMapping(value = "/customer_qna")
+	public String customer_qna() {
+		return "customer_qna_form";
+	}
+	
 	@RequestMapping(value = "/customer_login_check", method = {RequestMethod.GET, RequestMethod.POST})
 	public String customer_login_check(HttpServletRequest request, Model mo) {
 		String login_id = request.getParameter("login_id");
@@ -189,7 +194,44 @@ public class MemberController {
 		if(a == true) {
 	        // 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
 	        MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
+	        hs.setAttribute("memberDTO", newdto);
 	        mo.addAttribute("dto", newdto);
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/customer_address_modify", method = RequestMethod.POST)
+	public String customer_address_modify(HttpServletRequest request, Model mo) {
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		boolean a = ms.customer_address_modify(request.getParameter("newAddress"),dto.getMember_id(),dto.getMember_email());
+		if(a == true) {
+			// 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
+			MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
+			hs.setAttribute("memberDTO", newdto);
+			mo.addAttribute("dto", newdto);
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/customer_password_modify", method = RequestMethod.POST)
+	public String customer_password_modify(HttpServletRequest request, Model mo) {
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		boolean a = ms.customer_password_modify(request.getParameter("newPassword"),dto.getMember_id(),dto.getMember_email());
+		if(a == true) {
+			// 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
+			MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
+			hs.setAttribute("memberDTO", newdto);
+			mo.addAttribute("dto", newdto);
 			return "ok";
 		} else {
 			return "no";

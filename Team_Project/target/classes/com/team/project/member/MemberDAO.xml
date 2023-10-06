@@ -42,4 +42,12 @@
     SELECT * FROM member_project  where member_id = #{param1} and member_name = #{param2} and member_email = #{param3}
 </select>
 
+<update id="customer_address_modify">
+	update member_project set member_address = #{param1} where member_id = #{param2} and member_email = #{param3}
+</update>
+
+<update id="customer_password_modify">
+	update member_project set member_password = #{param1} where member_id = #{param2} and member_email = #{param3}
+</update>
+
 </mapper>

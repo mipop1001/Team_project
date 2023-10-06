@@ -38,7 +38,8 @@
     
     var phoneNumberInputVisible = false;
     var addressInputVisible = false;
-
+	var PasswordInputVisible = false;
+	
     function modifyPhoneNumber() {
         if (!phoneNumberInputVisible) {
             document.getElementById('phone_number_row').style.display = 'table-row';
@@ -63,8 +64,6 @@
                     if (data === "ok") {
                         alert("전화번호 수정 완료");
                         window.location.href = "customer_info";
-                    	// 수정된 전화번호를 화면에 표시
-                        document.querySelector('td:nth-of-type(2) > hr:nth-of-type(3)').textContent = newPhoneNumber;
                         // 수정 입력란을 숨김
                         document.getElementById('phone_number_row').style.display = 'none';                        
                     } else if (data === "no") {
@@ -93,28 +92,71 @@
 
     function saveAddress() {
         var newAddress = document.getElementById('address_input').value;
-        // TODO: 수정된 주소를 서버로 전송하여 DB에 업데이트합니다.
-        // AJAX를 사용하여 서버에 업데이트 요청을 보내고 응답을 처리하는 코드를 작성하세요.
+        // 입력란이 비어있는지 확인
+        if (newAddress) {
             $.ajax({
                 type: "post",
-                url: "",
+                url: "customer_address_modify",
                 async: true,
-                data: {"newAddress" : newAddress},
-                success: function(data) {
+                data: {"newAddress": newAddress},
+                success: function (data) {
                     if (data === "ok") {
                         alert("주소 수정 완료");
                         window.location.href = "customer_info";
+                        // 수정 입력란을 숨김
+                        document.getElementById('address_row').style.display = 'none';                        
                     } else if (data === "no") {
                         alert("수정 실패");
                     }
                 },
-                error: function(xhr, textStatus, errorThrown) {
+                error: function (xhr, textStatus, errorThrown) {
                     alert("오류 발생");
                 }
-            });         
+            });
+        } else {
+            alert("전화번호를 입력해 주세요");
+        }
+
+    }  
+
+    function modifypassword() {
+        if (!PasswordInputVisible) {
+            document.getElementById('password_row').style.display = 'table-row';
+            document.getElementById('password_input').value = '${dto.member_password}';
+        } else {
+            document.getElementById('password_row').style.display = 'none';
+        }
+        PasswordInputVisible = !PasswordInputVisible;
     }
 
-    
+    function savepassword() {
+        var newPassword = document.getElementById('password_input').value;
+        // 입력란이 비어있는지 확인
+        if (newPassword) {
+            $.ajax({
+                type: "post",
+                url: "customer_password_modify",
+                async: true,
+                data: {"newPassword": newPassword},
+                success: function (data) {
+                    if (data === "ok") {
+                        alert("패스워드 수정 완료");
+                        window.location.href = "customer_info";
+                        // 수정 입력란을 숨김
+                        document.getElementById('password_row').style.display = 'none';                        
+                    } else if (data === "no") {
+                        alert("수정 실패");
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert("오류 발생");
+                }
+            });
+        } else {
+            alert("패스워드를 입력해 주세요");
+        }
+
+    }  
 </script>
 </head>
 <body>
@@ -126,12 +168,23 @@
 			<td><hr>${dto.member_id }</td>
 		</tr>			
 		<tr>
+			<th>패스워드</th>
+			<td><hr>${dto.member_password }</td>
+			<td><hr> <a href="#" onclick="modifypassword()">패스워드 수정</a> </td>
+		</tr>
+		<tr id="password_row" style="display: none;">
+		    <td colspan="3" align="center">
+		        <input type="text" id="password_input" style="width: 300px;">
+		        <button onclick="savepassword()">저장</button>
+		    </td>
+		</tr>			
+		<tr>
 			<th>이름</th>
 			<td><hr>${dto.member_name }</td>
 		</tr>			
 		<tr>
 		    <th>전화번호</th>
-		    <td id="newPhoneNumber"><hr>${dto.member_phone_number }</td>
+		    <td><hr>${dto.member_phone_number }</td>
 		    <td><hr> <a href="#" onclick="modifyPhoneNumber()">전화번호 수정</a> </td>
 		</tr>
 		<tr id="phone_number_row" style="display: none;">

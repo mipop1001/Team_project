@@ -12,5 +12,7 @@ public interface MemberService {
 			String member_password);
 	public boolean customer_phone_number_modify(String newPhoneNumber, String member_id, String member_email);
 	public MemberDTO newcustomer(String member_id, String member_name, String member_email);
+	public boolean customer_address_modify(String parameter, String member_id, String member_email);
+	public boolean customer_password_modify(String parameter, String member_id, String member_email);
 
 }
