@@ -30,4 +30,16 @@
 	select * from member_project where member_id = #{param1} and member_name = #{param2} and member_email = #{param3}
 </select>
 
+<delete id="customer_info_exit" parameterType="com.team.project.member.MemberDTO">
+	delete from member_project where member_id = #{param1} and member_name = #{param2} and member_email = #{param3} and member_password = #{param4}
+</delete>
+
+<update id="customer_phone_number_modify">
+	update member_project set member_phone_number = #{param1} where member_id = #{param2} and member_email = #{param3}
+</update>
+
+<select id="newcustomer" resultType="com.team.project.member.MemberDTO">
+    SELECT * FROM member_project  where member_id = #{param1} and member_name = #{param2} and member_email = #{param3}
+</select>
+
 </mapper>

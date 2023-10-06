@@ -64,7 +64,7 @@ body {
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <p style="color: white;">${memberDTO.member_name}님 반갑습니다.</p>
 		  <a href="customer_logout">로그아웃</a>
-		  <a href="#">사용자 정보조회(수정탈퇴)</a>
+		  <a href="customer_info">사용자 정보조회(수정탈퇴)</a>
 		  <a href="#">사용자 게시물관리(수정삭제)</a>
 		  <a href="#">shop(상품출력)</a>
 		  <a href="customer_community_out">community(게시글)</a>
