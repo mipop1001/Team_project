@@ -18,7 +18,7 @@
 
 	<definition name="seller_product_join" extends="baseLayout_seller">
 		<put-attribute name="title" value="상품등록"/>
-		<put-attribute name="body" value="/WEB-INF/views/seller/seller_product_join.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/product/seller_product_join.jsp"/>
 	</definition>
 	
 	<definition name="seller_login" extends="baseLayout_seller">
