@@ -148,7 +148,7 @@ function checkid() {
 				<td colspan="2" align="center">
 				<hr>
 					<input type="submit" value="가입">
-					<input type="reset" value="취소" onclick="user_page">
+					<input type="reset" value="취소" onclick="location.href='user_page';">
 				</td>
 			</tr>
 		</table>
