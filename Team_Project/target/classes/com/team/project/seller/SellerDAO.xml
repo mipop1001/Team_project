@@ -12,6 +12,10 @@ insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_passwo
 select * from seller where seller_id=#{param1} and seller_password=#{param2}
 </select>
 
+<select id="seller_id_check" resultType="int">
+select count(seller_id) from seller where seller_id=#{param1}
+</select>
+
 <select id="seller_info" resultType="com.team.project.seller.SellerDTO">
 select * from seller where seller_number=#{param1}
 </select>

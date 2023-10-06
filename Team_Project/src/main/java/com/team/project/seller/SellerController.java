@@ -102,6 +102,28 @@ public class SellerController {
 		return "seller_page";
 	}
 	
+	
+	//회원가입 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/seller_id_check",method=RequestMethod.POST)
+	public String seller_id_check(HttpServletRequest request)
+	{
+		String seller_id=request.getParameter("seller_id");
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		int count = ss.seller_id_check(seller_id);
+		String result=null;
+		if(count == 0)
+		{
+			result="ok";
+			return result;
+		}
+		else
+		{
+			result="no";
+			return result;
+		}
+		
+	}
 	//아이디 찾기 화면
 	@RequestMapping(value = "/seller_login_find_id")
 	public String seller_login_find_id()
@@ -117,15 +139,15 @@ public class SellerController {
 		String seller_email=request.getParameter("seller_email");
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ArrayList<SellerDTO> list = ss.seller_login_find_id_save(seller_name, seller_email);
-		if(list != null)
+		if(list.size() != 0)
 		{
 		mo.addAttribute("list",list);
 		return "seller_login_find_id_view";
 		}
 		else
 		{
-			mo.addAttribute("msg","이름 또는 이메일이 일치하지 않습니다.");
-			return "redirect:seller_login_find_id";
+			mo.addAttribute("msg","이름 또는 이메일과 일치하는 아이디가 존재하지 않습니다.");
+			return "seller_login_find_id";
 		}
 	}
 	
@@ -145,8 +167,17 @@ public class SellerController {
 		
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ArrayList<SellerDTO> list = ss.seller_login_find_password_save(seller_id,seller_email);
-		mo.addAttribute("list", list);
+		
+		if(list.size() != 0)
+		{
+		mo.addAttribute("list",list);
 		return "seller_login_find_password_view";
+		}
+		else
+		{
+			mo.addAttribute("msg","아이디 또는 이메일이 일치하지 않습니다.");
+			return "seller_login_find_password";
+		}
 	}
 	
 	//마이 페이지 seller_number를 통해 검색
