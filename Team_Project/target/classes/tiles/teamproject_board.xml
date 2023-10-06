@@ -20,6 +20,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/customer_community_out.jsp"/>
 	</definition>
 	
+	<definition name="customer_community_detail" extends="baseLayout_user">
+		<put-attribute name="title" value="게시판 상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/customer_community_detail.jsp"/>
+	</definition>
+	
+	<definition name="customer_community_modify_input" extends="baseLayout_user">
+		<put-attribute name="title" value="게시판 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/customer_community_modify_input.jsp"/>
+	</definition>
+	
 	
 
 	
