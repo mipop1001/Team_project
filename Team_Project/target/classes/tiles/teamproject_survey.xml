@@ -11,9 +11,9 @@
 	</definition>
 	
 	<!-- 연결하려는 jsp를 추가해야함. -->
-	<definition name="#" extends="baseLayout_etc">
+	<definition name="survey_input_form" extends="baseLayout_etc">
 		<put-attribute name="title" value="설문 조사"/>
-		<put-attribute name="body" value="/WEB-INF/views/survey/#.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/survey/survey_input_form.jsp"/>
 	</definition>
 
 	
