@@ -21,8 +21,8 @@ public class ProductController {
 	@Autowired
 	SqlSession sqlSession;
 	
-	static String product_image_sum_path="C:\\Users\\3-29\\git\\Team_Project\\Team_Project\\src\\main\\webapp\\product_sum_image";
-	static String product_image_intro_path="C:\\Users\\3-29\\git\\Team_Project\\Team_Project\\src\\main\\webapp\\product_intro_image";
+	static String product_image_sum_path="Team_Project/src/main/webapp/product_sum_image";
+	static String product_image_intro_path="Team_Project/src/main/webapp/product_intro_image";
 	
 	@RequestMapping(value = "/seller_product_join")
 	public String seller_product_join(String seller_id,Model mo)
