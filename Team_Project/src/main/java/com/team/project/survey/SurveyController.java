@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team.project.member.MemberDTO;
+import com.team.project.member.MemberService;
 
 @Controller
 public class SurveyController {
@@ -29,20 +30,18 @@ public class SurveyController {
 		MemberDTO memberDTO = (MemberDTO) hs.getAttribute("memberDTO");
 		SurveyService ss = sqlSession.getMapper(SurveyService.class);
 		int surver_member_check = ss.survey_member_number_select(memberDTO.getMember_number());
-		System.out.println(surver_member_check);
 		if(surver_member_check == 1) {
-			System.out.println("DB저장 실패");
-			return"";
+			return"survey_error";
 		} else {
-			SurveyDTO sdto = new SurveyDTO();
-			sdto.setCampingNumberPeople(request.getParameter("campingNumberPeople"));
-			sdto.setCampingType(request.getParameter("campingType"));
-			sdto.setCampingCareer(request.getParameter("campingCareer"));
-			sdto.setCampingSite(request.getParameter("campingSite"));
-			sdto.setCampingLink(request.getParameter("campingLink"));
-			ss.surveyinsert(sdto,memberDTO.getMember_number());
-			System.out.println("DB저장 완료");
-			return "user_page";
+			String cnp = request.getParameter("campingNumberPeople");
+			String ct = request.getParameter("campingType");
+			String cc = request.getParameter("campingCareer");
+			String cs = request.getParameter("campingSite");
+			String cl = request.getParameter("campingLink");
+			ss.surveyinsert2(cnp,ct,cc,cs,cl,memberDTO.getMember_number());
+			MemberService ms = sqlSession.getMapper(MemberService.class);
+			ms.member_point_up(memberDTO.getMember_number(),memberDTO.getMember_email());
+			return "redirect:/user_page";
 		}
 		
 	}

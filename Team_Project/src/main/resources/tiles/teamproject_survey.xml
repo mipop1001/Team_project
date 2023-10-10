@@ -15,5 +15,10 @@
 		<put-attribute name="title" value="설문 조사"/>
 		<put-attribute name="body" value="/WEB-INF/views/survey/survey_input_form.jsp"/>
 	</definition>
+
+	<definition name="survey_error" extends="baseLayout_etc">
+		<put-attribute name="title" value="설문 조사 완료"/>
+		<put-attribute name="body" value="/WEB-INF/views/survey/survey_error.jsp"/>
+	</definition>
 	
 </tiles-definitions>

@@ -14,5 +14,7 @@ public interface MemberService {
 	public MemberDTO newcustomer(String member_id, String member_name, String member_email);
 	public boolean customer_address_modify(String parameter, String member_id, String member_email);
 	public boolean customer_password_modify(String parameter, String member_id, String member_email);
+	public void member_point_up(int member_number, String member_email);
+	public boolean customer_point_update(String member_id, String member_email);
 
 }
