@@ -70,16 +70,18 @@ body {
 		  <a href="boardnotice">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>
 		  <a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
+		  <a href="main">메인</a>
 		</div>
 	</c:when>
 	<c:otherwise>
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="customer_login">사용자 로그인</a>
-		  <a href="#">shop(상품출력)</a>
+		  <a href="userproductnotice">shop(상품출력)</a>
 <!-- 		  <a href="customer_community_out">community(게시글)</a> -->
 		  <a href="boardnotice">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>
+		  <a href="main">메인</a>
 		</div>
 	</c:otherwise>
 </c:choose>

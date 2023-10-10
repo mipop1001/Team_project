@@ -58,6 +58,7 @@ public class MemberController {
 		HttpSession hs = request.getSession();
 		hs.removeAttribute("loginstatus");
 		hs.removeAttribute("memberDTO");
+		hs.setAttribute("loginstatus", false);
 		return "redirect:/user_page";
 	}
 	

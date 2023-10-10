@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main_page() {
+	public String main_page(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		hs.setAttribute("loginstatus", false);
 		return "main_page";
 	}
 	

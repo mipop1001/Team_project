@@ -77,6 +77,7 @@ body {
   <a href="seller_product_join?seller_id=${seller_id }">상품등록</a>
   <a href="seller_product_out?seller_id=${seller_id }">상품 조회/수정/삭제</a>
   <a href="seller_product_sales">판매내역</a>
+  <a href="main">메인</a>
 </div>
 </c:when>
 <c:otherwise>
@@ -87,6 +88,7 @@ body {
   <a href="#" onclick="checkLogin()">상품등록</a>
   <a href="#" onclick="checkLogin()">상품 조회/수정/삭제</a>
   <a href="#" onclick="checkLogin()">판매내역</a>
+  <a href="main">메인</a>
 </div>
 </c:otherwise>
 </c:choose>
