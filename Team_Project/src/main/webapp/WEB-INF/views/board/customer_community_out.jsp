@@ -22,7 +22,7 @@
 
 	<style type="text/css">
 	
-	ul {
+	.ul {
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
@@ -35,25 +35,29 @@
     display: list-item;
     text-align: -webkit-match-parent;
 	}
-	body {
+	.bodypage{
     line-height: 1;
-        margin: 0;
+     /*    margin: 0; */
+        max-width: 1500px;
+    margin: 0 auto;
+    padding-bottom: 100px;
 	}
 	.community_travel_list ul {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
+    margin-top: 0;
+    margin-left: 155px;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: -40px;
-    margin-left: -26px;
-    justify-content: center;
-	align-item: center;
+    align-content: center;
+    align-items: center;
+	}
+	.community_travel_list {
+	
 	}
 	ol, ul {
     list-style: none;
 	}
-	.community_travel_list .pic img {
+	.pic img {
     vertical-align: top;
     -o-object-fit: cover;
     object-fit: cover;
@@ -64,32 +68,78 @@
     }
     img {
     vertical-align: top;
-	}
-	img {
     overflow-clip-margin: content-box;
     overflow: clip;
 	}
-	.community_travel_list .pic {
+	.pic {
     margin-bottom: 22px;
     overflow: hidden;
     text-align: center;
 	}
-    .community_travel_list .board_title {
+    board_title {
     font-size: 16px;
     line-height: 18px;
     color: #222;
     font-weight: 700;
 	}
-	.community_travel_list .board_location {
+	.board_location {
     margin: 8px 0;
     font-size: 13px;
     line-height: 18px;
     color: #555;
 	}
-	.community_travel_list .board_date {
+	.board_date {
     font-size: 13px;
     line-height: 16px;
     color: #555;
+	}
+	.body-title {
+    margin-bottom: 40px;
+    font-size: 22px;
+    line-height: 24px;
+	}
+	
+	.paging {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;  
+    display: flex;
+    margin-top: 40px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-right: 10px;
+	}
+	
+	.buttonbigred{
+    padding: 0 30px;
+	background-color: #a40000;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 80px;
+    height: 40px;
+    color: #fff;
+    -webkit-box-pack: center;
+    justify-content: center;
+	}
+	button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: inherit;
+    font-size: 100%;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+		}
 	}
 	</style>
 	</head>
@@ -97,11 +147,11 @@
 	<body>
 	<div class="scroll-container">
 	<div class="body-wrapper mobile-padding">
-	<div class="body page">
-		<h2 class="body-title">
+	<div class="bodypage">
+		<h2 class="body-title" style="padding-top: 90px;">
 			캠핑경험담
 		</h2>
-			<div class="community_travel_list">
+			<div class="community_travel_list" align="center">
 				<ul>
 				<c:forEach items="${list }" var="community">
                    <li>
@@ -115,6 +165,7 @@
 				</c:forEach>
 			</ul>
 		</div>
+		<div class="paging">
 		<tr style="border-left: none;border-right: none;border-bottom: none">
 		   <td colspan="5" style="text-align: center;"> 
 		   <c:if test="${paging.startPage!=1 }">
@@ -135,11 +186,12 @@
 		      <c:if test="${paging.endPage != paging.lastPage}">
 		      <a href="boardnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
 		   </c:if>
-		   <button class="button big red" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
+		   <button class="buttonbigred" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
 		   </td>
 		</tr>
+		</div>
 			<!-- <div class="button-group paging-wrapper">
-				<div class="paging">
+				
 						<a href="javascript:contents_paging(1);" class="p page-arrow" title="prev_page"></a>&nbsp;
 						<a href="javascript:contents_paging(1);" class="on" title="1page">1</a>&nbsp;
 						<a href="javascript:contents_paging(2);" title="2page">2</a>&nbsp;
@@ -148,7 +200,7 @@
 						글쓰기 버튼 0930
 						<button class="button big red" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
 						/글쓰기 버튼 0930
-				</div>
+				
 			</div> -->
 		</div>
 	</div>
