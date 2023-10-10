@@ -22,18 +22,6 @@
 text-align: center;
 	width: 100%;
 }
-#footer {
-position:fixed;
-bottom:0px;
-	width: 100%;
-	text-align: center;
-	font-size: 20px;
-	line-height: 30px;
-	height: 30px;
-	background-color: #000000;
-	color:white;
-}
-
 </style>
 <meta charset="UTF-8">
 <title><t:insertAttribute name="title"/></title>

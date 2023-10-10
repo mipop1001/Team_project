@@ -34,4 +34,20 @@ update product set product_name=#{product_name}, product_country=#{product_count
  product_detail_image2=#{product_detail_image2}, product_detail_image3=#{product_detail_image3}
   where seller_id=#{seller_id} and product_number=#{product_number}
 </update>
+
+<select id="user_product_out" resultType="com.team.project.product.ProductDTO">
+select * from product
+</select>
+
+<select id="userproductcntnotice" resultType="int">
+   select count(*)from product
+</select>
+<!-- 페이징처리에서 게시글 조회 -->
+<select id="userproductnotice" resultType="com.team.project.product.ProductDTO">
+   select * from (
+   select rownum rn,A.* from(  
+   select * from product order by product_number DESC,product_date asc)A)
+   where rn between #{start} AND #{end}
+</select>
+
 </mapper>
