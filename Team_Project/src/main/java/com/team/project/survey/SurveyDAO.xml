@@ -5,8 +5,14 @@
 <!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
 <mapper namespace="com.team.project.survey.SurveyService">
 
-<insert id="survey_input_save">
-	insert into survey_project values(survey_number_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+<select id="survey_member_number_select" resultType="int">
+	SELECT COUNT(*) FROM survey_project WHERE member_number = #{param1}
+</select>
+
+<insert id="surveyinsert" parameterType="com.team.project.survey.SurveyDTO">
+    INSERT INTO survey_project (survey_number, survey_q1, survey_q2, survey_q3, survey_q4, survey_q5, member_number)
+    VALUES (survey_number_seq.nextval, #{campingNumberPeople}, #{campingType}, #{campingCareer}, #{campingSite}, #{campingLink}, #{param2})
 </insert>
+
 
 </mapper>
