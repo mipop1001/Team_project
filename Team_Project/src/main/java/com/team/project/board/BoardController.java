@@ -140,4 +140,29 @@ public class BoardController {
 		
 		return "customer_community_input_form";
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value="/boardnotice")
+	public String ko16(HttpServletRequest request, PageDTO dto,Model mo) {
+		String nowPage=request.getParameter("nowPage"); //시작하면 null 값
+		String cntPerPage=request.getParameter("cntPerPage");
+		BoardService notice = sqlSession.getMapper(BoardService.class);
+		//전체레코드수구하기
+		int total=notice.boardcntnotice();
+		if(nowPage==null && cntPerPage == null) {
+		nowPage="1";
+		cntPerPage="3";
+		}
+		else if(nowPage==null) {
+		nowPage="1";
+		}
+		else if(cntPerPage==null) {
+		cntPerPage="3";
+		}      
+		dto=new PageDTO(total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("paging",dto);
+		mo.addAttribute("list",notice.boardnotice(dto));
+		//전체 레코드 수 구하는 것과 자료행중에서 start, end 값을 반환
+		return "customer_community_out";
+	}
 }

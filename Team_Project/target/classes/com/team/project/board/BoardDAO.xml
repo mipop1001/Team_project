@@ -36,4 +36,16 @@
 	 where community_board_number = #{param1}
 </update>
 
+
+<select id="boardcntnotice" resultType="int">
+   select count(*)from board
+</select>
+<!-- 페이징처리에서 게시글 조회 -->
+<select id="boardnotice" resultType="com.team.project.board.BoardDTO">
+   select * from (
+   select rownum rn,A.* from(  
+   select * from board order by community_board_number DESC,community_board_date asc)A)
+   where rn between #{start} AND #{end}
+</select>
+
 </mapper>
