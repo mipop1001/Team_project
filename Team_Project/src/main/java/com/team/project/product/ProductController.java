@@ -15,14 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team.project.board.PageDTO;
+
 @Controller
 public class ProductController {
 
 	@Autowired
 	SqlSession sqlSession;
 	
-	static String product_image_sum_path="Team_Project/src/main/webapp/product_sum_image";
-	static String product_image_intro_path="Team_Project/src/main/webapp/product_intro_image";
+	static String product_image_sum_path="C:\\자바\\ezen\\project\\Team_Project\\Team_Project\\src\\main\\webapp\\product_sum_image";
+	static String product_image_intro_path="C:\\자바\\ezen\\project\\Team_Project\\Team_Project\\src\\main\\webapp\\product_intro_image";
 	
 	@RequestMapping(value = "/seller_product_join")
 	public String seller_product_join(String seller_id,Model mo)
@@ -205,7 +207,42 @@ public class ProductController {
 		mo.addAttribute("list", list);
 		mo.addAttribute("seller_id",seller_id);
 		return "seller_product_out";
-		
 	}
+	
+	//user 상품 리스트 출력
+		@RequestMapping(value = "/user_product_out")
+		public String user_product_out(HttpServletRequest request,Model mo)
+		{
+			ProductService ss = sqlSession.getMapper(ProductService.class);
+			ArrayList<ProductDTO> list = ss.user_product_out();
+			mo.addAttribute("list", list);
+
+			return "user_product_out";
+			
+		}
+	//user 상품 리스트 pageing 출력	
+		@RequestMapping(value="/userproductnotice")
+		public String ko16(HttpServletRequest request, PageDTO dto,Model mo) {
+			String nowPage=request.getParameter("nowPage"); //시작하면 null 값
+			String cntPerPage=request.getParameter("cntPerPage");
+			ProductService notice = sqlSession.getMapper(ProductService.class);
+			//전체레코드수구하기
+			int total=notice.userproductcntnotice();
+			if(nowPage==null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="12";
+			}
+			else if(nowPage==null) {
+			nowPage="1";
+			}
+			else if(cntPerPage==null) {
+			cntPerPage="12";
+			}      
+			dto=new PageDTO(total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+			mo.addAttribute("paging",dto);
+			mo.addAttribute("list",notice.userproductnotice(dto));
+			//전체 레코드 수 구하는 것과 자료행중에서 start, end 값을 반환
+			return "user_product_out";
+		}	
 
 }

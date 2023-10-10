@@ -2,6 +2,8 @@ package com.team.project.product;
 
 import java.util.ArrayList;
 
+import com.team.project.board.PageDTO;
+
 public interface ProductService {
 
 	public void seller_product_join_save(ProductDTO dto);
@@ -11,4 +13,9 @@ public interface ProductService {
 	public ProductDTO seller_product_out_detail(String seller_id,int product_number);
 	public void seller_product_delete(String seller_id,int product_number);
 	public void seller_product_update(ProductDTO dto);
+	public ArrayList<ProductDTO> user_product_out();
+
+	public int userproductcntnotice();
+
+	public ArrayList<ProductDTO> userproductnotice(PageDTO dto);
 }
