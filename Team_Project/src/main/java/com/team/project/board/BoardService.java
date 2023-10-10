@@ -22,5 +22,9 @@ public interface BoardService {
 			int community_board_grade, String community_board_sum_image, String community_board_detail_image1,
 			String community_board_detail_image2, String community_board_detail_image3);
 
+	public int boardcntnotice();
+
+	public ArrayList<BoardDTO> boardnotice(PageDTO dto);
+
 
 }
