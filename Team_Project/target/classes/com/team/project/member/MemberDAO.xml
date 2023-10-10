@@ -50,4 +50,12 @@
 	update member_project set member_password = #{param1} where member_id = #{param2} and member_email = #{param3}
 </update>
 
+<update id="member_point_up">
+	update member_project set member_point = (member_point + 3000) where member_number = #{param1} and member_email = #{param2}
+</update>
+
+<update id="customer_point_update">
+	update member_project set member_point = member_point where member_id = #{param1} and member_email = #{param2}
+</update>
+
 </mapper>

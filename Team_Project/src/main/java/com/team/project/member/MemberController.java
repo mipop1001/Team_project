@@ -210,7 +210,7 @@ public class MemberController {
 		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
 		boolean a = ms.customer_address_modify(request.getParameter("newAddress"),dto.getMember_id(),dto.getMember_email());
 		if(a == true) {
-			// 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
+			// 주소가 성공적으로 업데이트되면 업데이트된 주소 값을 클라이언트에게 응답으로 전달
 			MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
 			hs.setAttribute("memberDTO", newdto);
 			mo.addAttribute("dto", newdto);
@@ -229,6 +229,23 @@ public class MemberController {
 		boolean a = ms.customer_password_modify(request.getParameter("newPassword"),dto.getMember_id(),dto.getMember_email());
 		if(a == true) {
 			// 전화번호가 성공적으로 업데이트되면 업데이트된 전화번호 값을 클라이언트에게 응답으로 전달
+			MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
+			hs.setAttribute("memberDTO", newdto);
+			mo.addAttribute("dto", newdto);
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/customer_point_update", method = RequestMethod.POST)
+	public String customer_point_update(HttpServletRequest request, Model mo) {
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		boolean a = ms.customer_point_update(dto.getMember_id(),dto.getMember_email());
+		if(a == true) {
 			MemberDTO newdto = ms.newcustomer(dto.getMember_id(), dto.getMember_name(), dto.getMember_email());
 			hs.setAttribute("memberDTO", newdto);
 			mo.addAttribute("dto", newdto);

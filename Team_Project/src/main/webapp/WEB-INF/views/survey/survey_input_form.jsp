@@ -64,7 +64,6 @@
 
         // 유효성 검사 통과 시, 폼 제출
         alert("설문 조사 완료");
-		window.close();
 		surveyForm.submit();
     }
 </script>
@@ -141,7 +140,7 @@
 				<td> <input type="text" name="campingLink" id="campingLink" placeholder="여기에 답변을 입력해주세요." style="width: 500px;"> </td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"> <hr> <input type="submit" value="테스트 저장"> <input type="button" value="설문 작성 완료" onclick="check()"> <input type="button" value="취소" onclick="window.close();">
+				<td colspan="2" align="center"> <hr> <input type="button" value="설문 작성 완료" onclick="check()"> <input type="button" value="취소" onclick="window.close();">
  </td>
 			</tr>
 		</table>

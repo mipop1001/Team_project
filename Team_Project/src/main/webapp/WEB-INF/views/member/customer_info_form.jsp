@@ -157,6 +157,25 @@
         }
 
     }  
+    
+    function updatePoint() {
+		$.ajax({
+			type: "post",
+			url: "customer_point_update",
+			async: true,
+            success: function (data) {
+                if (data === "ok") {
+                    alert("포인트 업데이트 완료");
+                    window.location.href = "customer_info";
+                } else if (data === "no") {
+                    alert("포인트 업데이트 실패");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert("오류 발생");
+            }
+		});
+	}
 </script>
 </head>
 <body>
@@ -211,6 +230,7 @@
 		<tr>
 			<th>포인트</th>
 			<td><hr>${dto.member_point }</td>
+			 <td><hr> <a href="#" onclick="updatePoint()">포인트 업데이트</a> </td>
 		</tr>			
 		<tr>
 			<th>구입금액</th>
