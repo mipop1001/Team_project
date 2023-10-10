@@ -8,4 +8,22 @@
 insert into product values(product_number_seq.nextval,#{product_name},#{product_country},#{product_maker},#{product_price},sysdate,#{product_buy_amount},#{product_sell_amount},#{seller_id},#{product_review_count},#{product_sum_image},#{product_detail_image1},#{product_detail_image2},#{product_detail_image3})
 </insert>
 
+<select id="seller_product_out" resultType="com.team.project.product.ProductDTO">
+select * from product where seller_id=#{param1}
+</select>
+
+<select id="seller_product_search_number" resultType="com.team.project.product.ProductDTO">
+select * from product where seller_id=#{param1} and product_number like '%'||#{param2}||'%' 
+</select>
+<select id="seller_product_search_name" resultType="com.team.project.product.ProductDTO">
+select * from product where seller_id=#{param1} and product_name like '%'||#{param2}||'%'
+</select>
+
+<select id="seller_product_out_detail" resultType="com.team.project.product.ProductDTO">
+select * from product where seller_id=#{param1} and product_number=#{param2}
+</select>
+
+<delete id="seller_product_delete">
+delete product where seller_id=#{param1} and product_number=#{param2}
+</delete>
 </mapper>

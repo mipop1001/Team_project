@@ -2,6 +2,9 @@ package com.team.project.product;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +80,78 @@ public class ProductController {
 		
 	}
 	
+	
+	//판매자 상품 리스트 출력
+	@RequestMapping(value = "/seller_product_out")
+	public String seller_product_out(HttpServletRequest request,Model mo)
+	{
+		String seller_id=request.getParameter("seller_id");
+		
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ArrayList<ProductDTO> list = ss.seller_product_out(seller_id);
+		mo.addAttribute("list", list);
+		mo.addAttribute("seller_id",seller_id);
+		return "seller_product_out";
+		
+	}
+	//내 상품 검색
+	@RequestMapping(value = "/seller_product_search",method=RequestMethod.POST)
+	public String seller_product_search(HttpServletRequest request,Model mo)
+	{
+		String seller_id=request.getParameter("seller_id");
+		String product_search_type=request.getParameter("product_search_type");
+		String product_search_value=request.getParameter("product_search_value");
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		if(product_search_type.equals("product_number"))
+		{
+			 list = ss.seller_product_search_number(seller_id,product_search_value);
+		}
+		else if(product_search_type.equals("product_name"))
+		{
+			 list = ss.seller_product_search_name(seller_id,product_search_value);
+			
+		}
+		
+		mo.addAttribute("list", list);
+		mo.addAttribute("seller_id",seller_id);
+		return "seller_product_search_out";
+	}
+	
+	//내 상품 자세히 보기
+	@RequestMapping(value = "/seller_product_out_detail")
+	public String seller_product_out_detail(String seller_id,int product_number,Model mo)
+	{
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ProductDTO dto = ss.seller_product_out_detail(seller_id,product_number);
+		mo.addAttribute("dto", dto);
+		
+		return "seller_product_out_detail";
+	}
+	
+	//상품 수정하기
+	@RequestMapping(value = "/seller_product_modify")
+	public String seller_product_modify(String seller_id,int product_number,Model mo)
+	{
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ProductDTO dto = ss.seller_product_out_detail(seller_id, product_number);
+		mo.addAttribute("dto", dto);
+		return "seller_product_modify";
+	}
+	
+	//상품 삭제하기
+	@RequestMapping(value = "/seller_product_delete")
+	public String seller_product_delete(String seller_id,int product_number,Model mo)
+	{
+	ProductService ss = sqlSession.getMapper(ProductService.class);
+	ss.seller_product_delete(seller_id, product_number);
+	
+	
+	
+	ArrayList<ProductDTO> list = ss.seller_product_out(seller_id);
+	mo.addAttribute("list", list);
+	mo.addAttribute("seller_id",seller_id);
+	return "seller_product_out";
+	}
 
 }
