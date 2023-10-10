@@ -69,7 +69,7 @@ body {
 		  <a href="#">shop(상품출력)</a>
 		  <a href="customer_community_out">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>
-		  <a href="survey_input">설문지</a>
+		  <a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
 		</div>
 	</c:when>
 	<c:otherwise>
@@ -79,7 +79,6 @@ body {
 		  <a href="#">shop(상품출력)</a>
 		  <a href="customer_community_out">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>
-		  <a href="survey_input">설문지</a>
 		</div>
 	</c:otherwise>
 </c:choose>
@@ -100,7 +99,19 @@ function closeNav() {
   document.getElementById("main").style.marginLeft= "0";
   document.body.style.backgroundColor = "white";
 }
+
+function openSurveyWindow() {
+    // 창의 가로와 세로 크기, 위치 설정
+    var width = 1200;
+    var height = 800;
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+
+    // 새 창 열기
+    window.open("survey_input", "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
+}
 </script>
+
    
 </body>
 </html> 
