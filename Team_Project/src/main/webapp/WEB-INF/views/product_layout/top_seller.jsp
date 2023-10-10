@@ -72,21 +72,21 @@ body {
 <c:when test="${loginstate==true }">
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="seller_logout">로그아웃</a>
-  <a href="seller_info?seller_number=${seller_number}">${seller_name }님 마이페이지</a>
-  <a href="seller_product_join?seller_id=${seller_id }">상품등록</a>
-  <a href="seller_product_out?seller_id=${seller_id }">상품 조회/수정/삭제</a>
-  <a href="seller_product_sales">판매내역</a>
+  <a href="seller_logout">판매자 로그아웃</a>
+  <a href="seller_info?seller_number=${seller_number}">${seller_name }님판매자 마이페이지</a>
+  <a href="seller_product_join?seller_id=${seller_id }">판매자 상품등록</a>
+  <a href="seller_product_out?seller_id=${seller_id }">판매자 상품 수정삭제조회</a>
+  <a href="seller_product_sales">판매자 판매내역</a>
 </div>
 </c:when>
 <c:otherwise>
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="seller_login">로그인</a>
-  <a href="#" onclick="checkLogin()">마이페이지</a>
-  <a href="#" onclick="checkLogin()">상품등록</a>
-  <a href="#" onclick="checkLogin()">상품 조회/수정/삭제</a>
-  <a href="#" onclick="checkLogin()">판매내역</a>
+  <a href="seller_login">판매자 로그인</a>
+  <a href="#" onclick="checkLogin()">판매자 마이페이지</a>
+  <a href="#" onclick="checkLogin()">판매자 상품등록</a>
+  <a href="#" onclick="checkLogin()">판매자 상품 수정삭제조회</a>
+  <a href="#" onclick="checkLogin()">판매자 판매내역</a>
 </div>
 </c:otherwise>
 </c:choose>

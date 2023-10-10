@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+a{
+	text-decoration: none !important;
+	color:black;
+	}
+	a:hover{
+	color:black;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -57,7 +66,9 @@
 
 
 <tr>
-<td colspan="2"><input type="submit" value="등록"></td>
+<td colspan="2"><input type="submit" value="등록">
+<button><a href="seller_page">취소</a></button>
+</td>
 </tr>
 
 

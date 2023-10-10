@@ -4,13 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+a{
+	text-decoration: none !important;
+	color:black;
+	}
+	a:hover{
+	color:black;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <form action="seller_product_update" method="post" enctype="multipart/form-data">
 <table align="center">
-<h3>상품 등록</h3>
+<h3>상품 수정</h3>
 
 <input type="hidden" value="${dto.seller_id }" name="seller_id">
 <input type="hidden" value="${dto.product_number }" name="product_number">

@@ -112,6 +112,7 @@ public class ProductController {
 			 list = ss.seller_product_search_name(seller_id,product_search_value);
 			
 		}
+
 		
 		mo.addAttribute("list", list);
 		mo.addAttribute("seller_id",seller_id);
