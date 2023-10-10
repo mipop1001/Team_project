@@ -91,11 +91,6 @@
     line-height: 16px;
     color: #555;
 	}
-	.scroll-container {
-    overflow-y: scroll; /* 세로 스크롤만 활성화 */
-    height: auto; /* 스크롤 컨테이너의 높이를 조절 */
-    /* 다른 스타일 속성을 추가할 수 있습니다. */
-	}
 	</style>
 	</head>
 
@@ -120,18 +115,41 @@
 				</c:forEach>
 			</ul>
 		</div>
-			<div class="button-group paging-wrapper">
+		<tr style="border-left: none;border-right: none;border-bottom: none">
+		   <td colspan="5" style="text-align: center;"> 
+		   <c:if test="${paging.startPage!=1 }">
+		      <a href="boardnotice?nowPage=${paging.startPage-1 }&cntPerPage=${paging.cntPerPage}">◀</a>
+		      <!-- 1page 가 아니면 보여라  -->
+		   </c:if>   
+		      <c:forEach begin="${paging.startPage }" end="${paging.endPage}" var="p"> 
+		         <c:choose>
+		            <c:when test="${p == paging.nowPage }">
+		               <b><span style="color: red;">${p}</span></b>
+		            </c:when>   
+		            <c:when test="${p != paging.nowPage }">
+		               <a href="boardnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+		            </c:when>   
+		         </c:choose>
+		      </c:forEach>
+		     
+		      <c:if test="${paging.endPage != paging.lastPage}">
+		      <a href="boardnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
+		   </c:if>
+		   <button class="button big red" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
+		   </td>
+		</tr>
+			<!-- <div class="button-group paging-wrapper">
 				<div class="paging">
 						<a href="javascript:contents_paging(1);" class="p page-arrow" title="prev_page"></a>&nbsp;
 						<a href="javascript:contents_paging(1);" class="on" title="1page">1</a>&nbsp;
 						<a href="javascript:contents_paging(2);" title="2page">2</a>&nbsp;
 						<a href="javascript:contents_paging(3);" title="3page">3</a>&nbsp;&nbsp;
 						<a href="javascript:contents_paging(2);" class="n page-arrow" title="next_page"></a>
-						<!-- 글쓰기 버튼 0930 -->
+						글쓰기 버튼 0930
 						<button class="button big red" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
-						<!-- /글쓰기 버튼 0930 -->
+						/글쓰기 버튼 0930
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- /body-wrapper +end+ -->
