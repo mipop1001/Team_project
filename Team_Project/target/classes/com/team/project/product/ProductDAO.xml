@@ -26,4 +26,12 @@ select * from product where seller_id=#{param1} and product_number=#{param2}
 <delete id="seller_product_delete">
 delete product where seller_id=#{param1} and product_number=#{param2}
 </delete>
+
+<update id="seller_product_update">
+update product set product_name=#{product_name}, product_country=#{product_country},
+ product_maker=#{product_maker}, product_price=#{product_price}, product_sell_amount=#{product_sell_amount},
+ product_sum_image=#{product_sum_image}, product_detail_image1=#{product_detail_image1},
+ product_detail_image2=#{product_detail_image2}, product_detail_image3=#{product_detail_image3}
+  where seller_id=#{seller_id} and product_number=#{product_number}
+</update>
 </mapper>

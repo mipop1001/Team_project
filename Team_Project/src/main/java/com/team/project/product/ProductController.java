@@ -146,12 +146,65 @@ public class ProductController {
 	ProductService ss = sqlSession.getMapper(ProductService.class);
 	ss.seller_product_delete(seller_id, product_number);
 	
-	
-	
 	ArrayList<ProductDTO> list = ss.seller_product_out(seller_id);
 	mo.addAttribute("list", list);
 	mo.addAttribute("seller_id",seller_id);
+	
 	return "seller_product_out";
+	}
+	
+	//상품 수정DB저장
+	@RequestMapping(value = "/seller_product_update",method=RequestMethod.POST)
+	public String seller_product_update(MultipartHttpServletRequest mul,Model mo) throws IllegalStateException, IOException
+	{
+		String seller_id=mul.getParameter("seller_id");
+		int product_number=Integer.parseInt(mul.getParameter("product_number"));
+		String product_name=mul.getParameter("product_name");
+		String product_country=mul.getParameter("product_country");
+		String product_maker=mul.getParameter("product_maker");
+		int product_price=Integer.parseInt(mul.getParameter("product_price"));
+		int product_sell_amount=Integer.parseInt(mul.getParameter("product_sell_amount"));
+		
+		MultipartFile mpf = mul.getFile("product_sum_image");
+		String product_sum_image=mpf.getOriginalFilename();
+				
+		
+		MultipartFile mpf1 = mul.getFile("product_detail_image1");
+		String product_detail_image1=mpf1.getOriginalFilename();
+		
+		MultipartFile mpf2 = mul.getFile("product_detail_image2");
+		String product_detail_image2=mpf2.getOriginalFilename();
+		
+		MultipartFile mpf3 = mul.getFile("product_detail_image3");
+		String product_detail_image3=mpf3.getOriginalFilename();
+		
+		ProductDTO dto = new ProductDTO();
+		dto.setSeller_id(seller_id);
+		dto.setProduct_number(product_number);
+		dto.setProduct_name(product_name);
+		dto.setProduct_country(product_country);
+		dto.setProduct_maker(product_maker);
+		dto.setProduct_price(product_price);
+		dto.setProduct_sell_amount(product_sell_amount);
+		dto.setProduct_sum_image(product_sum_image);
+		dto.setProduct_detail_image1(product_detail_image1);
+		dto.setProduct_detail_image2(product_detail_image2);
+		dto.setProduct_detail_image3(product_detail_image3);
+		
+		mpf.transferTo(new File(product_image_sum_path+"\\"+product_sum_image));
+		mpf1.transferTo(new File(product_image_intro_path+"\\"+product_detail_image1));
+		mpf2.transferTo(new File(product_image_intro_path+"\\"+product_detail_image2));
+		mpf3.transferTo(new File(product_image_intro_path+"\\"+product_detail_image3));
+		
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ss.seller_product_update(dto);
+		
+		
+		ArrayList<ProductDTO> list = ss.seller_product_out(seller_id);
+		mo.addAttribute("list", list);
+		mo.addAttribute("seller_id",seller_id);
+		return "seller_product_out";
+		
 	}
 
 }
