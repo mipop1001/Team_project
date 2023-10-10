@@ -27,5 +27,11 @@
 <td><img src="product_intro_image/${community_detail.community_board_detail_image3 }"></td></tr>
 </c:forEach>
 </table>
+<hr>
+	<h4>댓글</h4>
+	<div id="review" style="box-sizing: 50"></div>
+	
+
+
 </body>
 </html>
