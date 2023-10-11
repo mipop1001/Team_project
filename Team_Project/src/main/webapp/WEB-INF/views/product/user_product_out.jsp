@@ -160,7 +160,7 @@
 				<c:forEach items="${list }" var="user_product">
                    <li>
                            <strong class="user_product_title">${user_product.product_name }</strong>
-                       <a href="user_product_out_detail?product_number=${user_product.product_number }">
+                       <a href="user_product_detail?product_number=${user_product.product_number }">
                            <div class="pic"><img src="product_sum_image/${user_product.product_sum_image }"></div>
                            <p class="user_product_location">${user_product.product_maker } </p>
                            <p class="user_product_location">${user_product.product_price } </p>
