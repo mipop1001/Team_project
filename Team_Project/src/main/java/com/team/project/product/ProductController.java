@@ -244,5 +244,18 @@ public class ProductController {
 			//전체 레코드 수 구하는 것과 자료행중에서 start, end 값을 반환
 			return "user_product_out";
 		}	
+		
+		//user 상품 detail 출력
+		@RequestMapping(value = "/user_product_detail")
+		public String user_product_detail(HttpServletRequest request,Model mo)
+		{
+			int product_number = Integer.parseInt(request.getParameter("product_number"));
+			ProductService ss = sqlSession.getMapper(ProductService.class);
+			ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
+			System.out.println(list.toString());
+			mo.addAttribute("list", list);
+
+			return "user_product_detail";	
+		}
 
 }

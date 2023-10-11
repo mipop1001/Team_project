@@ -18,10 +18,6 @@
 #nav {
 	width: 100%;
 }
-#body {
-text-align: center;
-	width: 100%;
-}
 </style>
 <meta charset="UTF-8">
 <title><t:insertAttribute name="title"/></title>

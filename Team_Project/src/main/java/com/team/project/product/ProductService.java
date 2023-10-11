@@ -14,8 +14,7 @@ public interface ProductService {
 	public void seller_product_delete(String seller_id,int product_number);
 	public void seller_product_update(ProductDTO dto);
 	public ArrayList<ProductDTO> user_product_out();
-
 	public int userproductcntnotice();
-
 	public ArrayList<ProductDTO> userproductnotice(PageDTO dto);
+	public ArrayList<ProductDTO> user_product_detail(int product_number);
 }
