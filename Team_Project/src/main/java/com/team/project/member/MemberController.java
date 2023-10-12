@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class MemberController {
 		return "customer_qna_form";
 	}
 	
+	//사용자 로그인
 	@RequestMapping(value = "/customer_login_check", method = {RequestMethod.GET, RequestMethod.POST})
 	public String customer_login_check(HttpServletRequest request, Model mo) {
 		String login_id = request.getParameter("login_id");
@@ -53,6 +55,7 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 로그아웃 기능
 	@RequestMapping(value = "/customer_logout")
 	public String customer_logout(HttpServletRequest request) {
 		HttpSession hs = request.getSession();
@@ -62,6 +65,7 @@ public class MemberController {
 		return "redirect:/user_page";
 	}
 	
+	//사용자 회원가입 저장
 	@RequestMapping(value = "/customer_join_save")
 	public String customer_join_save(HttpServletRequest request) {
 		LocalDate now = LocalDate.now();
@@ -91,11 +95,13 @@ public class MemberController {
 		return "redirect:/user_page";
 	}
 	
+	//사용자 아이디 찾기 페이지
 	@RequestMapping(value = "/customer_find_id")
 	public String customer_find_id() {
 		return "customer_find_id_form";
 	}
 
+	//사용자 아이디 찾기 기능
 	@RequestMapping(value = "/customer_id_search", method = {RequestMethod.GET, RequestMethod.POST})
 	public String customer_id_search(HttpServletRequest request, Model mo) {
 		String member_name = request.getParameter("member_name");
@@ -112,11 +118,13 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 비밀번호 찾기 페이지
 	@RequestMapping(value = "/customer_find_pw")
 	public String customer_find_pw() {
 		return "customer_find_pw_form";
 	}
-
+	
+	//사용자 비밀번호 찾기 기능
 	@RequestMapping(value = "/customer_pw_search", method = {RequestMethod.GET, RequestMethod.POST})
 	public String customer_pw_search(HttpServletRequest request, Model mo) {
 		String member_id = request.getParameter("member_id");
@@ -134,6 +142,7 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 마이페이지
 	@RequestMapping(value = "/customer_info")
 	public String customer_info(HttpServletRequest request, Model mo) {
 		HttpSession hs = request.getSession();
@@ -142,7 +151,7 @@ public class MemberController {
 		return "customer_info_form";
 	}
 	
-	//ajax 처리
+	//ajax 
 	@ResponseBody
 	@RequestMapping(value = "/customer_info_exit")
 	public String customer_info_exit(HttpServletRequest request) {
@@ -161,6 +170,7 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 회원가입 이메일 중복 체크
 	@ResponseBody
 	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
 	public String emailcheck(HttpServletRequest request) {
@@ -173,6 +183,7 @@ public class MemberController {
 		}
 	}
 
+	//사용자 아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
 	public String idcheck(HttpServletRequest request) {
@@ -185,6 +196,7 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 전화번호 변경
 	@ResponseBody
 	@RequestMapping(value = "/customer_phone_number_modify", method = RequestMethod.POST)
 	public String customer_phone_number_modify(HttpServletRequest request, Model mo) {
@@ -203,6 +215,7 @@ public class MemberController {
 		}
 	}
 
+	//사용자 주소 변경
 	@ResponseBody
 	@RequestMapping(value = "/customer_address_modify", method = RequestMethod.POST)
 	public String customer_address_modify(HttpServletRequest request, Model mo) {
@@ -221,6 +234,7 @@ public class MemberController {
 		}
 	}
 
+	//사용자 패스워드 변경
 	@ResponseBody
 	@RequestMapping(value = "/customer_password_modify", method = RequestMethod.POST)
 	public String customer_password_modify(HttpServletRequest request, Model mo) {
@@ -238,7 +252,8 @@ public class MemberController {
 			return "no";
 		}
 	}
-
+	
+	//사용자 설문조사 완료시 포이트 업데이트
 	@ResponseBody
 	@RequestMapping(value = "/customer_point_update", method = RequestMethod.POST)
 	public String customer_point_update(HttpServletRequest request, Model mo) {
@@ -254,6 +269,17 @@ public class MemberController {
 		} else {
 			return "no";
 		}
+	}
+	
+	//포인트 관리 페이지
+	@RequestMapping(value = "/customer_point_management")
+	public String customer_point_management(HttpServletRequest request, Model mo) {
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		ArrayList<MemberDTO> lsit = ms.point_management(dto.getMember_number());
+		mo.addAttribute("list", lsit);
+		return "customer_point_management_form";
 	}
 
 	
