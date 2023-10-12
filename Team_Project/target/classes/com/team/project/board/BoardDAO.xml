@@ -48,4 +48,12 @@
    where rn between #{start} AND #{end}
 </select>
 
+
+<insert id="board_comment_save">
+insert into board_comment values(#{param1},sysdate,#{param2},#{param3},comment_number_seq.nextval)
+</insert>
+
+<select id="board_comment_view" resultType="com.team.project.board.BoardCommentDTO">
+select * from board_comment where community_board_number=#{param1}
+</select>
 </mapper>

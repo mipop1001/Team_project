@@ -2,6 +2,7 @@ package com.team.project.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -88,9 +90,9 @@ public class BoardController {
 
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ArrayList<BoardDTO> list = ss.customer_community_detail(Integer.parseInt(request.getParameter("community_board_number")));
-		
+		ArrayList<BoardCommentDTO> list2 = ss.board_comment_view(Integer.parseInt(request.getParameter("community_board_number")));
 		mo.addAttribute("list",list);
-		
+		mo.addAttribute("list2", list2);
 		return "customer_community_detail";
 	}
 	
@@ -174,4 +176,27 @@ public class BoardController {
 		//전체 레코드 수 구하는 것과 자료행중에서 start, end 값을 반환
 		return "customer_community_out";
 	}
+	
+	//게시판 댓글
+	@ResponseBody
+	@RequestMapping(value = "/board_comment",method=RequestMethod.POST)
+	public ArrayList<BoardCommentDTO> board_comment(HttpServletRequest request,Model mo) throws UnsupportedEncodingException
+	{
+		request.setCharacterEncoding("utf-8");
+		String member_id=request.getParameter("member_id");
+		int board_number=Integer.parseInt(request.getParameter("board_number"));
+		String comment_text=request.getParameter("comment_text");
+		BoardService ss = sqlSession.getMapper(BoardService.class);
+		ss.board_comment_save(member_id,board_number,comment_text);
+		HttpSession hs = request.getSession();
+		
+		ArrayList<BoardCommentDTO> list = ss.board_comment_view(board_number);
+		return list;
+		
+	}
+	
+	
+	
+	
+	
 }
