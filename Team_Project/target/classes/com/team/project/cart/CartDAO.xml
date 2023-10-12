@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
+<mapper namespace="com.team.project.cart.CartService">
+<insert id="user_product_cart">
+insert into cart values(#{param1},#{param2})
+</insert>
+
+<select id="user_product_cart_view" resultType="com.team.project.cart.CartDTO">
+select product_number from cart where member_number=#{param1}
+</select>
+
+<select id="" resultType="int">
+select count(*) from cart where product_number=#{param1}
+</select>
+
+<select id="user_product_cart_check" resultType="int">
+select count(*) from cart where product_number=#{param1} and member_number=#{param2}
+</select>
+</mapper>
+
