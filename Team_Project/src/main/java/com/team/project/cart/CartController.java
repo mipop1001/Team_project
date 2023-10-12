@@ -69,7 +69,7 @@ public class CartController {
 		    // 각 장바구니 항목에서 상품 번호를 가져옴
 		    int product_number = cartItem.getProduct_number();
 		    ProductService ps = sqlSession.getMapper(ProductService.class);
-		    list2 = ps.user_product_cart_view_data();
+		    list2 = ps.user_product_cart_view_data(member_number);
 //		       if (dto != null) {
 //		            list2.addAll(dto);
 //		        }

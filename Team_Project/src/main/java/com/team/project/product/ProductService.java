@@ -17,5 +17,5 @@ public interface ProductService {
 	public int userproductcntnotice();
 	public ArrayList<ProductDTO> userproductnotice(PageDTO dto);
 	public ArrayList<ProductDTO> user_product_detail(int product_number);
-	public ArrayList<ProductDTO> user_product_cart_view_data();
+	public ArrayList<ProductDTO> user_product_cart_view_data(int memeber_number);
 }
