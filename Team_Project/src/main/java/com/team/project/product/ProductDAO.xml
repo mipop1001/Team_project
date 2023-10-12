@@ -54,4 +54,11 @@ select * from product
 select * from product where product_number = #{param1}
 </select>
 
+
+<select id="user_product_cart_view_data" resultType="com.team.project.product.ProductDTO">
+SELECT DISTINCT p.*
+FROM product p
+JOIN cart c ON p.product_number = c.product_number
+</select>
+
 </mapper>

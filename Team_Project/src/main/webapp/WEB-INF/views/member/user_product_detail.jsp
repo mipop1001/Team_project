@@ -4,6 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function addToCart(product_number, member_number) {
+    // Ajax 요청을 보내고 서버에서 처리합니다.
+    $.ajax({
+        type: 'POST',  // 또는 'GET'에 따라 상황에 맞게 설정
+        url: 'user_product_cart_check', // 서버의 처리 URL로 변경해야 합니다.
+        data: {
+            product_number: product_number,
+            member_number: member_number
+        },
+        success: function(response) {
+            if (response === 'already') {
+                alert('이미 등록된 상품입니다.');
+            } else if (response === 'success') {
+                alert('상품이 장바구니에 추가되었습니다.');
+                var newLocation = 'user_product_cart?product_number=' + product_number + '&member_number=' + member_number;
+                window.location.href = newLocation;
+            } else {
+                alert('알 수 없는 오류가 발생했습니다.');
+            }
+        },
+        error: function() {
+            alert('서버 요청 중 오류가 발생했습니다.');
+        }
+    });
+}
+</script>
 <style type="text/css">
 body {
 	margin-top: -1px;
@@ -220,7 +248,8 @@ body {
 						</dl>
 					</div>
 					<div class="item_choise_button">
-						<input type="button" class="cart" value="장바구니"> 
+<%-- 						<input type="button" class="cart" value="장바구니" onclick="location.href='user_product_cart?product_number=${pnum.product_number}&member_number=${memberDTO.member_number }'">  --%>
+						<input type="button" class="cart" value="장바구니" onclick="addToCart(${pnum.product_number}, ${memberDTO.member_number})">
 						<input type="button" class="like" value="찜하기"> 
 						<input type="button" class="buy" value="바로구매">
 					</div>
