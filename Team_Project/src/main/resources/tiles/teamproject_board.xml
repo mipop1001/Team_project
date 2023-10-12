@@ -30,6 +30,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/customer_community_modify_input.jsp"/>
 	</definition>
 
+	<definition name="my_community_content_view" extends="baseLayout_user">
+		<put-attribute name="title" value="나의 게시글 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/my_community_content_view.jsp"/>
+	</definition>
+
 <!-- 	<definition name="customer_login_form" extends="baseLayout_user"> -->
 <!-- 		<put-attribute name="title" value="로그인 화면"/> -->
 <!-- 		<put-attribute name="body" value="/WEB-INF/views/board/customer_login_form.jsp"/> -->

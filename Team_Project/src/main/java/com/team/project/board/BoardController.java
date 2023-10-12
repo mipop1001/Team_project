@@ -43,6 +43,11 @@ public class BoardController {
 	
 	@RequestMapping(value = "/customer_community_input_save", method = RequestMethod.POST)
 	public String customer_community_input_save(MultipartHttpServletRequest mul) throws IllegalStateException, IOException {
+			
+		HttpSession hs = mul.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		System.out.println(dto.getMember_number());
+		
 			String community_board_title = mul.getParameter("community_board_title");
 			String community_board_content = mul.getParameter("community_board_content");
 			String community_board_location = mul.getParameter("community_board_location");
@@ -64,7 +69,7 @@ public class BoardController {
 			String community_board_detail_image3 = mf3.getOriginalFilename();
 			
 			BoardService ss = sqlSession.getMapper(BoardService.class);
-			ss.customer_community_input_save(community_board_title,community_board_content,community_board_location,community_board_grade,community_board_sum_image,community_board_detail_image1,community_board_detail_image2,community_board_detail_image3);
+			ss.customer_community_input_save(community_board_title,community_board_content,community_board_location,community_board_grade,community_board_sum_image,community_board_detail_image1,community_board_detail_image2,community_board_detail_image3,dto.getMember_number());
 			
 			mf.transferTo(new File(image_sum_path+"\\"+community_board_sum_image));
 			mf1.transferTo(new File(image_intro_path+"\\"+community_board_detail_image1));
@@ -102,7 +107,7 @@ public class BoardController {
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ss.customer_community_delete(Integer.parseInt(request.getParameter("community_board_number")));
 
-		return "user_page";
+		return "redirect:/my_community_content";
 	}
 	
 	@RequestMapping(value = "/customer_community_modify_get")
@@ -195,8 +200,18 @@ public class BoardController {
 		
 	}
 	
-	
-	
+	//나의 게시글 보기
+	@RequestMapping(value = "/my_community_content", method= {RequestMethod.POST,RequestMethod.GET})
+	public String my_community_content(HttpServletRequest request, Model mo)
+	{
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		ArrayList<BoardDTO> list = bs.my_community_content(dto.getMember_number());
+		mo.addAttribute("list", list);
+		mo.addAttribute("memberDTO", dto);
+		return "my_community_content_view";
+	}
 	
 	
 }

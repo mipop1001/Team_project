@@ -60,13 +60,15 @@ body {
 <body>
 <c:choose>
 	<c:when test="${loginstatus == true}">
-		  <h4 align="right" style="color: red;">${memberDTO.member_name}님</h4>
-		  <h4 align="right" style="color: red;">포인트 : ${memberDTO.member_point}원</h4>
-		 <div id="mySidenav" class="sidenav">
+		<h4 align="right" style="color: red;">${memberDTO.member_name}님</h4>
+		<h4 align="right" style="color: red;">포인트 : ${memberDTO.member_point}원</h4>
+		<h4 align="right" style="color: red;">포인트 업데이트</h4>
+		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="customer_logout">로그아웃</a>
 		  <a href="customer_info">사용자 정보조회(수정탈퇴)</a>
-		  <a href="#">사용자 게시물관리(수정삭제)</a>
+		  <a href="customer_point_management">포인트 관리</a>
+		  <a href="my_community_content">사용자 게시물관리(수정삭제)</a>
 		  <a href="userproductnotice">shop(상품출력)</a>
 		  <a href="boardnotice">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>

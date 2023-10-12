@@ -4,7 +4,7 @@
     
 <mapper namespace="com.team.project.board.BoardService">
 <insert id="customer_community_input_save">
-	insert into board values(community_board_number_seq.nextval,#{param1},#{param2},sysdate,#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
+	insert into board values(community_board_number_seq.nextval,#{param1},#{param2},sysdate,#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
 </insert>
 
 <select id="customer_community_out" resultType="com.team.project.board.BoardDTO">
@@ -56,4 +56,10 @@ insert into board_comment values(#{param1},sysdate,#{param2},#{param3},comment_n
 <select id="board_comment_view" resultType="com.team.project.board.BoardCommentDTO">
 select * from board_comment where community_board_number=#{param1}
 </select>
+
+<!-- 나의 게시글 출력 -->
+<select id="my_community_content" resultType="com.team.project.board.BoardDTO">
+	select * from board where member_number = #{param1}
+</select>
+
 </mapper>
