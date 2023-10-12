@@ -19,5 +19,4 @@ public interface MemberService {
 	public void member_point_up(int member_number, String member_email);
 	public boolean customer_point_update(String member_id, String member_email);
 	public ArrayList<MemberDTO> point_management(int member_number);
-
 }

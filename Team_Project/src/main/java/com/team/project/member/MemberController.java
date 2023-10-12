@@ -281,4 +281,6 @@ public class MemberController {
 		mo.addAttribute("list", lsit);
 		return "customer_point_management_form";
 	}
+
+	
 }

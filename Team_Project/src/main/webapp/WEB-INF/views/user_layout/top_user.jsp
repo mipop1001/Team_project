@@ -70,6 +70,7 @@ body {
 		  <a href="customer_point_management">포인트 관리</a>
 		  <a href="my_community_content">사용자 게시물관리(수정삭제)</a>
 		  <a href="userproductnotice">shop(상품출력)</a>
+		  <a href="user_product_cart_view?member_number=${memberDTO.member_number }">장바구니</a>
 		  <a href="boardnotice">community(게시글)</a>
 		  <a href="customer_qna">QnA(자주묻는질문)</a>
 		  <a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
