@@ -175,7 +175,13 @@
 			<version>2.4</version>
 		</dependency>
 		<!-- 이미지 파일 업로드 종료 -->
-
+	<!-- jackson -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	<!-- jackson -->
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

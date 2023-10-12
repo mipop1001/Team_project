@@ -60,6 +60,16 @@
 		<put-attribute name="title" value="사용자 마이페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/customer_info_form.jsp"/>
 	</definition>
+	
+		<definition name="user_product_out" extends="baseLayout_user">
+		<put-attribute name="title" value="상품출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/user_product_out.jsp"/>
+	</definition>
+	
+	<definition name="user_product_detail" extends="baseLayout_user">
+		<put-attribute name="title" value="상품"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/user_product_detail.jsp"/>
+	</definition>
 
 	
 </tiles-definitions>
