@@ -37,14 +37,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/product/seller_product_modify.jsp"/>
 	</definition>
 	
-	<definition name="user_product_out" extends="baseLayout_product">
-		<put-attribute name="title" value="상품출력"/>
-		<put-attribute name="body" value="/WEB-INF/views/product/user_product_out.jsp"/>
-	</definition>
-	
-	<definition name="user_product_detail" extends="baseLayout_product">
-		<put-attribute name="title" value="상품"/>
-		<put-attribute name="body" value="/WEB-INF/views/product/user_product_detail.jsp"/>
-	</definition>
+
 	
 </tiles-definitions>
