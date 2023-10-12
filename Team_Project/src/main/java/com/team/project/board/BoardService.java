@@ -27,4 +27,7 @@ public interface BoardService {
 	public ArrayList<BoardDTO> boardnotice(PageDTO dto);
 
 
+	//´ñ±Û
+	public void board_comment_save(String member_id,int board_number,String comment_text);
+	public ArrayList<BoardCommentDTO> board_comment_view(int board_number);
 }
