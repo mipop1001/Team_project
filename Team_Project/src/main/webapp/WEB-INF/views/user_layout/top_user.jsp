@@ -62,7 +62,7 @@ body {
 	<c:when test="${loginstatus == true}">
 		<h4 align="right" style="color: red;">${memberDTO.member_name}님</h4>
 		<h4 align="right" style="color: red;">포인트 : ${memberDTO.member_point}원</h4>
-		<h4 align="right" style="color: red;">포인트 업데이트</h4>
+		<a href="#" onclick="updatePoint()"><h4 align="right" style="color: red;">포인트 업데이트</h4></a>
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="customer_logout">로그아웃</a>
@@ -116,6 +116,25 @@ function openSurveyWindow() {
 
     // 새 창 열기
     window.open("survey_input", "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
+}
+
+function updatePoint() {
+	$.ajax({
+		type: "post",
+		url: "customer_point_update",
+		async: true,
+        success: function (data) {
+            if (data === "ok") {
+                alert("포인트 업데이트 완료");
+                window.location.href = "customer_info";
+            } else if (data === "no") {
+                alert("포인트 업데이트 실패");
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("오류 발생");
+        }
+	});
 }
 </script>
 
