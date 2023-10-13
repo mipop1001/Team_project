@@ -45,6 +45,7 @@ public class MemberController {
 		if(memberDTO != null) {
 			HttpSession hs = request.getSession();
 			hs.setAttribute("loginstatus", true);
+			hs.setAttribute("loginstatus", "true");
 			hs.setAttribute("memberDTO", memberDTO);
 			hs.setMaxInactiveInterval(3000);
 			return "redirect:/user_page";
