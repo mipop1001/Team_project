@@ -241,8 +241,10 @@ select{
 										<td>${i.product_buy_amount }</td>
 										<td>${i.product_sell_amount }</td>
 										<td>${i.product_review_count }</td>
-										<td><a
-											href="seller_product_out_detail?seller_id=${i.seller_id }&product_number=${i.product_number}">자세히보기</a></td>
+										<td>
+										<%-- <a href="seller_product_out_detail?seller_id=${i.seller_id }&product_number=${i.product_number}">자세히보기</a> --%>
+										<a href="user_product_detail?&product_number=${i.product_number}">자세히보기</a>
+										</td>
 										<td><a
 											href="seller_product_modify?seller_id=${i.seller_id }&product_number=${i.product_number}">수정</a></td>
 										<td><a

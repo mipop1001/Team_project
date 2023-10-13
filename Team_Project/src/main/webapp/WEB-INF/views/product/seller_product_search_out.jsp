@@ -245,9 +245,9 @@
                     <td>${i.product_buy_amount}</td>
                     <td>${i.product_sell_amount}</td>
                     <td>${i.product_review_count}</td>
-                    <td><a href="#">자세히 보기</a></td>
-                    <td><a href="#">수정</a></td>
-                    <td><a href="#">삭제</a></td>
+                    <td><a href="user_product_detail?&product_number=${i.product_number}">자세히 보기</a></td>
+                    <td><a href="seller_product_modify?seller_id=${i.seller_id }&product_number=${i.product_number}">수정</a></td>
+                    <td><a href="seller_product_delete?seller_id=${i.seller_id }&product_number=${i.product_number}">삭제</a></td>
                 </tr>
             </c:forEach>
         </c:otherwise>
