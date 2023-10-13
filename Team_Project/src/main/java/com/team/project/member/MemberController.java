@@ -46,7 +46,7 @@ public class MemberController {
 			HttpSession hs = request.getSession();
 			hs.setAttribute("loginstatus", true);
 			hs.setAttribute("memberDTO", memberDTO);
-			hs.setMaxInactiveInterval(300);
+			hs.setMaxInactiveInterval(3000);
 			return "redirect:/user_page";
 		} else {
 			mo.addAttribute("msg","아이디 또는 비밀번호가 일치하지 않습니다.");
