@@ -77,5 +77,6 @@ public class CartController {
 		mo.addAttribute("list2",list2);
 		return "user_product_cart_view";
 	}
+
 	
 }
