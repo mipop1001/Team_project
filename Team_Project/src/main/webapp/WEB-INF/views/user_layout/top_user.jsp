@@ -55,19 +55,28 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.info-box {
+    background-color: #000; /* 네모칸 배경색 설정 */
+    color: #fff; /* 글자색 설정 */
+    padding: 10px; /* 여백 설정 */
+    border-radius: 5px; /* 네모칸의 모서리를 둥글게 만듭니다. */
+    text-align: left;
+    text-color: White;
+}
 </style>
 </head>
 <body>
 <c:choose>
 	<c:when test="${loginstatus == true}">
-		<h4 align="right" style="color: red;">${memberDTO.member_name}님</h4>
-		<h4 align="right" style="color: red;">포인트 : ${memberDTO.member_point}원</h4>
-		<h4 align="right" style="color: red;">포인트 업데이트</h4>
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		  <a href="customer_logout">로그아웃</a>
+		   <div class="info-box">
+		    <h4>${memberDTO.member_name}님</h4>
+		    <h4>포인트 : ${memberDTO.member_point}원</h4>
+		    <h6><a href="customer_point_management">포인트 충전</a><a href="customer_logout">로그아웃</a></h6>
+		  </div>		 
 		  <a href="customer_info">사용자 정보조회(수정탈퇴)</a>
-		  <a href="customer_point_management">포인트 관리</a>
 		  <a href="my_community_content">사용자 게시물관리(수정삭제)</a>
 		  <a href="userproductnotice">shop(상품출력)</a>
 		  <a href="user_product_cart_view?member_number=${memberDTO.member_number }">장바구니</a>
@@ -116,6 +125,25 @@ function openSurveyWindow() {
 
     // 새 창 열기
     window.open("survey_input", "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
+}
+
+function updatePoint() {
+	$.ajax({
+		type: "post",
+		url: "customer_point_update",
+		async: true,
+        success: function (data) {
+            if (data === "ok") {
+                alert("포인트 업데이트 완료");
+                window.location.href = "customer_info";
+            } else if (data === "no") {
+                alert("포인트 업데이트 실패");
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("오류 발생");
+        }
+	});
 }
 </script>
 

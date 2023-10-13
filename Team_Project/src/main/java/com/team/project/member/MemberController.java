@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -281,6 +280,23 @@ public class MemberController {
 		mo.addAttribute("list", lsit);
 		return "customer_point_management_form";
 	}
-
 	
+	//포인트 충전 누르면 포인트 충전
+	@RequestMapping(value = "/pointCharge", method = {RequestMethod.POST, RequestMethod.GET})
+	public String pointCharge(HttpServletRequest request, Model mo) {
+		String cashStr = request.getParameter("cash").replaceAll("[^\\d]", ""); // 비숫자 문자(쉼표 등) 제거
+		int point = Integer.parseInt(cashStr);
+	    HttpSession hs = request.getSession();
+	    MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+	    String member_id = dto.getMember_id();
+	    String member_name = dto.getMember_name();
+	    String member_email = dto.getMember_email();
+
+	    MemberService ms = sqlSession.getMapper(MemberService.class);
+	    ms.pointcharge(point, member_id, member_name, member_email);
+	    return "redirect:/customer_point_management";
+	}
+
+
+
 }
