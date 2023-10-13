@@ -212,6 +212,25 @@ public class BoardController {
 		mo.addAttribute("memberDTO", dto);
 		return "my_community_content_view";
 	}
+
+	//나의 게시글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/delete_comment", method= {RequestMethod.POST,RequestMethod.GET})
+	public String delete_comment(HttpServletRequest request, Model mo)
+	{
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO)hs.getAttribute("memberDTO");
+		if(dto.getMember_id().equals(request.getParameter("commentid"))) {
+			String commentid = request.getParameter("commentid");
+			String commenttext = request.getParameter("commenttext");
+			int commentnumber = Integer.parseInt(request.getParameter("commentnumber"));
+			BoardService bs = sqlSession.getMapper(BoardService.class);
+			bs.delete_comment(commentid,commenttext,commentnumber);
+			return "ok";
+		} else {
+			return "";
+		}
+	}
 	
 	
 }

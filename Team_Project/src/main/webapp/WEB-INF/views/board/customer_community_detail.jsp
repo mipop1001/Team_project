@@ -35,20 +35,22 @@
 <input type="hidden" value="${memberDTO.member_id }" id="member_id">
 </c:forEach>
 </table>
-<hr>
-<h4>댓글</h4>
-<textarea id="commentInput" rows="5" cols="50" placeholder="댓글을 입력하세요."></textarea>
-<button onclick="addComment()" id="btn">작성</button>
-<div id="commentList">
-<hr>
-   <c:forEach items="${list2}" var="comment">
+	<hr>
+	<div id="commentList">
+   	<c:forEach items="${list2}" var="comment">
         <div>
-            작성 시간: ${comment.comment_date}
-            작성자: ${comment.member_id}
-            내용: ${comment.comment_text}
+        	<hr>
+            작성 시간: ${comment.comment_date} <br>
+            작성자: ${comment.member_id} <br>
+            내용: ${comment.comment_text} <br>
+            <a href="javascript:void(0);" onclick="deleteComment('${comment.member_id}', '${comment.comment_text}', '${comment.comment_number}')">삭제</a>
+            <hr>
         </div>
     </c:forEach>
     </div>
+	<h4>댓글</h4>
+	<textarea id="commentInput" rows="5" cols="50" placeholder="댓글을 입력하세요."></textarea>
+	<button onclick="addComment()" id="btn">작성</button>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script>
 function addComment() {
@@ -83,6 +85,7 @@ function addComment() {
 
                 // 댓글 입력 필드를 초기화
                 commentInput.value = "";
+                location.reload();
             },
             error: function() {
                 console.error("AJAX 오류 응답");
@@ -95,9 +98,57 @@ function addComment() {
 // 새로운 댓글 요소를 생성하는 함수
 function createCommentElement(commentData) {
     var commentElement = document.createElement("div");
-    commentElement.innerHTML = "작성 시간: " + commentData.comment_date + " 작성자: " + commentData.member_id + " 내용: " + commentData.comment_text;
+
+    // 작성 시간, 작성자, 내용 추가
+    commentElement.innerHTML = "<hr>"+ "작성 시간: " + commentData.comment_date + "<br> 작성자: " + commentData.member_id + "<br> 내용: " + commentData.comment_text;
+    
+    // 삭제 링크 추가
+    var deleteLink = document.createElement("a");
+    deleteLink.href = "javascript:void(0);";
+    deleteLink.textContent = "삭제";
+    deleteLink.onclick = function () {
+        // 삭제 함수 호출 - 삭제 작업을 수행하는 함수를 여기에 호출하십시오
+        deleteComment(commentData.comment_id);
+    };
+
+    // 삭제 링크를 댓글에 추가
+    commentElement.appendChild(deleteLink);
+
+    // 수평선(hr) 추가
+    var hr = document.createElement("hr");
+
+    // 댓글 내용, 삭제 링크, 수평선을 모두 commentElement에 추가
+    commentElement.appendChild(hr);
+
     return commentElement;
 }
+
+// 댓글 삭제 기능
+function deleteComment(commentid, commenttext, commentnumber) {
+    if (confirm("댓글을 삭제하시겠습니까?")) {
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "delete_comment", // 삭제를 처리할 서버 엔드포인트
+            data: {
+                "commentid": commentid,
+                "commenttext" : commenttext,
+                "commentnumber" : commentnumber
+            },
+            success: function (data) {
+                if (data === "ok") {
+                    // 댓글 삭제 후, 댓글 목록을 다시 로드하는 코드를 추가
+                	location.reload();
+                }
+            },
+            error: function () {
+                console.error("AJAX 오류 응답");
+                alert("오류");
+            }
+        });
+    }
+}
+
 </script>
 
 </body>

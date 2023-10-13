@@ -62,4 +62,9 @@ select * from board_comment where community_board_number=#{param1}
 	select * from board where member_number = #{param1}
 </select>
 
+<!-- 나의 게시글 삭제 -->
+<delete id="delete_comment">
+    delete from BOARD_COMMENT where member_id = #{param1} and COMMENT_TEXT = #{param2} and comment_number = #{param3}
+</delete>
+
 </mapper>
