@@ -71,4 +71,8 @@ select * from product where product_number=#{param1}
 update product set product_sell_amount=product_sell_amount-#{param2} where product_number=#{param1}
 </update>
 
+<select id="user_product_order" resultType="com.team.project.product.ProductDTO">
+select * from product where product_number = #{param1}
+</select>
+
 </mapper>

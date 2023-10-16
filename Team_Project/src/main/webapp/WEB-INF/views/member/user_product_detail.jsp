@@ -251,7 +251,7 @@ body {
 <%-- 						<input type="button" class="cart" value="장바구니" onclick="location.href='user_product_cart?product_number=${pnum.product_number}&member_number=${memberDTO.member_number }'">  --%>
 						<input type="button" class="cart" value="장바구니" onclick="addToCart(${pnum.product_number}, ${memberDTO.member_number})">
 						<input type="button" class="like" value="찜하기"> 
-						<input type="button" class="buy" value="바로구매">
+						<input type="button" class="buy" value="바로구매" onclick="location.href='user_product_order?product_number=${pnum.product_number}&member_number=${memberDTO.member_number }'">
 					</div>
 				</div>
 			</div>
