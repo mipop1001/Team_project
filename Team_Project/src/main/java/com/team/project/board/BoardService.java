@@ -32,4 +32,7 @@ public interface BoardService {
 	
 	//나의 게시글
 	public ArrayList<BoardDTO> my_community_content(int member_number);
+
+	//나의 게시글 삭제
+	public void delete_comment(String commentid, String commenttext, int commentnumber);
 }

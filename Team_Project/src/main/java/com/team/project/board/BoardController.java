@@ -32,13 +32,12 @@ public class BoardController {
 	@RequestMapping(value = "/customer_community_input_form")
 	public String customer_community_input_form(HttpServletRequest request) {	
 		HttpSession hs = request.getSession();
-		if((Boolean) hs.getAttribute("loginstatus")) {
-			return "customer_community_input_form";
+		if ((Boolean) hs.getAttribute("loginstatus")) {
+		    return "customer_community_input_form";
 		} else {
-			return "redirect:/customer_login";
+		    return "redirect:/customer_login";
 		}
-		
-		
+
 	}
 	
 	@RequestMapping(value = "/customer_community_input_save", method = RequestMethod.POST)
@@ -193,8 +192,6 @@ public class BoardController {
 		String comment_text=request.getParameter("comment_text");
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ss.board_comment_save(member_id,board_number,comment_text);
-		HttpSession hs = request.getSession();
-		
 		ArrayList<BoardCommentDTO> list = ss.board_comment_view(board_number);
 		return list;
 		
@@ -212,6 +209,24 @@ public class BoardController {
 		mo.addAttribute("memberDTO", dto);
 		return "my_community_content_view";
 	}
-	
+
+	//나의 게시글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/delete_comment", method= {RequestMethod.POST,RequestMethod.GET})
+	public String delete_comment(HttpServletRequest request, Model mo)
+	{
+		HttpSession hs = request.getSession();
+		MemberDTO dto = (MemberDTO)hs.getAttribute("memberDTO");
+		if(dto.getMember_id().equals(request.getParameter("commentid"))) {
+			String commentid = request.getParameter("commentid");
+			String commenttext = request.getParameter("commenttext");
+			int commentnumber = Integer.parseInt(request.getParameter("commentnumber"));
+			BoardService bs = sqlSession.getMapper(BoardService.class);
+			bs.delete_comment(commentid,commenttext,commentnumber);
+			return "ok";
+		} else {
+			return "";
+		}
+	}
 	
 }

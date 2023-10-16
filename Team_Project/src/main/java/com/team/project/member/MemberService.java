@@ -20,6 +20,8 @@ public interface MemberService {
 	public boolean customer_point_update(String member_id, String member_email);
 	public ArrayList<MemberDTO> point_management(int member_number);
 	public void pointcharge(int point, String member_id, String member_name, String member_email);
+	public int pointcheck(int member_number);
+	public void product_point_deduction(int totalProductPrice,int member_number);
 	public ArrayList<MemberDTO> user_product_order(int member_number);
 	public void order_buy_final(int member_point, int member_number);
 }

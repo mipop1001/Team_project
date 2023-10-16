@@ -22,9 +22,9 @@
 text-align: center;
 padding-bottom: 150px;
 }
-img{
-margin-top: 100px;
-}
+/*  img{  */
+/*  margin-top: 100px;  */
+/*  } */
 </style>
 <meta charset="UTF-8">
 <title><t:insertAttribute name="title"/></title>
