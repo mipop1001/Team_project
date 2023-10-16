@@ -233,8 +233,18 @@ public class SellerController {
 			return "no";
 		}
 	}
-	
-	
+	@RequestMapping(value = "/member_buy_items")
+	public void member_buy_items(HttpServletRequest request)
+	{
+		int member_number=Integer.parseInt(request.getParameter("member_number"));
+		int totalProductPrice=Integer.parseInt(request.getParameter("totalProductPrice"));
+		String product_number[]=request.getParameterValues("product_number");
+		for(int i = 0;i<product_number.length;i++) {
+			System.out.println(member_number+" "+totalProductPrice+" "+product_number[i]);
+		}
+		
+		
+	}
 
 	
 }
