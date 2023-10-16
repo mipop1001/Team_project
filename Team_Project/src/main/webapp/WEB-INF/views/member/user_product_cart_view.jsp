@@ -214,10 +214,11 @@ $(document).on('click', '.downItems', function () {
                         var result = JSON.parse(response);
                         if(result.result == "ok"){
                         alert('구매가 완료되었습니다.');
+                        	window.location.href = "member_buy_items?member_number="+memberNumber+"&totalProductPrice="+totalProductPrice+"&product_number="+productNumbers;
                         }
                         else if(result.result == "no")
                         	{
-                        	alert('포인트를 확인 해 주세요.');                        	
+                        	alert('포인트를 확인 해 주세요.');  
                         	}
                     },
                     error: function (xhr, status, error) {
@@ -232,6 +233,14 @@ $(document).on('click', '.downItems', function () {
         });
     });
 
+    
+    $(document).ready(function(){
+        $('.amount_null').on('click', function(){
+            // 품절된 상품의 체크 박스를 클릭할 때, 체크 박스를 해제(disabled)합니다.
+            $(this).prop('checked', false);
+            alert("품절된 상품입니다.");
+        });
+    });
     </script>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -253,8 +262,14 @@ $(document).on('click', '.downItems', function () {
         <hr>
         <c:forEach items="${list2}" var="product">
             <tr>
+            	<c:choose>
+            	<c:when test="${product.product_sell_amount == 0  }">
+            	<td><input type="checkbox" class="amount_null"></td>
+            	</c:when>
+            	<c:otherwise>
                 <td><input type="checkbox" class="buy_check" data-product-number="${product.product_number}"></td>
-
+                </c:otherwise>
+				</c:choose>
                 <td><img src="product_sum_image/${product.product_sum_image}" width="50px" height="30px"></td>
                 <td class="proimg_${product.product_number}" style="display:none;">${product.product_sum_image}</td>
                 <td class="product_name_${product.product_number}">${product.product_name}</td>
@@ -268,9 +283,14 @@ $(document).on('click', '.downItems', function () {
                 <td class="product_price_${product.product_number}" style="display: none;">${product.product_price}</td>
 
                 <td>${product.product_date}</td>
-
+				<c:choose>
+				<c:when test="${product.product_sell_amount == 0 }">
+				<td class="product_sell_amount_${product.product_number}">품절</td>
+				</c:when>
+				<c:otherwise>
                 <td class="product_sell_amount_${product.product_number}">${product.product_sell_amount}</td>
-
+                </c:otherwise>
+				</c:choose>
                 <td>${product.seller_id}</td>
 
                 <td><button><a href="cart_delete_item?product_number=${product.product_number }&member_number=${member_number}">x</a></button></td>
