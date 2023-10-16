@@ -10,52 +10,54 @@
 <!-- jQuery 추가 -->
 </head>
 <body>
-	<table border="2" align="center">
+<hr>
+	<table align="center" width="700px">
+	<caption>결제 페이지</caption>
 		<c:forEach items="${mlist}" var="member">
 			<tr>
 				<th>이름</th>
-				<td>${member.member_name}</td>
+				<td><hr>${member.member_name}<hr></td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td>${member.member_address}</td>
+				<td><hr>${member.member_address}<hr></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td>${member.member_phone_number}</td>
+				<td><hr>${member.member_phone_number}<hr></td>
 			</tr>
 			<tr>
 				<th>현재포인트</th>
-				<td>${member.member_point}</td>
+				<td><hr>${member.member_point}<hr></td>
 			</tr>
 			<c:forEach items="${plist}" var="product">
 				<tr>
 					<th>상품명</th>
-					<td>${product.product_name}</td>
-					<td>${product.product_sum_image}</td>
+					<td><hr>${product.product_name}<hr></td>
+					<td> <img alt="" src="./product_intro_image/${product.product_sum_image}" width="100px" height="100px"> </td>
 				</tr>
 				<tr>
 					<th>상품가격</th>
-					<td>${product.product_price}</td>
+					<td><hr>${product.product_price}<hr></td>
 				</tr>
 				<tr>
-					<th>point 잔액</th>
+					<th>결제 후 남는 <br> point 잔액</th>
 					<td><input type="hidden" readonly="readonly"
 						name="final_credit" class="final_credit"
 						value="${member.member_point - product.product_price}">
 						${member.member_point - product.product_price}</td>
 					<td><c:choose>
 							<c:when test="${member.member_point - product.product_price<= 0}">
-								<span style="color: red;">충전이 필요합니다.</span>
+								<span style="color: red;">충전이 필요합니다.</span> <br>
 								<a href='customer_point_management'>충전하기</a>
 							</c:when>
 							<c:otherwise>
-								<span style="color: green;">결재 가능합니다.</span>
+								<span style="color: green;">결제 가능합니다.</span>
 							</c:otherwise>
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="결재"
+					<td colspan="2" align="center"><hr><input type="button" value="결제"
 						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}'">
 					</td>
 				</tr>
