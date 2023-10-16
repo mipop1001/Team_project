@@ -48,9 +48,17 @@
         </div>
     </c:forEach>
     </div>
-	<h4>댓글</h4>
-	<textarea id="commentInput" rows="5" cols="50" placeholder="댓글을 입력하세요."></textarea>
-	<button onclick="addComment()" id="btn">작성</button>
+    <c:choose>
+    	<c:when test="${loginstatus == true }">
+			<h4>댓글</h4>
+			<textarea id="commentInput" rows="5" cols="50" placeholder="댓글을 입력하세요."></textarea>
+			<button onclick="addComment()" id="btn">작성</button>
+    	</c:when>
+    	<c:otherwise>
+    		<h4>댓글 작성은 로그인 후 사용 가능합니다.</h4> <hr>
+    	</c:otherwise>
+    </c:choose>
+		
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script>
 function addComment() {
@@ -143,7 +151,7 @@ function deleteComment(commentid, commenttext, commentnumber) {
             },
             error: function () {
                 console.error("AJAX 오류 응답");
-                alert("오류");
+                alert("작성자님만 삭제 가능합니다.");
             }
         });
     }
