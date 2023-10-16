@@ -32,13 +32,12 @@ public class BoardController {
 	@RequestMapping(value = "/customer_community_input_form")
 	public String customer_community_input_form(HttpServletRequest request) {	
 		HttpSession hs = request.getSession();
-		if((Boolean) hs.getAttribute("loginstatus")) {
-			return "customer_community_input_form";
+		if ((Boolean) hs.getAttribute("loginstatus")) {
+		    return "customer_community_input_form";
 		} else {
-			return "redirect:/customer_login";
+		    return "redirect:/customer_login";
 		}
-		
-		
+
 	}
 	
 	@RequestMapping(value = "/customer_community_input_save", method = RequestMethod.POST)
@@ -193,8 +192,6 @@ public class BoardController {
 		String comment_text=request.getParameter("comment_text");
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ss.board_comment_save(member_id,board_number,comment_text);
-		HttpSession hs = request.getSession();
-		
 		ArrayList<BoardCommentDTO> list = ss.board_comment_view(board_number);
 		return list;
 		
@@ -231,6 +228,5 @@ public class BoardController {
 			return "";
 		}
 	}
-	
 	
 }
