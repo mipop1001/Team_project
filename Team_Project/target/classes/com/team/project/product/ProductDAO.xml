@@ -62,4 +62,8 @@ JOIN cart c ON p.product_number = c.product_number
 where member_number=#{param1}
 </select>
 
+<select id="user_product_order" resultType="com.team.project.product.ProductDTO">
+select * from product where product_number = #{param1}
+</select>
+
 </mapper>
