@@ -20,4 +20,5 @@ public interface ProductService {
 	public ArrayList<ProductDTO> user_product_cart_view_data(int memeber_number);
 	public ProductDTO get_product_info(int product_number);
 	public void product_sell_amount_update(String productNumber,int quantity);
+	public ArrayList<ProductDTO> user_product_order(int product_number);
 }
