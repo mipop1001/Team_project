@@ -47,6 +47,6 @@ public class OrderController {
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		ms.order_buy_final(member_point,member_number);
 		
-		return "user_page";
+		return "redirect:/user_product_out";
 	}
 }
