@@ -54,7 +54,7 @@ public class SellerController {
 			hs.setAttribute("seller_name",seller_name);
 			hs.setAttribute("seller_number",seller_number);
 			hs.setAttribute("seller_id", seller_id);
-			hs.setMaxInactiveInterval(1800);
+			hs.setMaxInactiveInterval(5);
 			return "seller_page";
 		}
 		else

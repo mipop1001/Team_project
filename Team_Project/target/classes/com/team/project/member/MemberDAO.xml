@@ -66,4 +66,11 @@
 	update member_project set member_point = #{param1} + member_point where member_id = #{param2} and member_name = #{param3} and member_email = #{param4}
 </update>
 
+<select id="pointcheck" resultType="int">
+select member_point from member_project where member_number=#{param1}
+</select>
+
+<update id="product_point_deduction">
+update member_project set member_point=member_point-#{param1} where member_number=#{param2}
+</update>
 </mapper>

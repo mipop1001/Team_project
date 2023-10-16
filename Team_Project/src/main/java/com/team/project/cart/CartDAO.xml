@@ -17,5 +17,8 @@ select product_number from cart where member_number=#{param1}
 select count(*) from cart where product_number=#{param1} and member_number=#{param2}
 </select>
 
+<delete id="cart_delete_item">
+delete from cart where product_number=#{param1} and member_number=#{param2}
+</delete>
 </mapper>
 

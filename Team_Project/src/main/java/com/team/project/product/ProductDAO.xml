@@ -62,4 +62,13 @@ JOIN cart c ON p.product_number = c.product_number
 where member_number=#{param1}
 </select>
 
+
+<select id="get_product_info" resultType="com.team.project.product.ProductDTO">
+select * from product where product_number=#{param1}
+</select>
+
+<update id="product_sell_amount_update">
+update product set product_sell_amount=product_sell_amount-#{param2} where product_number=#{param1}
+</update>
+
 </mapper>
