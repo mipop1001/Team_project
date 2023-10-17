@@ -24,20 +24,20 @@
 		<table align="center">
 			<tr>
 				<th>아이디</th>
-				<td> <input type="text" name="login_id"> </td>
+				<td> <hr><input type="text" name="login_id"> </td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td> <input type="text" name="login_pw"> </td>
+				<td> <hr><input type="text" name="login_pw"> </td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2"><hr>
 					<input type="submit" value="로그인">
 					<input type="button" value="회원가입" onclick="location.href='customer_join';">
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"> <a href="customer_find_id">아이디 찾기</a>/<a href="customer_find_pw">비밀번호 찾기</a></td>
+				<td colspan="2" align="center"> <a href="customer_find_id"><hr>아이디 찾기</a>/<a href="customer_find_pw">비밀번호 찾기</a></td>
 			</tr>
 		</table>
 	</form>
