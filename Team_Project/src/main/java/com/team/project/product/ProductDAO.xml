@@ -75,4 +75,8 @@ update product set product_sell_amount=product_sell_amount-#{param2} where produ
 select * from product where product_number = #{param1}
 </select>
 
+<select id="product_cart_view" resultType="com.team.project.product.ProductDTO">
+select * from product where product_number = #{param1}
+</select>
+
 </mapper>

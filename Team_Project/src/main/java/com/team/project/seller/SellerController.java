@@ -1,18 +1,28 @@
 package com.team.project.seller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.team.project.product.ProductDTO;
+import com.team.project.product.ProductService;
 
 @Controller
 public class SellerController {
@@ -233,17 +243,24 @@ public class SellerController {
 			return "no";
 		}
 	}
-	@RequestMapping(value = "/member_buy_items")
-	public void member_buy_items(HttpServletRequest request)
-	{
+	@RequestMapping(value = "/user_product_order_cart", method = RequestMethod.POST)
+	public String user_product_order_cart(HttpServletRequest request,Model mo) {
+	    // 데이터 처리
+		String [] productNumbers=request.getParameterValues("productNumber");
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
-		int totalProductPrice=Integer.parseInt(request.getParameter("totalProductPrice"));
-		String product_number[]=request.getParameterValues("product_number");
-		for(int i = 0;i<product_number.length;i++) {
-			System.out.println(member_number+" "+totalProductPrice+" "+product_number[i]);
-		}
+		String [] productPrices=request.getParameterValues("productPrices");
+		String [] productQuantities=request.getParameterValues("currentQuantity");
+		
+	
 		
 		
+		System.out.println("1");
+	    System.out.println("Product Numbers: " + Arrays.toString(productNumbers));
+	    System.out.println("Member Number: " + member_number);
+	    System.out.println("Product Prices: " + Arrays.toString(productPrices));
+	    System.out.println("Product Quantities: " + Arrays.toString(productQuantities));
+	    mo.addAttribute("member_number",member_number);
+	    return "user_product_order_cart";
 	}
 
 	

@@ -86,4 +86,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/order/user_product_order.jsp"/>
 	</definition>
 	
+	<definition name="user_product_order_cart" extends="baseLayout_user">
+		<put-attribute name="title" value="구매"/>
+		<put-attribute name="body" value="/WEB-INF/views/order/user_product_order_cart.jsp"/>
+	</definition>
+	
 </tiles-definitions>
