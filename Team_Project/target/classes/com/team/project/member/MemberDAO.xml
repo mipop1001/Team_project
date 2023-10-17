@@ -81,4 +81,8 @@ update member_project set member_point=member_point-#{param1} where member_numbe
 	update member_project set member_point = #{param1} where member_number = #{param2}
 </update>
 
+<select id="customer_info" resultType="com.team.project.member.MemberDTO">
+	select * from member_project where member_number = #{param1}
+</select>
+
 </mapper>

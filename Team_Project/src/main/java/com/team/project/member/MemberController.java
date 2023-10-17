@@ -252,7 +252,6 @@ public class MemberController {
 		}
 	}
 	
-	//사용자 설문조사 완료시 포이트 업데이트
 	@ResponseBody
 	@RequestMapping(value = "/customer_point_update", method = RequestMethod.POST)
 	public String customer_point_update(HttpServletRequest request, Model mo) {

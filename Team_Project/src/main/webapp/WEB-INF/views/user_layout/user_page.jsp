@@ -74,9 +74,11 @@ ul li {
 		<div id="hotItems">
 			<c:forEach items="${list}" var="a">
 				<div class="slide">
-					<img src="./product_intro_image/${a.product_sum_image}"
-						width="300px" height="300px">
-					<p>${a.product_name}</p>
+					<a href="user_product_detail?product_number=${a.product_number }">
+						<img src="./product_intro_image/${a.product_sum_image}"
+							width="300px" height="300px">
+						<p>${a.product_name}</p>
+					</a>
 				</div>
 			</c:forEach>
 		</div>
@@ -88,9 +90,11 @@ ul li {
 		<div id="hotItems1">
 			<c:forEach items="${list2}" var="a">
 				<div class="slide1">
-					<img src="./product_intro_image/${a.community_board_sum_image}"
-						width="300px" height="300px">
-					<p>${a.community_board_title}</p>
+					<a href="customer_community_detail?community_board_number=${a.community_board_number }">
+						<img src="./product_intro_image/${a.community_board_sum_image}"
+							width="300px" height="300px">
+						<p>${a.community_board_title}</p>
+					</a>
 				</div>
 			</c:forEach>
 		</div>

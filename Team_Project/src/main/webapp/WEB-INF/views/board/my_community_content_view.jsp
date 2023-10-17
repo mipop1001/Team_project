@@ -4,12 +4,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.container {
+    font-family: 'KOTRA_BOLD-Bold';
+}
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<hr>
-	<table border="1" align="center" width="1200px">
+	<div class="container">
+	<table border="1" align="center" width="1200px" class="table table-striped">
 		<caption>내가 작성한 게시글 목록</caption>
 		<tr>
 			<th colspan="6" height="50px">작성자 : ${memberDTO.member_name }</th>
@@ -36,6 +52,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	<hr>
 </body>
 </html>

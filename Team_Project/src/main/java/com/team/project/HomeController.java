@@ -40,7 +40,6 @@ public class HomeController {
 		ArrayList<BoardDTO> list2 = bs.customer_community_out();
 		mo.addAttribute("list2", list2);
 		
-		
 		return "user_page";
 	}
 
