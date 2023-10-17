@@ -107,47 +107,47 @@ public class CartController {
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/purchase_items",method=RequestMethod.POST)
-	public String purchase_items(HttpServletRequest request) throws IOException
-	{
-	       String[] product_numbers = request.getParameterValues("productNumbers[]");
-	        int member_number = Integer.parseInt(request.getParameter("memberNumber"));
-	        int totalProductPrice = Integer.parseInt(request.getParameter("totalProductPrice"));
-	        String updatedQuantities = request.getParameter("updatedQuantities");
-	        //회원 포인트와 구매한 금액비교하기
-	        MemberService ms = sqlSession.getMapper(MemberService.class);
-	        int member_point = ms.pointcheck(member_number);
-	        String result=null;
-	        System.out.println(updatedQuantities);
-	        if(member_point > totalProductPrice)
-	        {
-		        //보유 포인트가 구매 금액보다 많다면 상품 번호로 상품 재고 -하기
-		        ObjectMapper objectMapper = new ObjectMapper();
-		        try {
-					JsonNode quantitiesNode = objectMapper.readTree(updatedQuantities);
-					for (String productNumber : product_numbers) {
-			            if (quantitiesNode.has(String.valueOf(productNumber))) {
-			                int quantity = quantitiesNode.get(String.valueOf(productNumber)).asInt();
-			                System.out.println("상품 번호: " + productNumber + ", 구매 수량: " + quantity);
-			                ProductService ps = sqlSession.getMapper(ProductService.class);
-			                ps.product_sell_amount_update(productNumber,quantity);
-			                ms.product_point_deduction(totalProductPrice, member_number);
-			            }
-			        }
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				} 
-	        	result = "{\"result\":\"ok\"}";
-	        }
-	        else if(member_point < totalProductPrice)
-	        {
-	        	result = "{\"result\":\"no\"}";
-	        }
-	        
-			return result;
-	        
-	        
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/purchase_items",method=RequestMethod.POST)
+//	public String purchase_items(HttpServletRequest request) throws IOException
+//	{
+//	       String[] product_numbers = request.getParameterValues("productNumbers[]");
+//	        int member_number = Integer.parseInt(request.getParameter("memberNumber"));
+//	        int totalProductPrice = Integer.parseInt(request.getParameter("totalProductPrice"));
+//	        String updatedQuantities = request.getParameter("updatedQuantities");
+//	        //회원 포인트와 구매한 금액비교하기
+//	        MemberService ms = sqlSession.getMapper(MemberService.class);
+//	        int member_point = ms.pointcheck(member_number);
+//	        String result=null;
+//	        System.out.println(updatedQuantities);
+//	        if(member_point > totalProductPrice)
+//	        {
+//		        //보유 포인트가 구매 금액보다 많다면 상품 번호로 상품 재고 -하기
+//		        ObjectMapper objectMapper = new ObjectMapper();
+//		        try {
+//					JsonNode quantitiesNode = objectMapper.readTree(updatedQuantities);
+//					for (String productNumber : product_numbers) {
+//			            if (quantitiesNode.has(String.valueOf(productNumber))) {
+//			                int quantity = quantitiesNode.get(String.valueOf(productNumber)).asInt();
+//			                System.out.println("상품 번호: " + productNumber + ", 구매 수량: " + quantity);
+//			                ProductService ps = sqlSession.getMapper(ProductService.class);
+//			                ps.product_sell_amount_update(productNumber,quantity);
+//			                ms.product_point_deduction(totalProductPrice, member_number);
+//			            }
+//			        }
+//				} catch (JsonProcessingException e) {
+//					e.printStackTrace();
+//				} 
+//	        	result = "{\"result\":\"ok\"}";
+//	        }
+//	        else if(member_point < totalProductPrice)
+//	        {
+//	        	result = "{\"result\":\"no\"}";
+//	        }
+//	        
+//			return result;
+//	        
+//	        
+//	}
 
 }
