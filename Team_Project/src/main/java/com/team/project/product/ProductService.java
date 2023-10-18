@@ -25,9 +25,12 @@ public interface ProductService {
 	public ArrayList<ProductDTO> product_buy_cart(String product_number);
 	//장바구니 구매 시 상품 정보를 결제 페이지로 이동 시켜 출력
 	public ProductDTO cart_buy_view(String product_number);
-
+	//바로 결제
 	public void order_buy_amount_updown(int product_number);
+	//장바구니에서 결제
+	public void order_buy_amount_updown_cart(String product_number,String product_Quantities);
 	public ArrayList<ProductDTO> product_list();
 	public void product_list_delete(String parameter);
+	public String product_seller_id(String product_number);
 
 }

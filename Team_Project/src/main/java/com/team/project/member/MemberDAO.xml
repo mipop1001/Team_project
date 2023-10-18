@@ -105,5 +105,8 @@ select * from member_project where member_number=#{param1}
 	delete member_project where member_number = #{param1}
 </delete>
 
+<update id="customer_buy_point_deduction">
+update member_project set member_point=member_point-#{param2} where member_number=#{param1}
+</update>
 
 </mapper>

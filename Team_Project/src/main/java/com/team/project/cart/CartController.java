@@ -26,6 +26,7 @@ import com.team.project.member.MemberDTO;
 import com.team.project.member.MemberService;
 import com.team.project.product.ProductDTO;
 import com.team.project.product.ProductService;
+import com.team.project.seller.SellerService;
 
 @Controller
 public class CartController {
@@ -145,16 +146,35 @@ public class CartController {
 	    return "user_product_order_cart";
 	}
 	@RequestMapping(value = "/order_buy_final_cart")
-	public void order_buy_final_cart(HttpServletRequest request)
+	public String order_buy_final_cart(HttpServletRequest request)
 	{
 		int member_number = Integer.parseInt(request.getParameter("member_number"));
 		int total_price = Integer.parseInt(request.getParameter("total_price"));
 		String [] product_numbers=request.getParameterValues("product_numbers");
 		String [] product_Quantities=request.getParameterValues("product_Quantities");
-		for(int i = 0;i<product_numbers.length;i++)
+		String [] product_price = request.getParameterValues("product_price");
+		String[] seller_id = new String[product_numbers.length];
+		System.out.println(seller_id.length+""+product_numbers.length);
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		int member_point = ms.pointcheck(member_number);
+		ProductService ps = sqlSession.getMapper(ProductService.class);
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		if(member_point >= total_price)
 		{
-		System.out.println("회원 번호 : "+member_number+"금액 : "+total_price+"상품번호"+product_numbers[i]+"구매 수량"+product_Quantities[i]);
+			for(int i = 0;i<product_numbers.length;i++)
+			{
+				//상품번호로 판매자 아이디 검색
+				seller_id[i] = ps.product_seller_id(product_numbers[i]);
+				//상품 DB 구매수량 증가 판매수량 감소
+				ps.order_buy_amount_updown_cart(product_numbers[i],product_Quantities[i]);
+				//상품 구매 시 포인트 차감
+				ms.customer_buy_point_deduction(member_number,total_price);
+				ss.seller_buy_point_update(seller_id[i],Integer.parseInt(product_price[i]),Integer.parseInt(product_Quantities[i]));
+			System.out.println("회원 번호 : "+member_number+"금액 : "+total_price+"상품번호"+product_numbers[i]+"구매 수량"+product_Quantities[i]);
+				
+			}
 		}
+		return "user_page";
 		
 	}
 	
