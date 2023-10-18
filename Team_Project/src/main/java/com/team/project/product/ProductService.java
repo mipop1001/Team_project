@@ -22,4 +22,7 @@ public interface ProductService {
 	public void product_sell_amount_update(String productNumber,int quantity);
 	public ArrayList<ProductDTO> user_product_order(int product_number);
 	public ArrayList<ProductDTO> product_cart_view(String product_number);
+	public ArrayList<ProductDTO> product_buy_cart(String product_number);
+	//장바구니 구매 시 상품 정보를 결제 페이지로 이동 시켜 출력
+	public ProductDTO cart_buy_view(String product_number);
 }

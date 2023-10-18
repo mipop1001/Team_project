@@ -17,4 +17,5 @@ public interface SellerService {
 	public SellerDTO seller_password_check(int seller_number,String seller_password);
 	//DB에서 비밀번호 찾기
 	public ArrayList<SellerDTO> seller_login_find_password_save(String seller_id,String seller_address);
+
 }

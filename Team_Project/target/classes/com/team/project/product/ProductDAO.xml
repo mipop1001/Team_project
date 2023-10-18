@@ -79,4 +79,7 @@ select * from product where product_number = #{param1}
 select * from product where product_number = #{param1}
 </select>
 
+<select id="cart_buy_view" resultType="com.team.project.product.ProductDTO">
+select * from product where product_number=#{param1}
+</select>
 </mapper>
