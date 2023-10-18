@@ -94,4 +94,12 @@ select * from product
 delete product where product_number=#{param1}
 </delete>
 
+<update id="order_buy_amount_updown_cart">
+update product set product_sell_amount=product_sell_amount-#{param2} , product_buy_amount=product_buy_amount+#{param2} where product_number=#{param1}
+</update>
+
+<select id="product_seller_id" resultType="String">
+select seller_id from product where product_number=#{param1}
+</select>
+
 </mapper>

@@ -5,7 +5,7 @@
 <mapper namespace="com.team.project.seller.SellerService">
 
 <insert id="seller_join_save">
-insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_password},#{seller_name},#{seller_phone_number},#{seller_email},#{seller_role},#{seller_company_number},#{seller_company_address})
+insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_password},#{seller_name},#{seller_phone_number},#{seller_email},#{seller_role},#{seller_company_number},#{seller_company_address},#{seller_buy_point})
 </insert>
 
 <select id="seller_login_save" resultType="com.team.project.seller.SellerDTO">
@@ -51,4 +51,8 @@ select * from seller
 <delete id="seller_list_delete">
 delete seller where seller_number = #{param1}
 </delete>
+
+<update id="seller_buy_point_update">
+update seller set seller_buy_point=seller_buy_point+#{param2}*#{param3} where seller_id=#{param1}
+</update>
 </mapper>

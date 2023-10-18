@@ -41,7 +41,8 @@
             </div>
         </div>
 		<input type="hidden" name="product_numbers" value="${i.product_number}">
-        <input type="hidden" name="product_Quantities" value="${i.product_buy_amount}">        
+        <input type="hidden" name="product_Quantities" value="${i.product_buy_amount}">
+        <input type="hidden" name="product_price" value="${i.product_price}">
     </c:forEach>
 </td>
 <td>
