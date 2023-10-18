@@ -161,7 +161,35 @@ button {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
 }
+  .ul1 {
+    list-style: none;
+    background-color: tomato;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .ul1 li {
+    float: left;
+    border-right: 2px solid #fff;
+  }
+  .ul1 li:last-child {
+    border-right: none;
+  }
+  .ul1 li a {
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+    display: block;
+    color: #333;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .ul1 li a:hover {
+    background: #333;
+    color: #fff;
+  }
 </style>
 </head>
 
@@ -169,7 +197,19 @@ button {
 	<div class="scroll-container">
 		<div class="body-wrapper mobile-padding">
 			<div class="bodypage">
-				<h2 class="body-title" style="padding-top: 90px;">제푸무무무뭄</h2>
+				<ul class="ul1">
+				  <li><a href="#">텐트 - 타프</a></li>
+				  <li><a href="#">침낭 - 매트</a></li>
+				  <li><a href="#">키친</a></li>
+				  <li><a href="#">라이팅</a></li>
+				  <li><a href="#">화로 - BBQ</a></li>
+				  <li><a href="#">스토리지</a></li>
+				  <li><a href="#">RV용품</a></li>
+				  <li><a href="#">악세서리</a></li>
+				  <li><a href="#">밀리터리</a></li>
+				</ul>
+				<h1 class="body-title" align="left" style="padding-top: 90px;">전체 상품</h1>
+				<hr>
 				<div class="community_travel_list" align="center">
 					<ul>
 						<c:forEach items="${list }" var="user_product">
@@ -193,23 +233,20 @@ button {
 					<tr style="border-left: none; border-right: none; border-bottom: none">
 						<td colspan="5" style="text-align: center;"><c:if
 								test="${paging.startPage!=1 }">
-								<a
-									href="userproductnotice?nowPage=${paging.startPage-1 }&cntPerPage=${paging.cntPerPage}">◀</a>
+								<a href="userproductnotice?nowPage=${paging.startPage-1 }&cntPerPage=${paging.cntPerPage}">◀</a>
 								<!-- 1page 가 아니면 보여라  -->
 							</c:if> <c:forEach begin="${paging.startPage }" end="${paging.endPage}"
 								var="p">
 								<c:choose>
 									<c:when test="${p == paging.nowPage }">
-										<b><span style="color: red;">${p}</span></b>
+										<b><span style="color: red;">&emsp;${p}</span></b>
 									</c:when>
 									<c:when test="${p != paging.nowPage }">
-										<a
-											href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+										<a href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">&emsp;${p}</a>
 									</c:when>
 								</c:choose>
 							</c:forEach> <c:if test="${paging.endPage != paging.lastPage}">
-								<a
-									href="userproductnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
+								<a href="userproductnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
 							</c:if></td>
 					</tr>
 				</div>

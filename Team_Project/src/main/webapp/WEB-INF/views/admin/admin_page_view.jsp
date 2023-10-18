@@ -27,7 +27,7 @@
 		</div>
 	</nav>
 	<hr>
-	<table border="1" align="center" width="1800px">
+	<table border="1" align="center" width="1800px" class="table table-striped">
 		<tr>
 			<th>사용자 번호</th>
 			<th>사용자 아이디</th>
@@ -64,7 +64,7 @@
 		</c:forEach>
 	</table>
 	<hr>
-		<table border="1" align="center" width="1800px">
+		<table border="1" align="center" width="1800px" class="table table-striped">
 		<tr>
 			<th>판매자 번호</th>
 			<th>판매자 아이디</th>
@@ -91,7 +91,7 @@
 		</c:forEach>
 	</table>
 	<hr>
-		<table border="1" align="center" width="1800px">
+		<table border="1" align="center" width="1800px" class="table table-striped">
 		<tr>
 			<th>게시글 번호</th>
 			<th>게시글 제목</th>
@@ -122,7 +122,7 @@
 		</c:forEach>
 	</table>
 	<hr>
-		<table border="1" align="center" width="1800px">
+		<table border="1" align="center" width="1800px" class="table table-striped">
 		<tr>
 			<th>상품 번호</th>
 			<th>상품명</th>
