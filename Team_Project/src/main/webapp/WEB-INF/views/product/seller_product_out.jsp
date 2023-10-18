@@ -164,6 +164,9 @@ select{
 
 </style>
 </head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
 
 	<div class="container">
@@ -190,7 +193,7 @@ select{
 					</div>
 					<!-- 검색 완료 -->
 					<div class="seller_input_list_main">
-						<table>
+						<table class="table table-striped">
 						<colgroup>
 							<col style="width: 3%">
 							<!-- 체크박스 -->

@@ -230,7 +230,7 @@
 		<tr>
 			<th>포인트</th>
 			<td><hr>${dto.member_point }</td>
-			 <td><hr> <a href="#" onclick="updatePoint()">포인트 업데이트</a> </td>
+			<td><hr> <a href="#" onclick="updatePoint()">포인트 업데이트</a> </td>
 		</tr>			
 		<tr>
 			<th>구입금액</th>

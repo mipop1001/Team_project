@@ -35,7 +35,11 @@
 		    </td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"> <hr> <input type="submit" value="포인트 충전"> </td>
+		    <td colspan="2" align="center"><hr>
+		        <div id="submitButton" style="display: none;">
+		            <input type="submit" value="포인트 충전" onclick="pointupdate()">
+		        </div>
+		    </td>
 		</tr>
 	</table>
 </form>
@@ -48,6 +52,34 @@
             this.value = formattedValue;
         }
     });
+    
+    function pointupdate() {
+		$.ajax({
+			type: "post",
+			url: "customer_point_update",
+			async: true,
+            success: function (data) {
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert("오류 발생");
+            }
+		});
+	}
+    
+	// 입력 필드에서 텍스트 입력을 감지하는 함수
+    function checkCashInput() {
+        var cashInput = document.getElementById("cashInput");
+        var submitButton = document.getElementById("submitButton");
+
+        if (cashInput.value.trim() !== "") {
+            submitButton.style.display = "block"; // 버튼을 보이게 설정
+        } else {
+            submitButton.style.display = "none"; // 버튼을 숨김
+        }
+    }
+
+    // 입력 필드에 이벤트 리스너 추가
+    document.getElementById("cashInput").addEventListener("input", checkCashInput);
 </script>
 </body>
 </html>
