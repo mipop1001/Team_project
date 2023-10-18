@@ -40,6 +40,10 @@
 					<th>상품가격</th>
 					<td><hr>${product.product_price}<hr></td>
 				</tr>
+								<tr>
+					<th>잔여재고</th>
+					<td><hr>${product.product_sell_amount}<hr></td>
+				</tr>
 				<tr>
 					<th>결제 후 남는 <br> point 잔액</th>
 					<td><input type="hidden" readonly="readonly"
@@ -57,13 +61,8 @@
 						</c:choose></td>
 				</tr>
 				<tr>
-<<<<<<< HEAD
-					<td colspan="2" align="center"><hr><input type="button" value="결제"
-						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}'">
-=======
 					<td><input type="button" value="결재"
 						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
->>>>>>> refs/remotes/origin/shaken0009
 					</td>
 				</tr>
 
