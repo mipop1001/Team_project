@@ -27,5 +27,7 @@ public interface ProductService {
 	public ProductDTO cart_buy_view(String product_number);
 
 	public void order_buy_amount_updown(int product_number);
+	public ArrayList<ProductDTO> product_list();
+	public void product_list_delete(String parameter);
 
 }

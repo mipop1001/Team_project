@@ -86,5 +86,12 @@ select * from product where product_number=#{param1}
 update product set product_sell_amount=product_sell_amount-1,product_buy_amount=product_buy_amount+1 where product_number=#{param1}
 </update>
 
+<select id="product_list" resultType="com.team.project.product.ProductDTO">
+select * from product
+</select>
+
+<delete id="product_list_delete">
+delete product where product_number=#{param1}
+</delete>
 
 </mapper>
