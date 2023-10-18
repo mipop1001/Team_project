@@ -93,4 +93,17 @@ update member_project set member_point=member_point-#{param1} where member_numbe
 select * from member_project where member_number=#{param1}
 </select>
 
+<select id="adminlogin" resultType="int">
+	select member_role from member_project where member_id = #{param1} and member_password = #{param2} 
+</select>
+
+<select id="user_list" resultType="com.team.project.member.MemberDTO">
+	select * from member_project
+</select>
+
+<delete id="user_list_delete">
+	delete member_project where member_number = #{param1}
+</delete>
+
+
 </mapper>

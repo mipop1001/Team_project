@@ -2,6 +2,8 @@ package com.team.project.board;
 
 import java.util.ArrayList;
 
+import com.team.project.seller.SellerDTO;
+
 public interface BoardService {
 
 	public void customer_community_input_save(String community_board_title, String community_board_content,
@@ -35,4 +37,8 @@ public interface BoardService {
 
 	//나의 게시글 삭제
 	public void delete_comment(String commentid, String commenttext, int commentnumber);
+
+	public ArrayList<BoardDTO> board_list();
+
+	public void board_list_delete(String parameter);
 }
