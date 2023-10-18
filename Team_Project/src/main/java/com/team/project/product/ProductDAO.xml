@@ -75,4 +75,9 @@ update product set product_sell_amount=product_sell_amount-#{param2} where produ
 select * from product where product_number = #{param1}
 </select>
 
+<update id="order_buy_amount_updown">
+update product set product_sell_amount=product_sell_amount-1,product_buy_amount=product_buy_amount+1 where product_number=#{param1}
+</update>
+
+
 </mapper>

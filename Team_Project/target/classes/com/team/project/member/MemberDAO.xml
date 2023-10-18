@@ -81,4 +81,8 @@ update member_project set member_point=member_point-#{param1} where member_numbe
 	update member_project set member_point = #{param1} where member_number = #{param2}
 </update>
 
+<update id="order_buy_point_up">
+	update member_project set member_buy = member_buy +#{param1} where member_number = #{param2}
+</update>
+
 </mapper>

@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td><input type="button" value="결재"
-						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}'">
+						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
 					</td>
 				</tr>
 

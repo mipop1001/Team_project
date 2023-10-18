@@ -21,4 +21,5 @@ public interface ProductService {
 	public ProductDTO get_product_info(int product_number);
 	public void product_sell_amount_update(String productNumber,int quantity);
 	public ArrayList<ProductDTO> user_product_order(int product_number);
+	public void order_buy_amount_updown(int product_number);
 }

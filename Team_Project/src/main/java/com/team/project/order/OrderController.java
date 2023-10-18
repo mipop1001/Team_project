@@ -26,6 +26,7 @@ public class OrderController {
 		
 		int product_number=Integer.parseInt(request.getParameter("product_number"));
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
+
 		ProductService ps = sqlSession.getMapper(ProductService.class);
 		ArrayList<ProductDTO> plist = ps.user_product_order(product_number);
 		
@@ -42,10 +43,17 @@ public class OrderController {
 	public String order_buy_final(HttpServletRequest request) {
 		int member_point = Integer.parseInt(request.getParameter("member_point"));
 		int member_number = Integer.parseInt(request.getParameter("member_number"));
+		int product_number=Integer.parseInt(request.getParameter("product_number"));
+		int product_price=Integer.parseInt(request.getParameter("product_price"));
+		String seller_id=request.getParameter("seller_id");
+		
 		System.out.println(member_point);
 		System.out.println(member_number);
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		ms.order_buy_final(member_point,member_number);
+		ms.order_buy_point_up(product_price,member_number);
+		ProductService ps = sqlSession.getMapper(ProductService.class);
+		ps.order_buy_amount_updown(product_number);
 		
 		return "user_page";
 	}
