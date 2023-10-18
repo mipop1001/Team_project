@@ -16,8 +16,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
-	font-family: "Lato", sans-serif;
+	font-family: 'Pretendard-Regular';
 	transition: background-color .5s;
+}
+
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
 .sidenav {
@@ -36,7 +45,7 @@ body {
 .sidenav a {
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
-	font-size: 25px;
+	font-size: 16px;
 	color: #818181;
 	display: block;
 	transition: 0.3s;
@@ -68,85 +77,86 @@ body {
 	}
 }
 
-/* /* /* /* /* /*  */ 
-.wall_main{
-padding-top: 0;
-min-height: 20vh;
-}
-.head_wall{
--webkit-box-align: center;
-    align-items: center;
-    background-color: transparent;
-    border-bottom: none;
-/*     color: #fff; */
-    z-index: 22;
-    
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-}
-.head{
-    height: 80px;
-    
-    position: unset;
-    box-shadow: none;
-    
-        padding: 0 10px;
-}
-.logo{
-margin-left: auto;
-    margin-right: auto;
-    
-        padding: 0;
-    flex-direction: column;
-    margin-top: 10px;
-    
-    display: flex;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-.aside_menu{
-width: 70px;
-    height: 80px;
-    right: 0;
-    
-        position: absolute;
-    top: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.79);
-    
-        display: flex;
-    -webkit-box-align: center;
-        font-size: 14px;
-}
-.user_page{
-    background: url(../images/new_white_cart.svg) no-repeat 45% 32%/30px;
-    /* url(../images/new_white_cart.svg) image 첨부 필욧  */
-    padding-top: 40px;
-    padding-right: 0;
-    margin-left: 0;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s linear;
+/* /* /* /* /* /*  */
+.wall_main {
+	padding-top: 0;
+	min-height: 15vh;
 }
 
-.user_page_span{
-font-family: "Pretendard Variable", sans-serif;
-    font-size: 11px;
-    line-height: 22px;
-    letter-spacing: 0.025em;
-
-color: #fff;
+.head_wall {
+	-webkit-box-align: center;
+	align-items: center;
+	background-color: transparent;
+	border-bottom: none;
+	/*     color: #fff; */
+	z-index: 22;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
 }
 
-.head_menu{
-color: #000;
+.head {
+	height: 80px;
+	position: unset;
+	box-shadow: none;
+	padding: 0 10px;
+}
+
+.logo {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	flex-direction: column;
+	margin-top: 10px;
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.aside_menu {
+	width: 70px;
+	height: 80px;
+	right: 0;
+	position: absolute;
+	top: 0;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.79);
+	display: flex;
+	-webkit-box-align: center;
+	font-size: 14px;
+}
+
+.user_page {
+	background: url(../images/new_white_cart.svg) no-repeat 45% 32%/30px;
+	/* url(../images/new_white_cart.svg) image 첨부 필욧  */
+	padding-top: 40px;
+	padding-right: 0;
+	margin-left: 0;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	transition: opacity 0.3s linear;
+	display: flex;
+}
+
+.user_page_span {
+	font-family: "Pretendard Variable", sans-serif;
+	font-size: 11px;
+	line-height: 22px;
+	letter-spacing: 0.025em;
+	color: #fff;
+}
+
+.head_menu {
+	color: #000;
+	position:relative;
+    top: 25px;
+    left: 25px;
 }
 </style>
 </head>
@@ -155,12 +165,11 @@ color: #000;
 		<div class="head_wall">
 			<div class="head">
 				<div id="menu">
-					<span style="font-size: 30px; cursor: pointer" onclick="openNav()" class="head_menu">&#9776;
-						Menu</span>
+					<span style="font-size: 30px; cursor: pointer" onclick="openNav()"
+						class="head_menu">  &#9776; <span>Menu</span></span>
 				</div>
 				<h1 class="logo">
-					<a href="main">로고
-					<!-- <img src="/Team_Project/src/main/webapp/product_intro_image/피카츄.png"> --></a>
+					<a href="main">로고 <!-- <img src="/Team_Project/src/main/webapp/product_intro_image/피카츄.png"> --></a>
 				</h1>
 				<div class="aside_menu">
 					<a href="user_page" class="user_page"> <span
@@ -188,7 +197,7 @@ color: #000;
 						</div>
 					</c:otherwise>
 				</c:choose>
-				
+
 			</div>
 		</div>
 	</div>
