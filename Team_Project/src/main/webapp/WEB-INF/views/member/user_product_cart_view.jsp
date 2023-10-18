@@ -137,7 +137,7 @@
     }, 0);
 
     $('.right-align').html('총 ' + selectedProductCount + '개의 상품<br>가격 : ' + totalProductPrice.toLocaleString() + '원');
-    $('.totalprice').html('<input type="text" name="productPrices" value="'+totalProductPrice+'">');
+    $('.totalprice').html('<input type="hidden" name="productPrices" value="'+totalProductPrice+'">');
 }
 
        // 상품 수량 증가 버튼 클릭 이벤트
@@ -198,7 +198,7 @@ $(document).on('click', '.downItems', function () {
             }, 0);
 
             $('.right-align').html('총 ' + selectedProducts.length + '개의 상품<br>가격 : ' + totalProductPrice.toLocaleString() + '원');
-            $('.totalprice').html('<input type="text" name="productPrices" value="'+totalProductPrice+'">');
+            $('.totalprice').html('<input type="hidden" name="totalProductPrice" value="'+totalProductPrice+'">');
         }
      
         $(document).ready(function () {
@@ -332,9 +332,6 @@ $(document).on('click', '.downItems', function () {
                 가격 : 0원
             </td>
         </tr>
-        <tr>
-        <td colspan="3" class="right-align2">&emsp;<button>초기화</button> </td>
-        </tr>
     </table>
                 <div class="proinfo">
                 <!-- 선택한 상품 번호 -->
@@ -349,7 +346,7 @@ $(document).on('click', '.downItems', function () {
 
         </tr>
         <tr>
-            <input type="text" name="member_number" value="${member_number}">
+            <input type="hidden" name="member_number" value="${member_number}">
             <td><button class="purchase_button">구매</button></td>
         </tr>
     </table>

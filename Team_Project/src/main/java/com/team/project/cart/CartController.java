@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.member.MemberDTO;
 import com.team.project.member.MemberService;
 import com.team.project.product.ProductDTO;
 import com.team.project.product.ProductService;
@@ -114,25 +115,49 @@ public class CartController {
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
 		String [] productPrices=request.getParameterValues("productPrices");
 		String [] productQuantities=request.getParameterValues("currentQuantity");
-		
 		ProductDTO dto = new ProductDTO();
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		ProductService ps = sqlSession.getMapper(ProductService.class);
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+	    int productTotal =0;
+	    int price=0;
+	    int quantity=0;
+	    int total=0;
+	    ArrayList<Object> productQuantitiesList = new ArrayList<Object>();
 		for(int i = 0; i<productNumbers.length; i++)
 		{
 		 dto = ps.cart_buy_view(productNumbers[i]);
-		System.out.println("1");
-	    System.out.println("Product Numbers: " + productNumbers[i]);
-	    System.out.println("Member Number: " + member_number);
-	    System.out.println("Product Prices: " + productPrices[i]);
-	    System.out.println("Product Quantities: " + productQuantities[i]);
 	    list.add(dto);
-	    System.out.println(dto.getProduct_name());
+	    
+	    
+	     price = Integer.parseInt(productPrices[i]);
+	     quantity = Integer.parseInt(productQuantities[i]);
+	     productTotal  = price*quantity;
+	     total+=productTotal; 
+	     dto.setProduct_buy_amount(quantity);
+	     productQuantitiesList.add(quantity);
+	     mo.addAttribute("productQuantities", productQuantitiesList);
 		}
+		MemberDTO dto2 = ms.order_cart_view_info(member_number);
 		mo.addAttribute("list", list);
-	    mo.addAttribute("member_number",member_number);
+		mo.addAttribute("dto2", dto2);
+		mo.addAttribute("total", total);
 	    return "user_product_order_cart";
 	}
+	@RequestMapping(value = "/order_buy_final_cart")
+	public void order_buy_final_cart(HttpServletRequest request)
+	{
+		int member_number = Integer.parseInt(request.getParameter("member_number"));
+		int total_price = Integer.parseInt(request.getParameter("total_price"));
+		String [] product_numbers=request.getParameterValues("product_numbers");
+		String [] product_Quantities=request.getParameterValues("product_Quantities");
+		for(int i = 0;i<product_numbers.length;i++)
+		{
+		System.out.println("회원 번호 : "+member_number+"금액 : "+total_price+"상품번호"+product_numbers[i]+"구매 수량"+product_Quantities[i]);
+		}
+		
+	}
+	
 //	@ResponseBody
 //	@RequestMapping(value = "/purchase_items",method=RequestMethod.POST)
 //	public String purchase_items(HttpServletRequest request) throws IOException

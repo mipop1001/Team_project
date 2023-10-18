@@ -26,4 +26,5 @@ public interface MemberService {
 	public void order_buy_final(int member_point, int member_number);
 	public ArrayList<MemberDTO> customer_info(int member_number);
 	public void order_buy_point_up(int product_price, int member_number);
+	public MemberDTO order_cart_view_info(int member_number);//결제 페이지에서 구매자 정보 외 현재 보유 포인트 보여주기
 }
