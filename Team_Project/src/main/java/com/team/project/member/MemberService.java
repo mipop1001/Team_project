@@ -25,4 +25,5 @@ public interface MemberService {
 	public ArrayList<MemberDTO> user_product_order(int member_number);
 	public void order_buy_final(int member_point, int member_number);
 	public ArrayList<MemberDTO> customer_info(int member_number);
+	public void order_buy_point_up(int product_price, int member_number);
 }
