@@ -89,6 +89,10 @@ update member_project set member_point=member_point-#{param1} where member_numbe
 	update member_project set member_buy = member_buy +#{param1} where member_number = #{param2}
 </update>
 
+<select id="order_cart_view_info" resultType="com.team.project.member.MemberDTO">
+select * from member_project where member_number=#{param1}
+</select>
+
 <select id="adminlogin" resultType="int">
 	select member_role from member_project where member_id = #{param1} and member_password = #{param2} 
 </select>
