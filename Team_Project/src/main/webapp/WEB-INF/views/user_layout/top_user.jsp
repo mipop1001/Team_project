@@ -197,21 +197,25 @@ body {
 										href="customer_logout">로그아웃</a>
 								</h6>
 							</div>
-							<a href="customer_info">사용자 정보조회(수정탈퇴)</a> <a
-								href="my_community_content">사용자 게시물관리(수정삭제)</a> <a
-								href="userproductnotice">shop(상품출력)</a> <a
-								href="user_product_cart_view?member_number=${memberDTO.member_number }">장바구니</a>
-							<a href="boardnotice">community(게시글)</a> <a href="customer_qna">QnA(자주묻는질문)</a>
-							<a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
+								<a href="customer_info">사용자 정보조회(수정탈퇴)</a>
+								<a href="#">주문 조회</a>
+								<a href="my_community_content">사용자 게시물관리(수정삭제)</a> 
+								<a href="userproductnotice">shop(상품출력)</a> 
+								<a href="user_product_cart_view?member_number=${memberDTO.member_number }">장바구니</a>
+								<a href="boardnotice">community(게시글)</a> <a href="customer_qna">QnA(자주묻는질문)</a>
+								<a href="#">공지사항</a>
+								<a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div id="mySidenav" class="sidenav">
 							<a href="javascript:void(0)" class="closebtn"
-								onclick="closeNav()">&times;</a> <a href="customer_login">사용자
-								로그인</a> <a href="userproductnotice">shop(상품출력)</a>
-							<!-- 		  <a href="customer_community_out">community(게시글)</a> -->
-							<a href="boardnotice">community(게시글)</a> <a href="customer_qna">QnA(자주묻는질문)</a>
+								onclick="closeNav()">&times;</a> 
+							<a href="customer_login">사용자 로그인</a> 
+							<a href="userproductnotice">shop(상품출력)</a>
+							<a href="boardnotice">community(게시글)</a> 
+							<a href="customer_qna">QnA(자주묻는질문)</a>
+							<a href="#">공지사항</a>
 							<a href="main">메인</a>
 						</div>
 					</c:otherwise>
