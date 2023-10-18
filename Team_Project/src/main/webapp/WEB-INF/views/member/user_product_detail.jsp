@@ -131,6 +131,17 @@ body {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
+.item_product_amount{
+	float: left;
+	width: 100%;
+	min-height: 24px;
+	padding: 7px 0 6px 0;
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
 
 .item_choise_button {
 	border-top: 1px solid #000;
@@ -244,6 +255,12 @@ body {
 							<dt>made in</dt>
 							<dd>
 								<strong><strong>${pnum.product_country }</strong></strong>
+							</dd>
+						</dl>
+						<dl class="item_product_amount">
+							<dt>재고</dt>
+							<dd>
+								<strong><strong>${pnum.product_sell_amount }</strong></strong>
 							</dd>
 						</dl>
 					</div>

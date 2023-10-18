@@ -29,7 +29,6 @@
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
 	}
 	li {
     display: list-item;
@@ -46,6 +45,7 @@
     display: flex;
     margin-top: 0;
     margin-left: 155px;
+    margin-right: 155px;
     justify-content: flex-start;
     flex-wrap: wrap;
     align-content: center;
@@ -58,18 +58,17 @@
     list-style: none;
 	}
 	.pic img {
-    vertical-align: top;
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    -o-object-position: center top;
-    object-position: center top;
+
     }
     img {
-    vertical-align: top;
-    overflow-clip-margin: content-box;
-    overflow: clip;
+	object-fit: cover;
+	vertical-align: top;
+	-o-object-fit: cover;
+	object-fit: cover;
+	width: 383.3px;
+	height: auto;
+	-o-object-position: center top;
+	object-position: center top;
 	}
 	.pic {
     margin-bottom: 22px;
