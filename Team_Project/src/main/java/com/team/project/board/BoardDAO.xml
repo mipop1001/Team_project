@@ -67,4 +67,12 @@ select * from board_comment where community_board_number=#{param1}
     delete from BOARD_COMMENT where member_id = #{param1} and COMMENT_TEXT = #{param2} and comment_number = #{param3}
 </delete>
 
+<select id="board_list" resultType="com.team.project.board.BoardDTO">
+	select * from board
+</select>
+
+<delete id="board_list_delete">
+	delete board where community_board_number = #{param1}
+</delete>
+
 </mapper>
