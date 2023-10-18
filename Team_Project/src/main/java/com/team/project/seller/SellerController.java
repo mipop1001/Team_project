@@ -243,25 +243,7 @@ public class SellerController {
 			return "no";
 		}
 	}
-	@RequestMapping(value = "/user_product_order_cart", method = RequestMethod.POST)
-	public String user_product_order_cart(HttpServletRequest request,Model mo) {
-	    // 데이터 처리
-		String [] productNumbers=request.getParameterValues("productNumber");
-		int member_number=Integer.parseInt(request.getParameter("member_number"));
-		String [] productPrices=request.getParameterValues("productPrices");
-		String [] productQuantities=request.getParameterValues("currentQuantity");
-		
-	
-		
-		
-		System.out.println("1");
-	    System.out.println("Product Numbers: " + Arrays.toString(productNumbers));
-	    System.out.println("Member Number: " + member_number);
-	    System.out.println("Product Prices: " + Arrays.toString(productPrices));
-	    System.out.println("Product Quantities: " + Arrays.toString(productQuantities));
-	    mo.addAttribute("member_number",member_number);
-	    return "user_product_order_cart";
-	}
+
 
 	
 }

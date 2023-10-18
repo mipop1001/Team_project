@@ -106,7 +106,33 @@ public class CartController {
 		return "redirect:user_product_cart_view";
 	}
 	
-	
+	//장바구니에서 구매하기.
+	@RequestMapping(value = "/user_product_order_cart", method = RequestMethod.POST)
+	public String user_product_order_cart(HttpServletRequest request,Model mo) {
+	    // 데이터 처리
+		String [] productNumbers=request.getParameterValues("productNumber");
+		int member_number=Integer.parseInt(request.getParameter("member_number"));
+		String [] productPrices=request.getParameterValues("productPrices");
+		String [] productQuantities=request.getParameterValues("currentQuantity");
+		
+		ProductDTO dto = new ProductDTO();
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		ProductService ps = sqlSession.getMapper(ProductService.class);
+		for(int i = 0; i<productNumbers.length; i++)
+		{
+		 dto = ps.cart_buy_view(productNumbers[i]);
+		System.out.println("1");
+	    System.out.println("Product Numbers: " + productNumbers[i]);
+	    System.out.println("Member Number: " + member_number);
+	    System.out.println("Product Prices: " + productPrices[i]);
+	    System.out.println("Product Quantities: " + productQuantities[i]);
+	    list.add(dto);
+	    System.out.println(dto.getProduct_name());
+		}
+		mo.addAttribute("list", list);
+	    mo.addAttribute("member_number",member_number);
+	    return "user_product_order_cart";
+	}
 //	@ResponseBody
 //	@RequestMapping(value = "/purchase_items",method=RequestMethod.POST)
 //	public String purchase_items(HttpServletRequest request) throws IOException
