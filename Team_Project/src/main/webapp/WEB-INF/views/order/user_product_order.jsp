@@ -57,8 +57,13 @@
 						</c:choose></td>
 				</tr>
 				<tr>
+<<<<<<< HEAD
 					<td colspan="2" align="center"><hr><input type="button" value="결제"
 						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}'">
+=======
+					<td><input type="button" value="결재"
+						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
+>>>>>>> refs/remotes/origin/shaken0009
 					</td>
 				</tr>
 
