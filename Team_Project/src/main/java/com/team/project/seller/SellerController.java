@@ -93,6 +93,7 @@ public class SellerController {
 		String seller_company_number=request.getParameter("seller_company_number");
 		String seller_company_address=request.getParameter("seller_company_address");
 		int role=1;
+		int seller_buy_point=0;
 		SellerDTO dto=new SellerDTO();
 		dto.setSeller_id(seller_id);
 		dto.setSeller_password(seller_password);
@@ -102,6 +103,7 @@ public class SellerController {
 		dto.setSeller_company_number(seller_company_number);
 		dto.setSeller_compnay_address(seller_company_address);
 		dto.setSeller_role(role);
+		dto.setSeller_buy_point(seller_buy_point);
 		SellerService ss = sqlSession.getMapper(SellerService.class);
 		ss.seller_join_save(dto);
 		

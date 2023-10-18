@@ -2,7 +2,7 @@ package com.team.project.seller;
 
 public class SellerDTO {
 
-	int seller_number,seller_role;
+	int seller_number,seller_role,seller_buy_point;
 	
 	String seller_id,seller_password,seller_name,
 	seller_phone_number,seller_email,seller_company_number,
@@ -10,6 +10,18 @@ public class SellerDTO {
 
 	public SellerDTO() {
 		super();
+	}
+
+	public int getSeller_buy_point() {
+		return seller_buy_point;
+	}
+
+	public void setSeller_buy_point(int seller_buy_point) {
+		this.seller_buy_point = seller_buy_point;
+	}
+
+	public void setSeller_company_address(String seller_company_address) {
+		this.seller_company_address = seller_company_address;
 	}
 
 	public int getSeller_number() {

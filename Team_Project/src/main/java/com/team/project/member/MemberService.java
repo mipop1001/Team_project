@@ -30,4 +30,7 @@ public interface MemberService {
 	public int adminlogin(String adminid, String adminpw);
 	public ArrayList<MemberDTO> user_list();
 	public void user_list_delete(String parameter);
+	
+	//장바구니에서 결제 시 보유 포인트 차감
+	public void customer_buy_point_deduction(int member_number,int total_price);
 }
