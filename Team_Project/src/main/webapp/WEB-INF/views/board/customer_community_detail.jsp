@@ -4,39 +4,165 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-  textarea {
-    width: 50%;
-    height: 6.25em;
-    resize: none;
-  }
-</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.body_warp{
+    overflow: hidden;
+}
+.body_main{
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+.body_big_title{
+    margin-bottom: 40px;
+    margin: 0 0 62px;
+    font-size: 22px;
+    line-height: 24px;
+}
+.body_info{
+
+}
+.body_wirter_date_place_title_content_grade{
+
+}
+.body_wirter_date_place{
+display: flex;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #cccccc;
+}
+.body_writer{
+font-size: 12px;
+}
+
+.body_date::before{
+content: "";
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 0 10px;
+    vertical-align: middle;
+    background-color: #cccccc;
+}
+
+.body_date{
+position: relative;
+font-size: 12px;
+}
+
+.body_place::before{
+content: "";
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 0 10px;
+    vertical-align: middle;
+    background-color: #cccccc;
+}
+.body_place{
+position: relative;
+font-size: 12px;
+}
+.body_title{
+font-size: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.body_content_grade{
+padding-top: 20px;
+    padding-bottom: 60px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+.body_grade{
+    padding-top: 0;
+    padding-bottom: 30px;
+    text-align: right;
+    margin-right: 15px;
+}
+.body_content{
+white-space: pre-line;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+}
+.body_detail_image{
+    margin-top: 30px;
+}
+.image_one{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top	: -10px;
+    margin-left: -26px;
+        justify-content: center;
+}
+
+.image_one img{
+	width: 273px;
+	height: auto;
+}
+.re_write{
+    margin-top: 20px;
+}
+.list_back_button{
+    -ms-flex-pack: justify;
+}
+</style>
 </head>
 <body>
-<hr>
-<table border="1" align="center" height="500px", width="1000px">
-<c:forEach items="${list }" var="community_detail">
-<tr><th>제목</th><td colspan="4">${community_detail.community_board_title }</td></tr>
-<tr><th>작성자</th><td colspan="4"> db생성 및 출력 기능 추가 필요</td></tr>
-<tr><th>작성일자</th><td colspan="4">${community_detail.community_board_date }</td></tr>
-<tr><th>지역</th><td colspan="2">${community_detail.community_board_location }</td>
-<th>별점</th><td>${community_detail.community_board_grade }</td></tr>
-<tr><th>내용</th><td colspan="4">${community_detail.community_board_content }</td></tr>
-
-<tr><th>이미지</th><br>
-<td><img src="product_sum_image/${community_detail.community_board_sum_image }"></td>
-<td><img src="product_intro_image/${community_detail.community_board_detail_image1 }"></td>
-<td><img src="product_intro_image/${community_detail.community_board_detail_image2 }"></td>
-<td><img src="product_intro_image/${community_detail.community_board_detail_image3 }"></td></tr>
-
-<input type="hidden" value="${community_detail.community_board_number }" id="board_number">
-<input type="hidden" value="${memberDTO.member_id }" id="member_id">
-</c:forEach>
-</table>
-	<hr>
-	<div id="commentList">
+<div class="body_warp">
+	<div class="body_main">
+		<div class="body_big_title">
+		캠핑경험담
+		</div>
+		<div class="body_info">
+			<div class="body_wirter_date_place_title_content_grade">
+				<div class="body_wirter_date_place">
+				<c:forEach items="${list }" var="community_detail">
+				<input type="hidden" value="${community_detail.community_board_number }" id="board_number">
+				<input type="hidden" value="${memberDTO.member_id }" id="member_id">
+					<div class="body_writer">
+					db생성 및 출력 기능 추가 필요
+					</div>
+					<div class="body_date">
+					${community_detail.community_board_date }
+					</div>
+					<div class="body_place">
+					${community_detail.community_board_location }
+					</div>
+				</c:forEach>
+				</div>
+				<div class="body_title">
+				<c:forEach items="${list }" var="community_detail">
+				${community_detail.community_board_title }
+				</c:forEach>
+				</div>
+				<div class="body_content_grade">
+				<c:forEach items="${list }" var="community_detail">
+					<div class="body_grade">
+					${community_detail.community_board_grade }
+					</div>
+					<div class="body_content">
+					${community_detail.community_board_content }
+					</div>
+				</c:forEach>
+				</div>
+			</div>
+			<div class="body_detail_image">
+			<c:forEach items="${list }" var="community_detail">
+				<div class="image_one">
+<img src="product_sum_image/${community_detail.community_board_sum_image }">
+<img src="product_intro_image/${community_detail.community_board_detail_image1 }">
+<img src="product_intro_image/${community_detail.community_board_detail_image2 }">
+<img src="product_intro_image/${community_detail.community_board_detail_image3 }">
+				</div>
+			</c:forEach>
+			</div>
+			<div class="re_write">
+				<div id="commentList">
    	<c:forEach items="${list2}" var="comment">
         <div>
         	<hr>
@@ -58,7 +184,14 @@
     		<h4>댓글 작성은 로그인 후 사용 가능합니다.</h4> <hr>
     	</c:otherwise>
     </c:choose>
-		
+			</div>
+			<div class="list_back_button">
+			
+			</div>
+		</div>
+	</div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script>
 function addComment() {

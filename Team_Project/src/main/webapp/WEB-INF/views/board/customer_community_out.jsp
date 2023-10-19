@@ -138,8 +138,17 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-box-shadow: none;
     box-shadow: none;
-		}
 	}
+	  .move_num{
+  position: relative;
+    display: block;
+    width: 13px;
+    height: 13px;
+    margin: 0 15px;
+    line-height: 13px;
+    font-size: 13px;
+    text-align: center;
+  }
 	</style>
 	</head>
 
@@ -174,10 +183,10 @@
 		      <c:forEach begin="${paging.startPage }" end="${paging.endPage}" var="p"> 
 		         <c:choose>
 		            <c:when test="${p == paging.nowPage }">
-		               <b><span style="color: red;">${p}</span></b>
+		               <b><span style="color: red;" class="move_num">${p}</span></b>
 		            </c:when>   
 		            <c:when test="${p != paging.nowPage }">
-		               <a href="boardnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+		               <a href="boardnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="move_num">${p}</a>
 		            </c:when>   
 		         </c:choose>
 		      </c:forEach>

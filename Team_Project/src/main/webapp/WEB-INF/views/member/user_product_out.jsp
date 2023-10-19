@@ -143,10 +143,10 @@ user_product_title {
 	color: #fff;
 	-webkit-box-pack: center;
 	justify-content: center;
+	margin: 0 15px;
 }
 
 button {
-	margin: 0;
 	padding: 0;
 	border: none;
 	outline: none;
@@ -189,6 +189,17 @@ button {
   .ul1 li a:hover {
     background: #333;
     color: #fff;
+  }
+  
+  .move_num{
+  position: relative;
+    display: block;
+    width: 13px;
+    height: 13px;
+    margin: 0 15px;
+    line-height: 13px;
+    font-size: 13px;
+    text-align: center;
   }
 </style>
 </head>
@@ -239,10 +250,10 @@ button {
 								var="p">
 								<c:choose>
 									<c:when test="${p == paging.nowPage }">
-										<b><span style="color: red;">&emsp;${p}</span></b>
+										<b class="move_num"><span style="color: red;">${p}</span></b>
 									</c:when>
 									<c:when test="${p != paging.nowPage }">
-										<a href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">&emsp;${p}</a>
+										<a href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="move_num">${p}</a>
 									</c:when>
 								</c:choose>
 							</c:forEach> <c:if test="${paging.endPage != paging.lastPage}">
