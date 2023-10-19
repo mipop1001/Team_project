@@ -62,9 +62,9 @@ li {
 
 .community_travel_list {
 	display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: -26px 0 0 0;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: -26px 0 0 0;
 }
 
 ol, ul {
@@ -72,7 +72,7 @@ ol, ul {
 }
 
 .pic img {
-
+	
 }
 
 img {
@@ -125,7 +125,7 @@ user_product_title {
 	margin-right: auto;
 	margin-top: 0;
 	display: flex;
-	margin-top: 40px;
+	margin-top: 100px;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
@@ -163,44 +163,94 @@ button {
 }
 
 }
-  .ul1 {
-    list-style: none;
-    background-color: tomato;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  .ul1 li {
-    float: left;
-    border-right: 2px solid #fff;
-  }
-  .ul1 li:last-child {
-    border-right: none;
-  }
-  .ul1 li a {
-    text-decoration: none;
-    text-align: center;
-    padding: 12px;
-    display: block;
-    color: #333;
-    font-size: 17px;
-    font-weight: bold;
-  }
-  .ul1 li a:hover {
-    background: #333;
-    color: #fff;
-  }
-  
-  .move_num{
-  position: relative;
-    display: block;
-    width: 13px;
-    height: 13px;
-    margin: 0 15px;
-    line-height: 13px;
-    font-size: 13px;
-    text-align: center;
-  }
+.ul1 {
+	list-style: none;
+	background-color: tomato;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.ul1 li {
+	float: left;
+	border-right: 2px solid #fff;
+}
+
+.ul1 li:last-child {
+	border-right: none;
+}
+
+.ul1 li a {
+	text-decoration: none;
+	text-align: center;
+	padding: 12px;
+	display: block;
+	color: #333;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.ul1 li a:hover {
+	background: #333;
+	color: #fff;
+}
+
+.move_num {
+	position: relative;
+	display: block;
+	width: 13px;
+	height: 13px;
+	margin: 0 15px;
+	line-height: 13px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.tabs-wrapper {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+.tabs_with_input {
+	position: relative;
+	display: flex;
+	width: 100%;
+	-webkit-box-pack: center;
+	justify-content: center;
+	max-width: 1170px;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 13px;
+}
+
+.tab-item {
+	position: relative;
+	display: inline-flex;
+	-webkit-box-align: center;
+	align-items: center;
+	height: 100%;
+	-webkit-box-pack: center;
+	justify-content: center;
+	font-size: 14px;
+	margin-left: 18px;
+	margin-right: 18px;
+}
+.tab-item::after{
+content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #222222;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transition: 0.15s ease-out 0.1s;
+    transition: 0.15s ease-out 0.1s;
+}
 </style>
 </head>
 
@@ -208,7 +258,7 @@ button {
 	<div class="scroll-container">
 		<div class="body-wrapper mobile-padding">
 			<div class="bodypage">
-				<ul class="ul1">
+				<!-- <ul class="ul1">
 				  <li><a href="#">텐트 - 타프</a></li>
 				  <li><a href="#">침낭 - 매트</a></li>
 				  <li><a href="#">키친</a></li>
@@ -218,8 +268,22 @@ button {
 				  <li><a href="#">RV용품</a></li>
 				  <li><a href="#">악세서리</a></li>
 				  <li><a href="#">밀리터리</a></li>
-				</ul>
-				<h1 class="body-title" align="left" style="padding-top: 90px;">전체 상품</h1>
+				</ul> -->
+				<div class="tabs-wrapper">
+					<div class="tabs_with_input">
+						<a class="tab-item on" href="" data-pc=""
+							onclick="product.list(event, '01', '00', '00', '1', '1');">신제품순</a>
+						<a class="tab-item " href="" data-pc=""
+							onclick="product.list(event, '01', '00', '00', '1', '2');">인기제품순</a>
+						<a class="tab-item " href="" data-pc=""
+							onclick="product.list(event, '01', '00', '00', '1', '3');">가격
+							낮은순</a> <a class="tab-item " href="" data-pc=""
+							onclick="product.list(event, '01', '00', '00', '1', '4');">가격
+							높은순</a>
+					</div>
+				</div>
+				<h1 class="body-title">전체
+					상품</h1>
 				<hr>
 				<div class="community_travel_list" align="center">
 					<ul>
@@ -228,7 +292,8 @@ button {
 								<a
 								href="user_product_detail?product_number=${user_product.product_number }">
 									<div class="pic" style="width: 100%; height: auto;">
-										<img src="product_sum_image/${user_product.product_sum_image }">
+										<img
+											src="product_sum_image/${user_product.product_sum_image }">
 									</div>
 									<p class="user_product_location">${user_product.product_maker }
 									</p>
@@ -241,10 +306,12 @@ button {
 
 
 				<div class="paging">
-					<tr style="border-left: none; border-right: none; border-bottom: none">
+					<tr
+						style="border-left: none; border-right: none; border-bottom: none">
 						<td colspan="5" style="text-align: center;"><c:if
 								test="${paging.startPage!=1 }">
-								<a href="userproductnotice?nowPage=${paging.startPage-1 }&cntPerPage=${paging.cntPerPage}">◀</a>
+								<a
+									href="userproductnotice?nowPage=${paging.startPage-1 }&cntPerPage=${paging.cntPerPage}">◀</a>
 								<!-- 1page 가 아니면 보여라  -->
 							</c:if> <c:forEach begin="${paging.startPage }" end="${paging.endPage}"
 								var="p">
@@ -253,11 +320,14 @@ button {
 										<b class="move_num"><span style="color: red;">${p}</span></b>
 									</c:when>
 									<c:when test="${p != paging.nowPage }">
-										<a href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="move_num">${p}</a>
+										<a
+											href="userproductnotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}"
+											class="move_num">${p}</a>
 									</c:when>
 								</c:choose>
 							</c:forEach> <c:if test="${paging.endPage != paging.lastPage}">
-								<a href="userproductnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
+								<a
+									href="userproductnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
 							</c:if></td>
 					</tr>
 				</div>
@@ -269,4 +339,21 @@ button {
 
 	</div>
 </body>
+
+<style type="text/css">
+.up_button{
+position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 50;
+}
+.up_btn{
+background-image: url(../images/icon_btn_top.svg);
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+</style>
+<div class="up_button">
+<button type="button" class="up_btn"><a href="#body">위로</a></button>
+</div>
 </html>

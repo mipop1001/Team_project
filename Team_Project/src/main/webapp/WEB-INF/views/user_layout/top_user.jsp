@@ -86,12 +86,13 @@ body {
 .wall_main {
 	padding-top: 0;
 	min-height: 15vh;
+	
 }
 
 .head_wall {
 	-webkit-box-align: center;
 	align-items: center;
-	background-color: transparent;
+background-color: white;
 	border-bottom: none;
 	/*     color: #fff; */
 	z-index: 22;
@@ -109,8 +110,10 @@ body {
 }
 
 .logo {
+    position: relative;
 	margin-left: auto;
 	margin-right: auto;
+	top: -15px;
 	padding: 0;
 	flex-direction: column;
 	margin-top: 10px;
@@ -118,7 +121,7 @@ body {
 	margin: 0 auto;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	width: 60%;
 }
 
 .aside_menu {
