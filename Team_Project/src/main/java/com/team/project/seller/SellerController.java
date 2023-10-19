@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.member.MemberDTO;
+import com.team.project.order.OrderDTO;
+import com.team.project.order.OrderService;
 import com.team.project.product.ProductDTO;
 import com.team.project.product.ProductService;
 
@@ -245,6 +248,21 @@ public class SellerController {
 			return "no";
 		}
 	}
+	
+	@RequestMapping(value = "/seller_product_sales")
+	public String seller_product_sales(HttpServletRequest request,Model mo)
+	{
+		String seller_id=request.getParameter("seller_id");
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		String seller_number = ss.product_seller_number(seller_id);
+		OrderService os = sqlSession.getMapper(OrderService.class);
+		System.out.println("ÆÇ¸ÅÀÚ"+seller_number);
+		ArrayList<OrderDTO> list = os.seller_product_sales(seller_number);
+		mo.addAttribute("list", list);
+		System.out.println(list.size());
+		return "seller_product_sales";
+	}
+
 
 
 	

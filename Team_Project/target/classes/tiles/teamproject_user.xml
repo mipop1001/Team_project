@@ -91,4 +91,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/order/user_product_order_cart.jsp"/>
 	</definition>
 	
+	<definition name="customer_order_view" extends="baseLayout_user">
+		<put-attribute name="title" value="주문 조회"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/customer_order_view.jsp"/>
+	</definition>
+	
 </tiles-definitions>

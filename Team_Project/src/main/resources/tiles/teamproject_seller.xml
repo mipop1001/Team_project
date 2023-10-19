@@ -61,4 +61,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/seller/seller_login_find_password_view.jsp"/>
 	</definition>
 	
+	<definition name="seller_product_sales" extends="baseLayout_seller">
+			<put-attribute name="title" value="판매 내역"/>
+			<put-attribute name="body" value="/WEB-INF/views/seller/seller_product_sales.jsp"/>
+	</definition>	
+
+	
 </tiles-definitions>

@@ -55,4 +55,12 @@ delete seller where seller_number = #{param1}
 <update id="seller_buy_point_update">
 update seller set seller_buy_point=seller_buy_point+#{param2}*#{param3} where seller_id=#{param1}
 </update>
+
+<select id="product_seller_number" resultType="String">
+select seller_number from seller where seller_id=#{param1}
+</select>
+
+<select id="product_seller_name" resultType="String">
+select seller_name from seller where seller_id=#{param1}
+</select>
 </mapper>
