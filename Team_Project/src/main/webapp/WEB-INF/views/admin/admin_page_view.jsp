@@ -18,11 +18,12 @@
 				<a class="navbar-brand" href="#">관리자 페이지</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="active"><a href="announcement_form_go">공지사항 작성</a></li>
 				<li><a href="user_list">사용자 목록 보기</a></li>
 				<li><a href="seller_list">판매자 목록 보기</a></li>
 				<li><a href="board_list">게시글 목록 보기</a></li>
 				<li><a href="product_list">상품 목록 보기</a></li>
+				<li><a href="#">공지사항 보기</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -153,6 +154,17 @@
 				<td> <a href="product_list_delete?product_number=${product.product_number }">삭제</a> </td>
 			</tr>
 		</c:forEach>
+	</table>
+<hr>
+		<table border="1" align="center" width="1800px" class="table table-striped">
+		<tr>
+			<th>공지글 번호</th>
+			<th>공지글 제목</th>
+			<th>공지글 작성자</th>
+			<th>공지글 내용</th>
+			<th>공지글 작성일자</th>
+			<th>비고</th>
+		</tr>
 	</table>
 <hr>
 </body>

@@ -7,6 +7,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function pointupdate() {
+	$.ajax({
+		type: "post",
+		url: "customer_point_update",
+		async: true,
+        success: function (data) {
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("오류 발생");
+        }
+	});
+}
+</script>
 <!-- jQuery 추가 -->
 </head>
 <body>
@@ -61,8 +75,8 @@
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="결재"
-						onclick="location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
+					<td>
+						<input type="button" value="결재" onclick="pointupdate(); location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
 					</td>
 				</tr>
 

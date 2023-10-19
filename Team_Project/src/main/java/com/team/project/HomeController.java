@@ -33,6 +33,11 @@ public class HomeController {
 		return "admin_page_login";
 	}
 
+	@RequestMapping(value = "/announcement_form_go", method = RequestMethod.GET)
+	public String announcement_form() {
+		return "announcement_form";
+	}
+
 	@RequestMapping(value = "/admin_login_check", method = RequestMethod.POST)
 	public String admin_login_check(HttpServletRequest request) {
 		
