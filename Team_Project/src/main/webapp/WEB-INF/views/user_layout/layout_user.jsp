@@ -20,7 +20,7 @@
 }
 #body {
 text-align: center;
-padding-bottom: 150px;
+padding-bottom: 70px;
 }
 /*  img{  */
 /*  margin-top: 100px;  */
