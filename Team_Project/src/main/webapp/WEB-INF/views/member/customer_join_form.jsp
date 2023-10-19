@@ -8,6 +8,38 @@
 </head>
 <script type="text/javascript">
 
+function check(){
+	var customerjoinform = document.getElementById("customer_join_form");
+	
+	// 체크해야 하는 질문 목록
+	var requiredQuestions = [
+		"member_id",
+		"join_pw1",
+		"join_pw2",
+		"member_name",
+		"member_personal_number",
+		"member_phone_number",
+		"member_address",
+		"member_email",
+		"member_birthday"
+	]
+	
+	  // 각 질문을 순회하면서 체크
+    for (var i = 0; i < requiredQuestions.length; i++) {
+        var question = requiredQuestions[i];
+        var inputElement = customerjoinform.elements[question];
+        var inputValue = inputElement.value.trim(); // 입력값 공백 제거
+
+        if (inputValue === "") {
+            alert("필수 입력란이 비어 있습니다");
+            // 필수 입력란이 비어 있을 때 작업을 중지하거나 추가 조치를 취할 수 있습니다.
+            return;
+        }
+    }
+    // 모든 필수 입력란이 값이 채워져 있을 때 가입 프로세스를 진행
+    customerjoinform.submit(); // 또는 원하는 작업 수행
+}
+
 function checkPassword() {
     var p1 = document.getElementById('join_pw1').value;
     var p2 = document.getElementById('join_pw2').value;
@@ -93,7 +125,7 @@ function checkid() {
 </script>
 <body>
 <hr>
-	<form action="customer_join_save" method="get">
+	<form action="customer_join_save" method="get" id="customer_join_form">
 		<table align="center" width="600px">
 		<caption>회원가입</caption>
 			<tr>
@@ -147,7 +179,7 @@ function checkid() {
 			<tr>
 				<td colspan="2" align="center">
 				<hr>
-					<input type="submit" value="가입">
+					<input type="button" value="가입" onclick="check()">
 					<input type="reset" value="취소" onclick="location.href='user_page';">
 				</td>
 			</tr>
