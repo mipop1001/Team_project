@@ -51,6 +51,7 @@ public class HomeController {
 	public String main_page(HttpServletRequest request) {
 		HttpSession hs = request.getSession();
 		hs.setAttribute("loginstatus", false);
+		hs.invalidate(); // 세션 무효화
 		return "main_page";
 	}
 	

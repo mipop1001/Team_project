@@ -27,10 +27,57 @@ function addToCart(product_number, member_number) {
             }
         },
         error: function() {
-            alert('서버 요청 중 오류가 발생했습니다.');
+            alert('로그인이 필요한 기능입니다.');
         }
     });
 }
+///
+
+
+function checkLoginAndRedirect(product_number, member_number, product_sell_amount) {
+    // 로그인 상태를 확인하고, 리디렉션을 처리하는 함수
+    isUserLoggedIn(function(loggedIn) {
+        if (loggedIn) {
+            // 로그인된 경우
+            checkAndRedirect(product_number, member_number, product_sell_amount);
+        } else {
+            // 로그인되지 않은 경우
+            alert('로그인이 필요한 기능입니다.');
+        }
+    });
+}
+
+function isUserLoggedIn(callback) {
+    // Ajax 요청을 보내어 서버에서 세션에서 로그인 상태 확인
+    $.ajax({
+        type: 'GET',
+        url: 'checkLoginStatus',
+        success: function(response) {
+            if (response === 'loggedIn') {
+                // 사용자가 로그인한 상태
+                callback(true);
+            } else {
+                // 사용자가 로그인하지 않은 상태
+                callback(false);
+            }
+        },
+        error: function() {
+            // 에러 처리 로직
+            return false; // 에러 시에도 로그인되지 않은 상태로 처리
+        }
+    });
+}
+
+function checkAndRedirect(productNumber, memberNumber, productSellAmount) {
+    if (productSellAmount > 0) {
+        // 여기에서 상품 수량이 0보다 큰 경우에만 구매 페이지로 리디렉션
+        window.location.href = 'user_product_order?product_number=' + productNumber + '&member_number=' + memberNumber;
+    } else {
+        alert('품절된 상품입니다.');
+    }
+}
+
+
 </script>
 <style type="text/css">
 body {
@@ -257,18 +304,36 @@ body {
 								<strong><strong>${pnum.product_country }</strong></strong>
 							</dd>
 						</dl>
+						<c:choose>
+						<c:when test="${pnum.product_sell_amount > 0 }">
 						<dl class="item_product_amount">
 							<dt>재고</dt>
 							<dd>
-								<strong><strong>${pnum.product_sell_amount }</strong></strong>
+								<strong>${pnum.product_sell_amount }</strong>
 							</dd>
 						</dl>
+						</c:when>
+						<c:otherwise>
+						<dl class="item_product_amount">
+							<dt>재고</dt>
+							<dd>
+								<strong>품절</strong>
+							</dd>
+						</dl>
+						</c:otherwise>
+						</c:choose>
+						
 					</div>
 					<div class="item_choise_button">
-<%-- 						<input type="button" class="cart" value="장바구니" onclick="location.href='user_product_cart?product_number=${pnum.product_number}&member_number=${memberDTO.member_number }'">  --%>
 						<input type="button" class="cart" value="장바구니" onclick="addToCart(${pnum.product_number}, ${memberDTO.member_number})">
-						<input type="button" class="like" value="찜하기"> 
-						<input type="button" class="buy" value="바로구매" onclick="location.href='user_product_order?product_number=${pnum.product_number}&member_number=${memberDTO.member_number }'">
+						<c:choose>
+						<c:when test="${memberDTO.member_number != null }">
+							<input type="button" class="buy" value="바로구매" onclick="checkLoginAndRedirect(${pnum.product_number}, ${memberDTO.member_number}, ${pnum.product_sell_amount })">
+						</c:when>
+						<c:otherwise>
+							<input type="button" class="buy" value="로그인 후 구매 가능" onclick="location.href='customer_login'">
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
