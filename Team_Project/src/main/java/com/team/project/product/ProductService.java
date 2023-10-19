@@ -32,5 +32,5 @@ public interface ProductService {
 	public ArrayList<ProductDTO> product_list();
 	public void product_list_delete(String parameter);
 	public String product_seller_id(String product_number);
-
+	public String product_product_name(String product_number);
 }

@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.project.member.MemberDTO;
 import com.team.project.member.MemberService;
+import com.team.project.order.OrderDTO;
+import com.team.project.order.OrderService;
 import com.team.project.product.ProductDTO;
 import com.team.project.product.ProductService;
 import com.team.project.seller.SellerService;
@@ -154,11 +156,16 @@ public class CartController {
 		String [] product_Quantities=request.getParameterValues("product_Quantities");
 		String [] product_price = request.getParameterValues("product_price");
 		String[] seller_id = new String[product_numbers.length];
+		String[] seller_number = new String[product_numbers.length];
 		System.out.println(seller_id.length+""+product_numbers.length);
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		int member_point = ms.pointcheck(member_number);
 		ProductService ps = sqlSession.getMapper(ProductService.class);
 		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ms.customer_buy_point_deduction(member_number,total_price);
+		String member_name = ms.customer_member_name(member_number);
+		String member_address = ms.customer_member_address(member_number);
+		String[] pp=null;
 		if(member_point >= total_price)
 		{
 			for(int i = 0;i<product_numbers.length;i++)
@@ -167,11 +174,27 @@ public class CartController {
 				seller_id[i] = ps.product_seller_id(product_numbers[i]);
 				//상품 DB 구매수량 증가 판매수량 감소
 				ps.order_buy_amount_updown_cart(product_numbers[i],product_Quantities[i]);
+				seller_number[i]=ss.product_seller_number(seller_id[i]);
 				//상품 구매 시 포인트 차감
-				ms.customer_buy_point_deduction(member_number,total_price);
 				ss.seller_buy_point_update(seller_id[i],Integer.parseInt(product_price[i]),Integer.parseInt(product_Quantities[i]));
 			System.out.println("회원 번호 : "+member_number+"금액 : "+total_price+"상품번호"+product_numbers[i]+"구매 수량"+product_Quantities[i]);
-				
+			
+			OrderDTO od = new OrderDTO();
+			od.setSeller_number(Integer.parseInt(seller_number[i]));
+			od.setSeller_name(ss.product_seller_name(seller_id[i]));
+			od.setMember_number(member_number);
+			od.setMember_name(member_name);
+			od.setProduct_number(Integer.parseInt(product_numbers[i]));
+			od.setProduct_name(ps.product_product_name(product_numbers[i]));
+			od.setProduct_sell_amount(Integer.parseInt(product_Quantities[i]));
+			od.setProduct_price(Integer.parseInt(product_price[i]));
+			od.setProduct_total_price(Integer.parseInt(product_price[i]) * Integer.parseInt(product_Quantities[i]));
+			String delivery_status="주문 접수 중";
+			od.setDelivery_status(delivery_status);
+			od.setMember_address(member_address);
+			OrderService os = sqlSession.getMapper(OrderService.class);
+			os.insert_order_history(od);
+			ms.customer_buy_point(member_number,Integer.parseInt(product_price[i]) * Integer.parseInt(product_Quantities[i]));
 			}
 		}
 		return "user_page";

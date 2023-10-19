@@ -109,4 +109,15 @@ select * from member_project where member_number=#{param1}
 update member_project set member_point=member_point-#{param2} where member_number=#{param1}
 </update>
 
+<update id="customer_buy_point">
+update member_project set member_buy=member_buy+#{param2} where member_number=#{param1}
+</update>
+
+<select id="customer_member_name" resultType="String">
+select member_name from member_project where member_number=#{param1}
+</select>
+
+<select id="customer_member_address" resultType="String">
+select member_address from member_project where member_number=#{param1}
+</select>
 </mapper>

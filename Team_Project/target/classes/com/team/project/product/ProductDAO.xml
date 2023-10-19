@@ -102,4 +102,9 @@ update product set product_sell_amount=product_sell_amount-#{param2} , product_b
 select seller_id from product where product_number=#{param1}
 </select>
 
+<select id="product_product_name" resultType="String">
+select product_name from product where product_number=#{param1}
+</select>
+
+
 </mapper>
