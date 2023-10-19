@@ -80,7 +80,7 @@ body {
 /* /* /* /* /* /*  */
 .wall_main {
 	padding-top: 0;
-	min-height: 15vh;
+	min-height: 10vh;
 }
 
 .head_wall {
@@ -104,6 +104,8 @@ body {
 }
 
 .logo {
+    position: relative;
+	top: -15px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0;
@@ -113,7 +115,7 @@ body {
 	margin: 0 auto;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	width: 60%;
 }
 
 .aside_menu {
