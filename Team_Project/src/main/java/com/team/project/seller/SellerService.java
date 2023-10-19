@@ -20,5 +20,6 @@ public interface SellerService {
 	public ArrayList<SellerDTO> seller_list();
 	public void seller_list_delete(String parameter);
 	public void seller_buy_point_update(String seller_id,int product_price,int product_Quantities);
-
+	public String product_seller_number(String seller_id);
+	public String product_seller_name(String seller_id);
 }

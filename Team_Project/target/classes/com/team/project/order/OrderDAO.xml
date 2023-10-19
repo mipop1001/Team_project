@@ -4,6 +4,20 @@
     
 <mapper namespace="com.team.project.order.OrderService">
 
+<insert id="insert_order_history">
+insert into product_sell_list values(sell_list_number_seq.nextval,#{seller_number},#{seller_name},#{member_number},#{member_name},#{product_number},#{product_name},#{product_sell_amount},#{product_price},#{product_total_price},#{delivery_status},#{member_address},SYSDATE)
+</insert>
 
 
+<select id="customer_order_view" resultType="com.team.project.order.OrderDTO">
+select * from product_sell_list where member_number=#{param1}
+</select>
+
+<select id="seller_product_sales" resultType="com.team.project.order.OrderDTO">
+select * from product_sell_list where seller_number=#{param1}
+</select>
+
+<update id="delivery_status_update">
+update product_sell_list set delivery_status=#{param2} where sell_list_number=#{param1}
+</update>
 </mapper>

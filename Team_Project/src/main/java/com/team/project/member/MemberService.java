@@ -33,4 +33,8 @@ public interface MemberService {
 	
 	//장바구니에서 결제 시 보유 포인트 차감
 	public void customer_buy_point_deduction(int member_number,int total_price);
+	//결제 시 사용한 포인트 증가
+	public void customer_buy_point(int member_number,int member_buy);
+	public String customer_member_name(int member_number);
+	public String customer_member_address(int member_number);
 }
