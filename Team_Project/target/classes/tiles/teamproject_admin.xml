@@ -20,4 +20,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_page_view.jsp" />
 	</definition>
 
+	<definition name="announcement_form" extends="baseLayout">
+		<put-attribute name="title" value="관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/announcement_form.jsp" />
+	</definition>
+
 </tiles-definitions>

@@ -67,6 +67,13 @@
         // 초기화: 선택된 상품 정보를 저장할 배열
         var selectedProducts = [];
     	//폼으로 전달할 데이터를 저장할 배열
+    	
+    	// 구매 버튼 엘리먼트
+	    var purchaseButton = $('.purchase_button');
+	
+	    // 처음에는 구매 버튼을 숨김
+	    purchaseButton.hide();
+    	
     	var selectedProducts2 = []; 
         // 상품 수량을 저장하는 객체
         var cartItems = {};
@@ -104,7 +111,11 @@
 
         // 상품 정보를 HTML로 변환하여 product-info에 넣어 렌더링하는 함수
         function renderSelectedProducts() {
-    var productInfoHtml = selectedProducts.map(function (info) {
+        	
+        // 체크된 상품의 개수에 따라 구매 버튼을 보이거나 숨김
+        togglePurchaseButton();	
+        	
+    	var productInfoHtml = selectedProducts.map(function (info) {
         var productNumber = info.product_number;
         var maxQuantity = info.product_sell_amount; // 최댓값
         var currentQuantity = cartItems[productNumber] || 1; // 현재 수량
@@ -126,7 +137,17 @@
     
     $('.product-info').html(productInfoHtml);
 
-    
+    // 체크된 상품의 개수에 따라 구매 버튼을 보이거나 숨김
+    function togglePurchaseButton() {
+        var selectedProductCount = selectedProducts.length;
+        if (selectedProductCount > 0) {
+            // 선택된 상품이 하나 이상 있을 때 구매 버튼을 보이게 함
+            purchaseButton.show();
+        } else {
+            // 선택된 상품이 없을 때 구매 버튼을 숨김
+            purchaseButton.hide();
+        }
+    }
     
     
     
@@ -264,7 +285,7 @@ $(document).on('click', '.downItems', function () {
     <title>Insert title here</title>
 </head>
 <body>
-    <table align="center" width="50%">
+    <table align="center" width="60%">
         <tr>
             <td>리스트에 추가</td>
             <td>썸네일</td>
@@ -311,14 +332,14 @@ $(document).on('click', '.downItems', function () {
 				</c:choose>
                 <td>${product.seller_id}</td>
 
-                <td><button><a href="cart_delete_item?product_number=${product.product_number }&member_number=${member_number}">x</a></button></td>
+                <td><button onclick="location.href='cart_delete_item?product_number=${product.product_number }&member_number=${member_number}'" >삭제</button></td>
             </tr>
             
         </c:forEach>
         
     </table>
     
-    <table align="center" style='margin-top:20px;border:1px solid #000' width="50%" height="150px">
+    <table align="center" style='margin-top:20px;border:1px solid #000' width="60%" height="150px">
         <tr>
             <td colspan="2">
             <hr>
@@ -341,13 +362,13 @@ $(document).on('click', '.downItems', function () {
             </div>
 <form id="purchaseForm" action="user_product_order_cart" method="post">
     <!-- 폼 내부의 데이터는 JavaScript로 자동으로 생성됩니다. -->
-    <table>
+    <table align="center" width="60%">
         <tr>
 
         </tr>
         <tr>
             <input type="hidden" name="member_number" value="${member_number}">
-            <td><button class="purchase_button">구매</button></td>
+            <td> <hr> <button class="purchase_button">구매</button></td>
         </tr>
     </table>
 </form>

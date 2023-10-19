@@ -57,6 +57,25 @@
 
 		var f = document.seller_join_form;
 
+		var seller_id = f.seller_id.value;
+		// 정규 표현식 패턴을 사용하여 비밀번호 유효성 검사
+		var seller_id_Pattern = /^[a-zA-Z0-9]{6,15}$/;
+
+		// 양 끝의 공백을 제거한 비밀번호
+		var trimmed_seller_id = seller_id.trim();
+
+		if (trimmed_seller_id === "") {
+			alert("아이디를 입력하세요.");
+			f.seller_id.select();
+			return false;
+		}
+
+		if (!seller_id_Pattern.test(trimmed_seller_id)) {
+			alert("아이디는 영문 대소문자와 숫자로만 6-15자 사이로 공백 없이 입력하세요.");
+			f.seller_id.select();
+			return false;
+		}
+
 		var seller_password = f.seller_password.value;
 		// 정규 표현식 패턴을 사용하여 비밀번호 유효성 검사
 		var seller_password_Pattern = /^[a-zA-Z0-9]{6,15}$/;
