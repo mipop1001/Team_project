@@ -49,6 +49,57 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+$(document).ready(function () {
+    // 환불 요청 수락 버튼 클릭 시
+    $('.accept-refund-button').on('click', function () {
+        var sellListNumber = $(this).data('sell-list-number');
+        var userConfirmed = confirm('환불 요청을 수락하시겠습니까?');
+        // AJAX 요청 보내기
+        if(userConfirmed)
+        	{
+        $.ajax({
+            type: 'POST',
+            url: 'accept_refund',
+            data: { "sell_list_number": sellListNumber },
+            success: function (response) {
+                // 처리 성공 시 실행할 코드
+                alert('환불 요청이 수락되었습니다.');
+                // 여기에서 필요한 업데이트 작업을 수행할 수 있습니다.
+            },
+            error: function () {
+                // 처리 실패 시 실행할 코드
+                alert('환불 요청 수락에 실패했습니다.');
+            }
+        });
+        	}
+    });
+    
+    // 환불 요청 거절 버튼 클릭 시
+    $('.reject-refund-button').on('click', function () {
+        var sellListNumber = $(this).data('sell-list-number');
+        var userConfirmed = confirm('환불 요청을 거절하시겠습니까?');
+        // AJAX 요청 보내기
+        if(userConfirmed)
+        	{
+        $.ajax({
+            type: 'POST',
+            url: 'reject_refund',
+            data: { "sell_list_number": sellListNumber },
+            success: function (response) {
+                // 처리 성공 시 실행할 코드
+                alert('환불 요청이 거절되었습니다.');
+                // 여기에서 필요한 업데이트 작업을 수행할 수 있습니다.
+            },
+            error: function () {
+                // 처리
+            }
+        });
+            }
+    });
+});
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -113,6 +164,10 @@ $(document).ready(function () {
     <option value="배송 완료">배송 완료</option>
 </select>
 </c:when>
+
+<c:when test="${i.delivery_status == '환불 요청 중' }">
+    <span class="delivery-status">${i.delivery_status}</span>
+</c:when>
 <c:otherwise>
     <span class="delivery-status">${i.delivery_status}</span>
 <select name="delivery-status-select" class="hidden" id="delivery-status-select-${i.sell_list_number}">
@@ -125,7 +180,14 @@ $(document).ready(function () {
 </c:otherwise>
 </c:choose>
 </td>
+<c:choose>
+<c:when test="${i.delivery_status == '환불 요청 중' }">
+<td><button class="accept-refund-button">수락</button> <button class="reject-refund-button">거절</button> </td>
+</c:when>
+<c:otherwise>
 <td><button class="delivery-status-update" data-sell-list-number="${i.sell_list_number}">배송 정보 변경</button></td>
+</c:otherwise>
+</c:choose>
 </tr>
 </c:forEach>
 </table>
