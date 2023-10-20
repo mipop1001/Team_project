@@ -3,6 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+  /* 나열되는 이미지 컨테이너의 스타일 */
+  #image_container {
+    display: flex; /* 이미지 컨테이너를 가로로 나열하는 flex 레이아웃 사용 */
+  }
+  #image_container img {
+    max-width: 100px; /* 이미지의 최대 너비 지정 (원하는 크기로 조정) */
+    height: auto;
+    margin-right: 100px; /* 이미지 간격 조정 (원하는 간격으로 조정) */
+  }
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -70,6 +81,17 @@ function check() {
     communityinputform.submit(); // 또는 원하는 작업 수행
 }
 
+function setThumbnail(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#image_container").appendChild(img);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
 </script>
 <hr>
 	<form action="customer_community_input_save" method="post"
@@ -117,20 +139,24 @@ function check() {
 					<input type="radio" name="community_board_grade" value="5">★★★★★</td>
 			</tr>
 			<tr>
+				<th>이미지 미리보기</th>
+				<td><hr><div id="image_container" width="50px" height="50px"></div><hr></td>
+			</tr>
+			<tr>
 				<th>메인이미지</th>
-				<td><hr><input type="file" id="community_board_sum_image" name="community_board_sum_image"></td>
+				<td><hr><input type="file" id="community_board_sum_image" name="community_board_sum_image" onchange="setThumbnail(event);"></td>
 			</tr>
 			<tr>
 				<th>추가이미지</th>
-				<td><hr><input type="file" id="community_board_detail_image1" name="community_board_detail_image1"></td>
+				<td><hr><input type="file" id="community_board_detail_image1" name="community_board_detail_image1" onchange="setThumbnail(event);"></td>
 			</tr>
 			<tr>
 				<th>추가이미지</th>
-				<td><hr><input type="file" id="community_board_detail_image2" name="community_board_detail_image2"></td>
+				<td><hr><input type="file" id="community_board_detail_image2" name="community_board_detail_image2" onchange="setThumbnail(event);"></td>
 			</tr>
 			<tr>
 				<th>추가이미지</th>
-				<td><hr><input type="file" id="community_board_detail_image3" name="community_board_detail_image3"></td>
+				<td><hr><input type="file" id="community_board_detail_image3" name="community_board_detail_image3" onchange="setThumbnail(event);"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><hr><input type="button" value="등록" onclick="check()"></td>

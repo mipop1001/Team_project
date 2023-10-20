@@ -2,7 +2,7 @@ package com.team.project.board;
 
 import java.util.ArrayList;
 
-import com.team.project.seller.SellerDTO;
+import com.team.project.member.MemberDTO;
 
 public interface BoardService {
 
@@ -41,4 +41,6 @@ public interface BoardService {
 	public ArrayList<BoardDTO> board_list();
 
 	public void board_list_delete(String parameter);
+
+	public ArrayList<MemberDTO> board_comment_view_member_id(String parameter);
 }

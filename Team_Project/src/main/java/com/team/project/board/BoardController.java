@@ -95,8 +95,10 @@ public class BoardController {
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ArrayList<BoardDTO> list = ss.customer_community_detail(Integer.parseInt(request.getParameter("community_board_number")));
 		ArrayList<BoardCommentDTO> list2 = ss.board_comment_view(Integer.parseInt(request.getParameter("community_board_number")));
+		ArrayList<MemberDTO> dto = ss.board_comment_view_member_id(request.getParameter("community_board_number"));
 		mo.addAttribute("list",list);
 		mo.addAttribute("list2", list2);
+		mo.addAttribute("dto", dto);
 		return "customer_community_detail";
 	}
 	

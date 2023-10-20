@@ -125,7 +125,9 @@ white-space: pre-line;
 				<input type="hidden" value="${community_detail.community_board_number }" id="board_number">
 				<input type="hidden" value="${memberDTO.member_id }" id="member_id">
 					<div class="body_writer">
-					db생성 및 출력 기능 추가 필요
+					<c:forEach items="${dto }" var="a">
+					${a.member_id }
+					</c:forEach>
 					</div>
 					<div class="body_date">
 					${community_detail.community_board_date }
