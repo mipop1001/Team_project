@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.admin.AnnouncementDTO;
+import com.team.project.admin.AnnouncementService;
 import com.team.project.board.BoardDTO;
 import com.team.project.board.BoardService;
 import com.team.project.member.MemberDTO;
@@ -33,11 +35,23 @@ public class HomeController {
 		return "admin_page_login";
 	}
 
+	//관리자 페이지 공지사항 작성
 	@RequestMapping(value = "/announcement_form_go", method = RequestMethod.GET)
 	public String announcement_form() {
 		return "announcement_form";
 	}
-
+	
+	@RequestMapping(value = "/announcement_input_save", method = RequestMethod.GET)
+	public String announcement_input_save(HttpServletRequest request) {
+		AnnouncementDTO dto = new AnnouncementDTO();
+		dto.setTitle(request.getParameter("title"));
+		dto.setWriter(request.getParameter("writer"));
+		dto.setNoticedoc(request.getParameter("noticeDoc"));
+		AnnouncementService as = sqlSession.getMapper(AnnouncementService.class);
+		as.announcementinsert(dto);
+		return "redirect:/announcement_form_go";
+	}
+	
 	@RequestMapping(value = "/admin_login_check", method = RequestMethod.POST)
 	public String admin_login_check(HttpServletRequest request) {
 		
@@ -108,6 +122,14 @@ public class HomeController {
 		mo.addAttribute("product_list", product_list);
 		return "admin_page_view";
 	}
+
+	@RequestMapping(value = "/announcement_list", method = RequestMethod.GET)
+	public String announcement_list(Model mo) {
+		AnnouncementService as = sqlSession.getMapper(AnnouncementService.class);
+		ArrayList<AnnouncementDTO> announcement_list = as.announcement_list();
+		mo.addAttribute("announcement_list", announcement_list);
+		return "admin_page_view";
+	}
 	
 	//관리자 페이지 삭제 기능
 	@RequestMapping(value = "/user_list_delete", method = RequestMethod.GET)
@@ -136,6 +158,13 @@ public class HomeController {
 		ProductService bs = sqlSession.getMapper(ProductService.class);
 		bs.product_list_delete(request.getParameter("product_number"));
 		return "redirect:/product_list";
+	}
+
+	@RequestMapping(value = "/announcement_list_delete", method = RequestMethod.GET)
+	public String announcement_list_delete(HttpServletRequest request) {
+		AnnouncementService as = sqlSession.getMapper(AnnouncementService.class);
+		as.announcement_list_delete(request.getParameter("announcement_number"));
+		return "redirect:/announcement_list";
 	}
 	
 }

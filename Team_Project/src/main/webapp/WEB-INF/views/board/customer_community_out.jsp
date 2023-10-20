@@ -218,23 +218,21 @@ button {
 									href="boardnotice?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage }">▶</a>
 							</c:if></td>
 					</tr>
-					<button class="buttonbigred"
-						onclick="location='customer_community_input_form'">
-						<span>글쓰기</span>
-					</button>
+					<c:choose>
+						<c:when test="${loginstatus == true }">
+							<button class="buttonbigred"
+								onclick="location='customer_community_input_form'">
+								<span>글쓰기</span>
+							</button>
+						</c:when>
+						<c:otherwise>
+							<button class="buttonbigred"
+								onclick="location.href='customer_login'">
+								<span>글쓰기</span>
+							</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<!-- <div class="button-group paging-wrapper">
-				
-						<a href="javascript:contents_paging(1);" class="p page-arrow" title="prev_page"></a>&nbsp;
-						<a href="javascript:contents_paging(1);" class="on" title="1page">1</a>&nbsp;
-						<a href="javascript:contents_paging(2);" title="2page">2</a>&nbsp;
-						<a href="javascript:contents_paging(3);" title="3page">3</a>&nbsp;&nbsp;
-						<a href="javascript:contents_paging(2);" class="n page-arrow" title="next_page"></a>
-						글쓰기 버튼 0930
-						<button class="button big red" onclick="location='customer_community_input_form'"><span>글쓰기</span></button>
-						/글쓰기 버튼 0930
-				
-			</div> -->
 			</div>
 		</div>
 		<!-- /body-wrapper +end+ -->

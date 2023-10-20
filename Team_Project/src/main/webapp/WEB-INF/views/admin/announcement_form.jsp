@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
+	<form action="announcement_input_save" method="get">
 		<table align="center" width="800px">
 		<caption>공지사항 작성</caption>
 			<tr>
