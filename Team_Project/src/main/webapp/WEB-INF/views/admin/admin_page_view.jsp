@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -23,7 +22,7 @@
 				<li><a href="seller_list">판매자 목록 보기</a></li>
 				<li><a href="board_list">게시글 목록 보기</a></li>
 				<li><a href="product_list">상품 목록 보기</a></li>
-				<li><a href="#">공지사항 보기</a></li>
+				<li><a href="announcement_list">공지사항 보기</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -165,6 +164,16 @@
 			<th>공지글 작성일자</th>
 			<th>비고</th>
 		</tr>
+		<c:forEach items="${announcement_list }" var="announcement">
+			<tr>
+				<td>${announcement.noticedoc_number }</td>
+				<td>${announcement.title }</td>
+				<td>${announcement.writer }</td>
+				<td>${announcement.noticedoc}</td>
+				<td>${announcement.announcement_date }</td>
+				<td> <a href="announcement_list_delete?announcement_number=${announcement.noticedoc_number}">삭제</a> </td>
+			</tr>
+		</c:forEach>
 	</table>
 <hr>
 </body>

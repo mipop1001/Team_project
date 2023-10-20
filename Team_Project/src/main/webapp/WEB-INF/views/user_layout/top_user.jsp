@@ -206,7 +206,7 @@ background-color: white;
 								<a href="userproductnotice">shop(상품출력)</a> 
 								<a href="user_product_cart_view?member_number=${memberDTO.member_number }">장바구니</a>
 								<a href="boardnotice">community(게시글)</a> <a href="customer_qna">QnA(자주묻는질문)</a>
-								<a href="#">공지사항</a>
+								<a href="Announcement_list_go">공지사항</a>
 								<a href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
 						</div>
 					</c:when>
@@ -218,7 +218,7 @@ background-color: white;
 							<a href="userproductnotice">shop(상품출력)</a>
 							<a href="boardnotice">community(게시글)</a> 
 							<a href="customer_qna">QnA(자주묻는질문)</a>
-							<a href="#">공지사항</a>
+							<a href="Announcement_list_go">공지사항</a>
 							<a href="main">메인</a>
 						</div>
 					</c:otherwise>

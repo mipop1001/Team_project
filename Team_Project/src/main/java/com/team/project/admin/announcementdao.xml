@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 Service클래스가 있는 경로를 입력한다. -->
+<mapper namespace="com.team.project.admin.AnnouncementService">
+
+<insert id="announcementinsert" parameterType="com.team.project.admin.AnnouncementDTO">
+	insert into announcement values(noticedoc_number_seq.nextval,#{title},#{writer},#{noticedoc},sysdate)
+</insert>
+
+<select id="announcement_list" resultType="com.team.project.admin.AnnouncementDTO">
+	select * from announcement
+</select>
+
+<delete id="announcement_list_delete">
+	delete announcement where noticedoc_number = #{param1}
+</delete>
+
+</mapper>

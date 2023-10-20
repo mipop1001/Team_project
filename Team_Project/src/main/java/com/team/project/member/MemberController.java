@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.admin.AnnouncementDTO;
+import com.team.project.admin.AnnouncementService;
+
 @Controller
 public class MemberController {
 
@@ -315,5 +318,13 @@ public class MemberController {
 		ms.pointcharge(point, member_id, member_name, member_email);
 		return "redirect:/customer_point_management";
 	}
-
+	
+	//공지사항 리스트
+	@RequestMapping(value = "/Announcement_list_go")
+	public String Announcement_list_go(Model mo) {
+		AnnouncementService as = sqlSession.getMapper(AnnouncementService.class);
+		ArrayList<AnnouncementDTO> announcement_list = as.announcement_list();
+		mo.addAttribute("announcement_list", announcement_list);
+		return "Announcement_list_view";
+	}
 }

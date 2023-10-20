@@ -95,5 +95,10 @@
 		<put-attribute name="title" value="주문 조회"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/customer_order_view.jsp"/>
 	</definition>
+
+	<definition name="Announcement_list_view" extends="baseLayout_user">
+		<put-attribute name="title" value="공지 사항"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/Announcement_list_view.jsp"/>
+	</definition>
 	
 </tiles-definitions>
