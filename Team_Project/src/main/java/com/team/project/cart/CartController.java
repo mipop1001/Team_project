@@ -157,7 +157,6 @@ public class CartController {
 		String [] product_price = request.getParameterValues("product_price");
 		String[] seller_id = new String[product_numbers.length];
 		String[] seller_number = new String[product_numbers.length];
-		System.out.println(seller_id.length+""+product_numbers.length);
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		int member_point = ms.pointcheck(member_number);
 		ProductService ps = sqlSession.getMapper(ProductService.class);
@@ -177,7 +176,6 @@ public class CartController {
 				seller_number[i]=ss.product_seller_number(seller_id[i]);
 				//상품 구매 시 포인트 차감
 				ss.seller_buy_point_update(seller_id[i],Integer.parseInt(product_price[i]),Integer.parseInt(product_Quantities[i]));
-			System.out.println("회원 번호 : "+member_number+"금액 : "+total_price+"상품번호"+product_numbers[i]+"구매 수량"+product_Quantities[i]);
 			
 			OrderDTO od = new OrderDTO();
 			od.setSeller_number(Integer.parseInt(seller_number[i]));
