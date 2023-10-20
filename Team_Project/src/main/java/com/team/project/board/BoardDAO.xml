@@ -75,4 +75,15 @@ select * from board_comment where community_board_number=#{param1}
 	delete board where community_board_number = #{param1}
 </delete>
 
+<select id="board_comment_view_member_id" resultType="com.team.project.member.MemberDTO">
+<!--     SELECT mp.member_id -->
+<!--     FROM member_project mp -->
+<!--     JOIN board b ON b.member_number = mp.member_number -->
+<!--     where b.COMMUNITY_BOARD_NUMBER = #{para1} -->
+select mp.member_id
+from member_project mp
+join board b on b.member_number = mp.member_number
+where  b.COMMUNITY_BOARD_NUMBER = #{param1}
+</select>
+
 </mapper>
