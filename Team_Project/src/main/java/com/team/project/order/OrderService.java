@@ -12,4 +12,6 @@ public interface OrderService {
 	public ArrayList<OrderDTO> seller_product_sales(String seller_number);
 	public void delivery_status_update(int sell_list_number,String delivery_status);
 	public void order_product_exit(int seller_number);
+	public void accept_refund(int sell_list_number);
+	public void find_sell_list(int sell_list_number);
 }

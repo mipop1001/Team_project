@@ -24,4 +24,6 @@ update product_sell_list set delivery_status=#{param2} where sell_list_number=#{
 <delete id="order_product_exit">
 delete product_sell_list where seller_number=#{param1}
 </delete>
+
+<select id=""></select>
 </mapper>
