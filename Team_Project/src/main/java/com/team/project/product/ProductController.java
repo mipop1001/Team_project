@@ -254,7 +254,8 @@ public class ProductController {
 			ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
 			System.out.println(list.toString());
 			mo.addAttribute("list", list);
-
+			ProductService ps = sqlSession.getMapper(ProductService.class);
+			ps.product_review_count(product_number);
 			return "user_product_detail";	
 		}
 

@@ -236,9 +236,13 @@ public class SellerController {
 		String seller_password=request.getParameter("seller_password");
 		SellerDTO dto = ss.seller_password_check(seller_number,seller_password);//DB에 비밀번호가 있는지 체크
 		HttpSession hs = request.getSession();
+		ProductService ps = sqlSession.getMapper(ProductService.class);
+		OrderService os = sqlSession.getMapper(OrderService.class);
 		if(dto!=null)
 		{
 			ss.seller_info_exit(seller_number);//삭제
+			ps.seller_product_exit(dto.seller_id);//탈퇴한 판매자 상품 삭제
+			os.order_product_exit(seller_number);
 			hs.removeAttribute("loginstate");
 			hs.setAttribute("loginstate",false);
 			return "ok";
