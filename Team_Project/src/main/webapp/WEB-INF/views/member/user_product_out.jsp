@@ -354,6 +354,6 @@ background-image: url(../images/icon_btn_top.svg);
 }
 </style>
 <div class="up_button">
-<button type="button" class="up_btn"><a href="#body">위로</a></button>
+<button type="button" class="up_btn"><a href="#body"><button>TOP</button> </a></button>
 </div>
 </html>

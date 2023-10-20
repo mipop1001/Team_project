@@ -39,7 +39,7 @@
 		</tr>
 		<c:forEach items="${list }" var="a">
 			<tr>
-				<td>${a.community_board_title }</td>
+				<td><a href="customer_community_detail?community_board_number=${a.community_board_number }">${a.community_board_title }</a></td>
 				<td>${a.community_board_date }</td>
 				<td>${a.community_board_location }</td>
 				<td>${a.community_board_grade }</td>

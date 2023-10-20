@@ -33,4 +33,6 @@ public interface ProductService {
 	public void product_list_delete(String parameter);
 	public String product_seller_id(String product_number);
 	public String product_product_name(String product_number);
+	public void product_review_count(int product_number);
+	public void seller_product_exit(String seller_id);
 }

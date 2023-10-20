@@ -57,6 +57,7 @@ public class OrderController {
 		ms.order_buy_point_up(product_price,member_number);
 		ProductService ps = sqlSession.getMapper(ProductService.class);
 		ps.order_buy_amount_updown(product_number);
+		OrderDTO dto = new OrderDTO();
 		
 		return "redirect:/user_product_out";
 	}
