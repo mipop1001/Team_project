@@ -106,5 +106,12 @@ select seller_id from product where product_number=#{param1}
 select product_name from product where product_number=#{param1}
 </select>
 
+<update id="product_review_count">
+update product set product_review_count=product_review_count+1 where product_number=#{param1}
+</update>
+
+<delete id="seller_product_exit">
+delete product where seller_id=#{param1}
+</delete>
 
 </mapper>

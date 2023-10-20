@@ -20,4 +20,8 @@ select * from product_sell_list where seller_number=#{param1}
 <update id="delivery_status_update">
 update product_sell_list set delivery_status=#{param2} where sell_list_number=#{param1}
 </update>
+
+<delete id="order_product_exit">
+delete product_sell_list where seller_number=#{param1}
+</delete>
 </mapper>
