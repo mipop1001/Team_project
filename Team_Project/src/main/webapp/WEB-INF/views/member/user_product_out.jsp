@@ -52,8 +52,8 @@ li {
 .community_travel_list ul {
 	display: flex;
 	margin-top: 0;
-	margin-left: 155px;
-	margin-right: 155px;
+	margin-left: 135px;
+	margin-right: 135px;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	align-content: center;
@@ -93,12 +93,7 @@ img {
 	position: relative;
 }
 
-user_product_title {
-	font-size: 16px;
-	line-height: 18px;
-	color: #222;
-	font-weight: 700;
-}
+
 
 .user_product_location {
 	margin: 8px 0;
@@ -115,8 +110,15 @@ user_product_title {
 
 .user_product_title {
 	margin-bottom: 40px;
-	font-size: 22px;
+	font-size: 15px;
 	line-height: 24px;
+	color: #222;
+	font-weight: 700;
+	width: 286px;
+	word-break: break-all;
+	display: block;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 .paging {
