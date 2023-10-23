@@ -76,13 +76,15 @@ public class HomeController {
 	
 	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
 	public String user_page(HttpServletRequest request, Model mo) {
-		ProductService ps = sqlSession.getMapper(ProductService.class);
-		ArrayList<ProductDTO> list = ps.user_product_out();
-		mo.addAttribute("list", list);
-		BoardService bs = sqlSession.getMapper(BoardService.class);
-		ArrayList<BoardDTO> list2 = bs.customer_community_out();
-		mo.addAttribute("list2", list2);
-		return "user_page";
+		
+			ProductService ps = sqlSession.getMapper(ProductService.class);
+			ArrayList<ProductDTO> list = ps.user_product_out();
+			mo.addAttribute("list", list);
+			BoardService bs = sqlSession.getMapper(BoardService.class);
+			ArrayList<BoardDTO> list2 = bs.customer_community_out();
+			mo.addAttribute("list2", list2);
+			return "user_page";	
+		
 	}
 
 	@RequestMapping(value = "/seller_page", method = RequestMethod.GET)
