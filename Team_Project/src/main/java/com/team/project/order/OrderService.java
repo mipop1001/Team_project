@@ -14,4 +14,6 @@ public interface OrderService {
 	public void order_product_exit(int seller_number);
 	public void accept_refund(int sell_list_number);
 	public void find_sell_list(int sell_list_number);
+	public void reject_refund(int sell_list_number,String delivery_status);
+	public OrderDTO reject_refund_product_data(int sell_list_number);
 }

@@ -113,10 +113,8 @@ public class OrderController {
 		
 		OrderService os = sqlSession.getMapper(OrderService.class);
 		os.delivery_status_update(sell_list_number, delivery_status);
-		os.find_sell_list(sell_list_number);
-		String response = "ok";
-		
-		return response;
+		String result="ok";
+		return result;
 	}
 	
 	@ResponseBody
@@ -125,18 +123,39 @@ public class OrderController {
 	{
 		int sell_list_number = Integer.parseInt(request.getParameter("sell_list_number"));
 		OrderService os = sqlSession.getMapper(OrderService.class);
-		os.accept_refund(sell_list_number);
+		OrderDTO dto = os.reject_refund_product_data(sell_list_number);
+		//환불 요청 수락 시 판매자 포인트 차감과 구매자 포인트 환불 진행을 위한 데이터 검색
+		int product_sell_amount = dto.product_sell_amount;
+		int product_price = dto.product_price;
+		int product_price_all = product_sell_amount * product_price;
+		int member_number = dto.member_number;
+		int seller_number = dto.seller_number;
+		int product_number = dto.product_number;
+		SellerService ss = sqlSession.getMapper(SellerService.class);
+		ss.seller_refund(seller_number,product_price_all);
 		
-		return "";
+		MemberService ms = sqlSession.getMapper(MemberService.class);
+		//구매자 포인트 환불
+		ms.member_refund(member_number,product_price_all);
+		ProductService ps = sqlSession.getMapper(ProductService.class);
+		//상품 재고 롤백
+		ps.sell_amount_rollback(product_number,product_sell_amount);
+		
+		os.accept_refund(sell_list_number);//환불 요청 수락시 DB에서 데이터 제거
+		
+		return "success";
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value = "/reject_refund",method=RequestMethod.POST)
-	public void reject_refund(HttpServletRequest request)
+	public String reject_refund(HttpServletRequest request)
 	{
 		int sell_list_number = Integer.parseInt(request.getParameter("sell_list_number"));
-		
+		String delivery_status = "주문 접수 중";
+		OrderService os = sqlSession.getMapper(OrderService.class);
+		os.reject_refund(sell_list_number,delivery_status);
+		return "success";
 	}
 	
 }

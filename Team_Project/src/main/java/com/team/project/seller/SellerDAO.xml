@@ -63,4 +63,8 @@ select seller_number from seller where seller_id=#{param1}
 <select id="product_seller_name" resultType="String">
 select seller_name from seller where seller_id=#{param1}
 </select>
+
+<update id="seller_refund">
+update seller set seller_buy_point = seller_buy_point - #{param2} where seller_number=#{param1}
+</update>
 </mapper>

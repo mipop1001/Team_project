@@ -37,4 +37,5 @@ public interface MemberService {
 	public void customer_buy_point(int member_number,int member_buy);
 	public String customer_member_name(int member_number);
 	public String customer_member_address(int member_number);
+	public void member_refund(int member_number,int product_price_all);
 }

@@ -35,4 +35,5 @@ public interface ProductService {
 	public String product_product_name(String product_number);
 	public void product_review_count(int product_number);
 	public void seller_product_exit(String seller_id);
+	public void sell_amount_rollback(int product_number,int product_sell_amount);
 }
