@@ -80,7 +80,7 @@ body {
 /* /* /* /* /* /*  */
 .wall_main {
 	padding-top: 0;
-	min-height: 10vh;
+	min-height: 15vh;
 }
 
 .head_wall {
