@@ -5,6 +5,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.customer_join_save_btn{
+	height: 52px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    width: 340px;
+}
+.customer_join_reset_btn{
+	height: 52px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    width: 340px;
+}
+.find_wall {
+    margin-bottom: 0;
+    flex-direction: unset;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    justify-content: center;
+}
+</style>
 </head>
 <script type="text/javascript">
 
@@ -179,11 +218,13 @@ function checkid() {
 			<tr>
 				<td colspan="2" align="center">
 				<hr>
-					<input type="button" value="가입" onclick="check()">
-					<input type="reset" value="취소" onclick="location.href='user_page';">
+					<input type="button" class="customer_join_save_btn" value="회원가입" onclick="check()">
+				<div class="find_wall"></div>
+					<input type="reset" class="customer_join_reset_btn" value="취소" onclick="location.href='user_page';">
 				</td>
 			</tr>
 		</table>
+			<div class="find_wall"></div>
 	</form>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>

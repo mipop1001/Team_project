@@ -75,7 +75,7 @@ ul li {
 			<c:forEach items="${list}" var="a">
 				<div class="slide">
 					<a href="user_product_detail?product_number=${a.product_number }">
-						<img src="./product_intro_image/${a.product_sum_image}"
+						<img src="./product_sum_image/${a.product_sum_image}"
 							width="300px" height="300px">
 						<p>${a.product_name}</p>
 					</a>
