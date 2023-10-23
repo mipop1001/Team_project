@@ -39,7 +39,6 @@ a:hover {
 	padding: 8px;
 	margin: 8px 0;
 }
-}
 </style>
 <script>
 	function toggleDropdown() {

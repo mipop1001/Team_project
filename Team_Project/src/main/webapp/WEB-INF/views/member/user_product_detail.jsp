@@ -112,9 +112,8 @@ body {
 	max-height: 100%;
 	border: 0 none;
 	vertical-align: top;
-	width: 1000px;
-	aspect-ratio: auto 1000/500;
-	height: 500px;
+	width: 527px;
+	height: auto;
 	overflow-clip-margin: content-box;
 	overflow: clip;
 	color: #333;
@@ -269,7 +268,6 @@ body {
 
 .intro_image img {
 	display: block;
-    max-width: 100%;
     margin: 0 auto;
 }
 </style>
@@ -281,7 +279,7 @@ body {
 		<div class="content_box">
 			<div class="sub_image_item_info">
 				<div class="sub_image">
-					<img src="product_sum_image/${pnum.product_sum_image }">
+					<img src="product_sum_image/${pnum.product_sum_image }" width="440px" height="auto">
 				</div>
 				<div class="item_info_box">
 					<div class="item_product_name">${pnum.product_name }</div>
