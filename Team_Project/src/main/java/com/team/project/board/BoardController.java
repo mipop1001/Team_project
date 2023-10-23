@@ -107,7 +107,7 @@ public class BoardController {
 
 		BoardService ss = sqlSession.getMapper(BoardService.class);
 		ss.customer_community_delete(Integer.parseInt(request.getParameter("community_board_number")));
-
+		
 		return "redirect:/my_community_content";
 	}
 	
@@ -203,13 +203,20 @@ public class BoardController {
 	@RequestMapping(value = "/my_community_content", method= {RequestMethod.POST,RequestMethod.GET})
 	public String my_community_content(HttpServletRequest request, Model mo)
 	{
-		HttpSession hs = request.getSession();
-		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
-		BoardService bs = sqlSession.getMapper(BoardService.class);
-		ArrayList<BoardDTO> list = bs.my_community_content(dto.getMember_number());
-		mo.addAttribute("list", list);
-		mo.addAttribute("memberDTO", dto);
-		return "my_community_content_view";
+		try {
+			HttpSession hs = request.getSession();
+			MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
+			BoardService bs = sqlSession.getMapper(BoardService.class);
+			ArrayList<BoardDTO> list = bs.my_community_content(dto.getMember_number());
+			mo.addAttribute("list", list);
+			mo.addAttribute("memberDTO", dto);
+			return "my_community_content_view";	
+		} catch (NullPointerException e) {
+			
+			return "customer_login_form";
+		}
+		
+			
 	}
 
 	//나의 게시글 삭제

@@ -188,7 +188,7 @@ background-color: white;
 						class="seller_page_span">SELLER</span></a>
 				</div>
 				<c:choose>
-					<c:when test="${loginstatus == true}">
+					<c:when test="${memberDTO != null }">
 						<div id="mySidenav" class="sidenav">
 							<a href="javascript:void(0)" class="closebtn"
 								onclick="closeNav()">&times;</a>

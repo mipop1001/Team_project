@@ -114,7 +114,7 @@ $(document).ready(function () {
 <title>Insert title here</title>
 </head>
 <body>
-<table align="center" width="1000px">
+<table align="center" width="1000px" height="300px">
 <tr>
 <th>주문번호</th>
 <th>상품 명</th>
@@ -128,6 +128,15 @@ $(document).ready(function () {
 <th>비고</th>
 </tr>
 <hr>
+<c:choose>
+<c:when test="${list == null }">
+<tr>
+<td colspan="10" style="text-align: center;">
+판매된 상품이 없습니다.
+</td>
+</tr>
+</c:when>
+<c:otherwise>
 <c:forEach items="${list }" var="i">
 <tr>
 <td>${i.sell_list_number }</td>
@@ -199,6 +208,8 @@ $(document).ready(function () {
 </c:choose>
 </tr>
 </c:forEach>
+</c:otherwise>
+</c:choose>
 </table>
 </body>
 </html>

@@ -50,7 +50,7 @@ public class OrderController {
 		int product_number=Integer.parseInt(request.getParameter("product_number"));
 		int product_price=Integer.parseInt(request.getParameter("product_price"));
 		String seller_id=request.getParameter("seller_id");
-		
+		System.out.println(seller_id);
 		System.out.println(member_point);
 		System.out.println(member_number);
 		MemberService ms = sqlSession.getMapper(MemberService.class);
@@ -61,7 +61,9 @@ public class OrderController {
 		ProductService ps = sqlSession.getMapper(ProductService.class);
 		ps.order_buy_amount_updown(product_number);
 		String seller_number = ss.product_seller_number(seller_id);
-		String seller_name = ms.customer_member_name(member_number);
+		System.out.println(seller_number);
+		String seller_name = ss.product_seller_name(seller_id);
+		System.out.println(seller_name);
 		String member_name = ms.customer_member_name(member_number);
 		OrderDTO dto = new OrderDTO();
 		dto.setSeller_number(Integer.parseInt(seller_number));
@@ -94,14 +96,14 @@ public class OrderController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/delivery_status_update",method=RequestMethod.POST)
-	public String delivery_status_update(HttpServletRequest request)
+	public String delivery_status_update(HttpServletRequest request,Model mo)
 	{
 		int sell_list_number = Integer.parseInt(request.getParameter("sellListNumber"));
 		String delivery_status = request.getParameter("newDeliveryStatus");
 		System.out.println("주문번호"+sell_list_number+"배송 정보"+delivery_status);
 		OrderService os = sqlSession.getMapper(OrderService.class);
 		os.delivery_status_update(sell_list_number,delivery_status);
-		
+		mo.addAttribute("delivery_status",delivery_status );
 		return "response";
 	}
 	@ResponseBody

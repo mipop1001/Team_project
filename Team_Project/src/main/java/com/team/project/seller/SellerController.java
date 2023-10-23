@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,7 @@ public class SellerController {
 			mo.addAttribute("msg","아이디 또는 비밀번호가 일치하지 않습니다.");
 			return "seller_login";
 		}
+		
 		
 		
 	}
