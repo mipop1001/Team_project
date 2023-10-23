@@ -180,6 +180,44 @@
 td.input{
 	style="width: 300px;"
 }
+.seller_join_save_btn{
+	height: 52px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    width: 340px;
+}
+.seller_join_reset_btn{
+	height: 52px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    width: 340px;
+}
+.find_wall {
+    margin-bottom: 0;
+    flex-direction: unset;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 13px;
+    justify-content: center;
+}
+
 </style>
 </head>
 <body>
@@ -232,14 +270,15 @@ td.input{
 			</tr>
 
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="center">
 				<hr>
-					<input type="button" value="회원가입"
-					onclick="seller_join_check()">
-					<input type="reset" value="취소">
+					<input type="button" class="seller_join_save_btn" value="회원가입" 	onclick="seller_join_check()">
+				<div class="find_wall"></div>
+					<input type="reset" class="seller_join_reset_btn" value="취소">
 				</td>
 			</tr>
 		</table>
+			<div class="find_wall"></div>
 	</form>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
