@@ -25,5 +25,15 @@ update product_sell_list set delivery_status=#{param2} where sell_list_number=#{
 delete product_sell_list where seller_number=#{param1}
 </delete>
 
-<select id=""></select>
+<delete id="accept_refund">
+delete product_sell_list where sell_list_number=#{param1}
+</delete>
+
+<update id="reject_refund">
+update product_sell_list set delivery_status=#{param2} where sell_list_number=#{param1}
+</update>
+
+<select id="reject_refund_product_data" resultType="com.team.project.order.OrderDTO">
+select * from product_sell_list where sell_list_number=#{param1}
+</select>
 </mapper>

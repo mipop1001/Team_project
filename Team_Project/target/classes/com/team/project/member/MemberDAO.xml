@@ -120,4 +120,8 @@ select member_name from member_project where member_number=#{param1}
 <select id="customer_member_address" resultType="String">
 select member_address from member_project where member_number=#{param1}
 </select>
+
+<update id="member_refund">
+update member_project set member_point=member_point+#{param2},member_buy=member_buy-#{param2} where member_number=#{param1}
+</update>
 </mapper>

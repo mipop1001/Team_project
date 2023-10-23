@@ -114,4 +114,8 @@ update product set product_review_count=product_review_count+1 where product_num
 delete product where seller_id=#{param1}
 </delete>
 
+
+<update id="sell_amount_rollback">
+update product set product_buy_amount=product_buy_amount-#{param2} , product_sell_amount=product_sell_amount+#{param2} where product_number=#{param1}
+</update>
 </mapper>
