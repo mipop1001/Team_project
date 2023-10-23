@@ -105,7 +105,7 @@ $(document).ready(function () {
 <c:when test="${i.delivery_status == '주문 접수 중' || i.delivery_status == '상품 준비 중' }">
     <td class="refund_status">
         <button class="refund_product" data-sell-list-number="${i.sell_list_number}">환불 요청하기</button>
-        <span class="tooltiptext tooltip-left">주의: 환불 요청은 배송 상태가 '주문 접수 중'인 경우에만 가능합니다.</span>
+        <span class="tooltiptext tooltip-left">주의: 환불 요청은 배송 상태가 '주문 접수 중' 또는 '상품 준비 중'인 경우에만 가능합니다.</span>
     </td>
 </c:when>
         <c:when test="${i.delivery_status == '환불 요청 중' }">
