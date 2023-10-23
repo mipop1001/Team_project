@@ -15,9 +15,6 @@
 #nav {
 	width: 100%;
 }
-img{
-margin-top: 100px;
-}
 </style>
 <meta charset="UTF-8">
 <title><t:insertAttribute name="title"/></title>

@@ -182,6 +182,7 @@ td.input{
 }
 .seller_join_save_btn{
 	height: 52px;
+	width: 200px;
     padding: 0 10px 0 10px;
     color: #ffffff;
     font-size: 16px;
@@ -190,10 +191,14 @@ td.input{
     text-align: center;
     font-weight: bold;
     line-height: 1.5;
-    width: 340px;
+    margin-right: 20px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .seller_join_reset_btn{
 	height: 52px;
+	width: 200px;
     padding: 0 10px 0 10px;
     color: #ffffff;
     font-size: 16px;
@@ -202,7 +207,9 @@ td.input{
     text-align: center;
     font-weight: bold;
     line-height: 1.5;
-    width: 340px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .find_wall {
     margin-bottom: 0;
@@ -216,15 +223,30 @@ td.input{
     align-items: center;
     font-size: 13px;
     justify-content: center;
+    padding-bottom: 50px;
 }
-
+.page_name{
+	width:600px;
+    overflow: hidden;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    color: rgb(51, 51, 51);
+}
+th{
+width: 136.38px;
+}
+td{
+width: 463.68px;
+}
 </style>
 </head>
 <body>
 <hr>
 	<form action="seller_join_save" method="post" name="seller_join_form">
 		<table align="center"  width="600px">
-		<caption>회원가입</caption>
+		<caption class="page_name">회원가입</caption>
 			<tr>
 				<th>아이디</th>
 				<td><hr><input type="text" id="seller_id" name="seller_id"
@@ -273,7 +295,6 @@ td.input{
 				<td colspan="2" align="center">
 				<hr>
 					<input type="button" class="seller_join_save_btn" value="회원가입" 	onclick="seller_join_check()">
-				<div class="find_wall"></div>
 					<input type="reset" class="seller_join_reset_btn" value="취소">
 				</td>
 			</tr>

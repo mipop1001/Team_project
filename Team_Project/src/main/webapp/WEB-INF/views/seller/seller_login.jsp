@@ -19,6 +19,9 @@
     font-weight: bold;
     line-height: 1.5;
     width: 340px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }	
 .seller_join_btn{
 	height: 52px;
@@ -31,6 +34,9 @@
     font-weight: bold;
     line-height: 1.5;
     width: 340px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .find_id {
     border-right: 1px solid #000;
