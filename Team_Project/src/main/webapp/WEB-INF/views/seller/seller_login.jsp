@@ -42,6 +42,7 @@
     border-right: 1px solid #000;
     font-weight: 300;
     padding: 0 18.5px;
+    text-decoration: none;
 }
 .find_pw {
     font-weight: 300;

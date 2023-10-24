@@ -4,29 +4,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.buy_btn{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}	
+.page_name {
+	color: #777;
+	align-content: center;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function pointupdate() {
-	$.ajax({
-		type: "post",
-		url: "customer_point_update",
-		async: true,
-        success: function (data) {
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            alert("오류 발생");
-        }
-	});
-}
+	function pointupdate() {
+		$.ajax({
+			type : "post",
+			url : "customer_point_update",
+			async : true,
+			success : function(data) {
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				alert("오류 발생");
+			}
+		});
+	}
 </script>
 <!-- jQuery 추가 -->
 </head>
 <body>
-<hr>
+	<hr>
 	<table align="center" width="700px">
-	<caption>결제 페이지</caption>
+		<div class="page_name">
+			<H2>상품정보수정</H2>
+		</div>
 		<c:forEach items="${mlist}" var="member">
 			<tr>
 				<th>이름</th>
@@ -48,25 +73,29 @@ function pointupdate() {
 				<tr>
 					<th>상품명</th>
 					<td><hr>${product.product_name}<hr></td>
-					<td> <img alt="" src="./product_intro_image/${product.product_sum_image}" width="100px" height="100px"> </td>
+					<td><img alt=""
+						src="./product_intro_image/${product.product_sum_image}"
+						width="100px" height="100px"></td>
 				</tr>
 				<tr>
 					<th>상품가격</th>
 					<td><hr>${product.product_price}<hr></td>
 				</tr>
-								<tr>
+				<tr>
 					<th>잔여재고</th>
 					<td><hr>${product.product_sell_amount}<hr></td>
 				</tr>
 				<tr>
-					<th>결제 후 남는 <br> point 잔액</th>
+					<th>결제 후 남는 <br> point 잔액
+					</th>
 					<td><input type="hidden" readonly="readonly"
 						name="final_credit" class="final_credit"
 						value="${member.member_point - product.product_price}">
 						${member.member_point - product.product_price}</td>
 					<td><c:choose>
 							<c:when test="${member.member_point - product.product_price<= 0}">
-								<span style="color: red;">충전이 필요합니다.</span> <br>
+								<span style="color: red;">충전이 필요합니다.</span>
+								<br>
 								<a href='customer_point_management'>충전하기</a>
 							</c:when>
 							<c:otherwise>
@@ -75,8 +104,8 @@ function pointupdate() {
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td>
-						<input type="button" value="결재" onclick="pointupdate(); location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
+					<td colspan="2" align="right"><input type="button" value="결재" class="buy_btn"
+						onclick="pointupdate(); location.href='order_buy_final?member_point=${member.member_point - product.product_price}&member_number=${member.member_number}&seller_id=${product.seller_id}&product_number=${product.product_number}&product_price=${product.product_price}'">
 					</td>
 				</tr>
 

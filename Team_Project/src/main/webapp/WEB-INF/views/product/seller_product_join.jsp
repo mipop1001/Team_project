@@ -46,6 +46,9 @@ a:hover {
 	border-bottom: 1px solid #dbdbdb;
 	margin: 0;
 	padding: 0;
+	margin-left: 200px;
+	margin-right: 200px;
+		color: #777;
 }
 
 /* 나열되는 이미지 컨테이너의 스타일 */
@@ -60,35 +63,39 @@ a:hover {
 }
 
 .product_join_btn {
+	margin-top: 50px;
+	margin-bottom: 50px;
 	height: 52px;
-	margin: 10px 0 0;
-	padding: 0 10px 0 10px;
-	color: #ffffff;
-	font-size: 16px;
-	border: 1px solid #323437;
-	background: #323437;
-	text-align: center;
-	font-weight: bold;
-	line-height: 1.5;
-	&:hover {
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    &:hover {
     background: rgb(77,77,77);
     color: #fff;
   }
 }
-.product_join_esc {
+.reset_btn {
 	height: 52px;
-	margin: 10px 0 0;
-	padding: 0 10px 0 10px;
-	color: #ffffff;
-	font-size: 16px;
-	border: 1px solid #323437;
-	background: #323437;
-	text-align: center;
-	font-weight: bold;
-	line-height: 1.5;
-	&:hover {
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 20px;
+    &:hover {
     background: rgb(77,77,77);
-    color: #fff;}
+    color: #fff;
+    }
 }
 </style>
 <meta charset="UTF-8">
@@ -135,7 +142,6 @@ a:hover {
 			reader.readAsDataURL(event.target.files[0]);
 		}
 	</script>
-	<hr>
 	<form action="seller_product_join_save" id="seller_product_form"
 		method="post" enctype="multipart/form-data">
 		<div class="container">
@@ -143,8 +149,7 @@ a:hover {
 				<div class="sub_content">
 					<div class="content_box">
 						<div class="page_name">
-							<H2>상품입력</H2>
-						</div>
+							<H2>상품입력</H2></div>
 						<table align="center" width="600px">
 
 							<input type="hidden" value="${seller_id }" name="seller_id">
@@ -209,11 +214,10 @@ a:hover {
 							</tr>
 
 
-							<tr >
-								<td colspan="2"><hr> <input type="button"
-									class="product_join_btn" value="등록" onclick="check()" aling="right">
-									<input type="button" class="product_join_esc" value="취소"
-									onclick="location.href='seller_page'" aling="right">
+							<tr>
+								<td colspan="2" align="center"><hr> 
+								<input type="button" class="product_join_btn" value="등록" onclick="check()">
+								<input type="button" value="취소" class="reset_btn" onclick="location.href='seller_page'">
 									</td>
 							</tr>
 						</table>
