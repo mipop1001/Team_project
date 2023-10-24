@@ -118,4 +118,17 @@ delete product where seller_id=#{param1}
 <update id="sell_amount_rollback">
 update product set product_buy_amount=product_buy_amount-#{param2} , product_sell_amount=product_sell_amount+#{param2} where product_number=#{param1}
 </update>
+
+<select id="seller_product_out1" resultType="int">
+select count(*) from product
+</select>
+
+<select id="seller_product_out2" resultType="int">
+SELECT SUM(PRODUCT_BUY_AMOUNT) FROM product
+</select>
+
+<select id="seller_product_out3" resultType="com.team.project.product.ProductDTO">
+SELECT * FROM product
+</select>
+
 </mapper>

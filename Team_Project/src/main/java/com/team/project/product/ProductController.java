@@ -3,6 +3,8 @@ package com.team.project.product;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -114,6 +116,20 @@ public class ProductController {
 			return "seller_login";
 		}
 	}
+
+	//판매자 페이지 상품 및 인기 상품 출력
+	@RequestMapping(value = "/seller_product_out1", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Map<String, Object> sellerProductOut1(HttpServletRequest request) {
+	    ProductService ss = sqlSession.getMapper(ProductService.class);
+	    int count = ss.seller_product_out1();
+	    int count1 = ss.seller_product_out2();	
+	    Map<String, Object> responseData = new HashMap<String, Object>();
+	    responseData.put("producttotal1", count);
+	    responseData.put("producttotal2", count1);
+	    return responseData;
+	}
+	
 	//내 상품 검색
 	@RequestMapping(value = "/seller_product_search",method=RequestMethod.POST)
 	public String seller_product_search(HttpServletRequest request,Model mo)
