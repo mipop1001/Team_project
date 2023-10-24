@@ -4,23 +4,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.back_btn {
+	height: 52px;
+	margin: 10px 0 0;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	width: 315px; 
+	&: hover { background : rgb( 77, 77, 77);
+	color: #fff; }
+}
+.table_find {
+	margin-bottom: 50px;
+	align-items: center;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <hr>
 	<c:forEach items="${list}" var="i">
-		<table align="center">
+		<table align="center" class="table_find">
 			<tr>
-				<th><h2>당신의 비밀번호는</h2></th>
+				<td><h2>비밀번호는 <span style="color: red">${i.seller_password } </span>입니다.</h2></td>
 			</tr>
-
 			<tr>
-				<td><hr> <span style="color: red">${i.seller_password } </span>입니다.</td>
-			</tr>
-
-			<tr>
-				<td><hr><a href="seller_login">로그인 하러 가기</a></td>
+				<td><hr><input type="button" onclick="location.href='seller_login'" class="back_btn" value="로그인 하러 가기" align="center"></td>
 			</tr>
 		</table>
 	</c:forEach>
