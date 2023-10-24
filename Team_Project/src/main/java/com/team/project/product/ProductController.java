@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.project.board.PageDTO;
+import com.team.project.seller.SellerDTO;
 
 @Controller
 public class ProductController {
@@ -117,17 +118,40 @@ public class ProductController {
 		}
 	}
 
-	//판매자 페이지 상품 및 인기 상품 출력
+	//판매자 페이지 로그인 전 상품 및 인기 상품 출력
 	@RequestMapping(value = "/seller_product_out1", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Map<String, Object> sellerProductOut1(HttpServletRequest request) {
-	    ProductService ss = sqlSession.getMapper(ProductService.class);
+		ProductService ss = sqlSession.getMapper(ProductService.class);
 	    int count = ss.seller_product_out1();
 	    int count1 = ss.seller_product_out2();	
+	    ArrayList<ProductDTO> list = ss.seller_product_out3();
+	    ArrayList<ProductDTO> list1 = ss.seller_product_out4();
 	    Map<String, Object> responseData = new HashMap<String, Object>();
 	    responseData.put("producttotal1", count);
 	    responseData.put("producttotal2", count1);
+	    responseData.put("producttotal3", list);
+	    responseData.put("producttotal4", list1);
 	    return responseData;
+	}
+
+	//판매자 페이지 로그인 후 상품 및 인기 상품 출력
+	@RequestMapping(value = "/seller_product_out2", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Map<String, Object> sellerProductOut2(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		SellerDTO dto = (SellerDTO) hs.getAttribute("sellerDTO");
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		int count11 = ss.seller_product_out11(dto.getSeller_id());
+		int count22 = ss.seller_product_out22(dto.getSeller_id());	
+		ArrayList<ProductDTO> list33 = ss.seller_product_out33(dto.getSeller_id());
+		ArrayList<ProductDTO> list44 = ss.seller_product_out44(dto.getSeller_id());
+		Map<String, Object> responseData = new HashMap<String, Object>();
+		responseData.put("producttotal11", count11);
+		responseData.put("producttotal22", count22);
+		responseData.put("producttotal33", list33);
+		responseData.put("producttotal44", list44);
+		return responseData;
 	}
 	
 	//내 상품 검색

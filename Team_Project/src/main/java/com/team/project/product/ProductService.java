@@ -36,7 +36,16 @@ public interface ProductService {
 	public void product_review_count(int product_number);
 	public void seller_product_exit(String seller_id);
 	public void sell_amount_rollback(int product_number,int product_sell_amount);
+	
+	//판매자 페이지 로그인 전 메인 페이지 양식
 	public int seller_product_out1();
 	public int seller_product_out2();
 	public ArrayList<ProductDTO> seller_product_out3();
+	public ArrayList<ProductDTO> seller_product_out4();
+	
+	//판매자 페이지 로그인 후 메인 페이지 양식
+	public int seller_product_out11(String string);
+	public int seller_product_out22(String string);
+	public ArrayList<ProductDTO> seller_product_out33(String string);
+	public ArrayList<ProductDTO> seller_product_out44(String string);
 }
