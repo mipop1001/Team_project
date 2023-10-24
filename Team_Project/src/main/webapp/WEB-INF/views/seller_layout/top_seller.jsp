@@ -4,15 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-	function checkLogin() {
-		var loginstate = "${sessionScope.loginstate}";
-		if (loginstate !== "true") {
-			alert("로그인 후 이용 가능합니다.");
-			location.href = "seller_login";
-		}
-	}
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -162,6 +153,16 @@ body {
 }
 </style>
 </head>
+
+    <script type="text/javascript">
+        function checkLogin() {
+            var sellerDTO = document.getElementById("sellerDTO").getAttribute("data-sellerDTO");
+            if (!sellerDTO) {
+                alert("로그인 후 이용 가능합니다.");
+                location.href = "seller_login";
+            }
+        }
+    </script>
 <body>
 	<div class="wall_main">
 		<div class="head_wall">
@@ -178,14 +179,14 @@ body {
 						class="user_page_span">STORE</span></a>
 				</div>
 				<c:choose>
-					<c:when test="${loginstate==true }">
+					<c:when test="${sellerDTO != null }">
 						<div id="mySidenav" class="sidenav">
 							<a href="javascript:void(0)" class="closebtn"
 								onclick="closeNav()">&times;</a> <a href="seller_logout">로그아웃</a>
-							<a href="seller_info?seller_number=${seller_number}">${seller_name }님
+							<a href="seller_info?seller_number=${sellerDTO.seller_number}">${sellerDTO.seller_name }님
 								마이페이지</a> <a href="seller_product_join?seller_id=${seller_id }">상품등록</a>
-							<a href="seller_product_out?seller_id=${seller_id }">상품
-								조회/수정/삭제</a> <a href="seller_product_sales?seller_id=${seller_id }">판매내역</a> <a href="main">메인</a>
+							<a href="seller_product_out?seller_id=${sellerDTO.seller_id }">상품
+								조회/수정/삭제</a> <a href="seller_product_sales?seller_id=${sellerDTO.seller_id }">판매내역</a> <a href="main">메인</a>
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -196,6 +197,10 @@ body {
 								onclick="checkLogin()">상품등록</a> <a href="#"
 								onclick="checkLogin()">상품 조회/수정/삭제</a> <a href="#"
 								onclick="checkLogin()">판매내역</a> <a href="main">메인</a>
+								
+								
+								<!--기존의 sessionscope.sellerDTO는 자바 스크립트에서 사용 할 수 없어서 display를 none으로 주고data-방식으로 자바 스크립트에 데이터를 가져감-->
+								<div id="sellerDTO" style="display: none;"  data-sellerDTO="<c:out value="${sessionScope.sellerDTO}" />"></div>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -215,7 +220,10 @@ body {
 			document.getElementById("main").style.marginLeft = "0";
 			document.body.style.backgroundColor = "white";
 		}
-	</script>
+		
 
+		
+	</script>
+	
 </body>
 </html>

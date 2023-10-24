@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,19 @@ public class ProductController {
 	static String product_image_intro_path="C:\\Users\\3-29\\git\\Team_Project\\Team_Project\\src\\main\\webapp\\product_intro_image";
 	
 	@RequestMapping(value = "/seller_product_join")
-	public String seller_product_join(String seller_id,Model mo)
+	public String seller_product_join(String seller_id,Model mo,HttpServletRequest request)
 	{
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("sellerDTO") != null)
+		{
 		mo.addAttribute("seller_id",seller_id);
 		return "seller_product_join";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
 	}
 	@RequestMapping(value = "/seller_product_join_save",method=RequestMethod.POST)
 	public String seller_product_join_save(MultipartHttpServletRequest mul) throws IllegalStateException, IOException
@@ -87,6 +97,9 @@ public class ProductController {
 	@RequestMapping(value = "/seller_product_out")
 	public String seller_product_out(HttpServletRequest request,Model mo)
 	{
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("sellerDTO") != null)
+		{
 		String seller_id=request.getParameter("seller_id");
 		
 		ProductService ss = sqlSession.getMapper(ProductService.class);
@@ -94,12 +107,21 @@ public class ProductController {
 		mo.addAttribute("list", list);
 		mo.addAttribute("seller_id",seller_id);
 		return "seller_product_out";
-		
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
 	}
 	//내 상품 검색
 	@RequestMapping(value = "/seller_product_search",method=RequestMethod.POST)
 	public String seller_product_search(HttpServletRequest request,Model mo)
 	{
+		
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("sellerDTO") != null)
+		{
 		String seller_id=request.getParameter("seller_id");
 		String product_search_type=request.getParameter("product_search_type");
 		String product_search_value=request.getParameter("product_search_value");
@@ -114,11 +136,15 @@ public class ProductController {
 			 list = ss.seller_product_search_name(seller_id,product_search_value);
 			
 		}
-
-		
 		mo.addAttribute("list", list);
 		mo.addAttribute("seller_id",seller_id);
 		return "seller_product_search_out";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
 	}
 	
 	//내 상품 자세히 보기

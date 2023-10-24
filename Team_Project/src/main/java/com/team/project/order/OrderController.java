@@ -87,12 +87,20 @@ public class OrderController {
 	public String customer_order_view(HttpServletRequest request,Model mo)
 	{
 		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
 		int member_number = dto.getMember_number();
 		OrderService os = sqlSession.getMapper(OrderService.class);
 		ArrayList<OrderDTO> list = os.customer_order_view(member_number);
 		mo.addAttribute("list", list);
 		return "customer_order_view";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 	@ResponseBody
 	@RequestMapping(value = "/delivery_status_update",method=RequestMethod.POST)

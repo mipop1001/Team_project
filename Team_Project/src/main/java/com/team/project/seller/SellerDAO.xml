@@ -9,7 +9,7 @@ insert into seller values(seller_number_seq.nextval,#{seller_id},#{seller_passwo
 </insert>
 
 <select id="seller_login_save" resultType="com.team.project.seller.SellerDTO">
-select * from seller where seller_id=#{param1} and seller_password=#{param2}
+select seller_number,seller_name,seller_id from seller where seller_id=#{param1} and seller_password=#{param2}
 </select>
 
 <select id="seller_id_check" resultType="int">

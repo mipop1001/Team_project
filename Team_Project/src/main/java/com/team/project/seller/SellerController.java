@@ -41,16 +41,6 @@ public class SellerController {
 		return "seller_login";
 	}
 	
-	//로그아웃
-	@RequestMapping(value = "/seller_logout")
-	public String seller_logout(HttpServletRequest request)
-	{
-		HttpSession hs = request.getSession();
-		hs.removeAttribute("loginstate");
-		hs.setAttribute("loginstate", false);
-		return "seller_page";
-	}
-	
 	//로그인 데이터 DB에 저장
 	@RequestMapping(value = "/seller_login_save",method=RequestMethod.POST)
 	public String seller_login_save(HttpServletRequest request,Model mo)
@@ -63,12 +53,8 @@ public class SellerController {
 		{
 			HttpSession hs=request.getSession();
 			hs.setAttribute("loginstate",true);
-			String seller_name=dto.seller_name;
-			int seller_number=dto.seller_number;
-			hs.setAttribute("seller_name",seller_name);
-			hs.setAttribute("seller_number",seller_number);
-			hs.setAttribute("seller_id", seller_id);
-			hs.setMaxInactiveInterval(5);
+			hs.setMaxInactiveInterval(1800);
+			hs.setAttribute("sellerDTO",dto);
 			return "seller_page";
 		}
 		else
@@ -80,12 +66,26 @@ public class SellerController {
 		
 		
 	}
+	
+	//로그아웃
+	@RequestMapping(value = "/seller_logout")
+	public String seller_logout(HttpServletRequest request)
+	{
+		HttpSession hs = request.getSession();
+		hs.removeAttribute("loginstate");
+		hs.setAttribute("loginstate", false);
+		hs.removeAttribute("sellerDTO");
+		hs.invalidate();
+		return "seller_page";
+	}
+	
 	//회원가입 화면
 	@RequestMapping(value = "/seller_join")
 	public String seller_join()
 	{
 		return "seller_join";
 	}
+	
 	//회원가입 데이터 DB에 저장
 	@RequestMapping(value = "/seller_join_save",method=RequestMethod.POST)
 	public String seller_join_save(HttpServletRequest request)
@@ -137,6 +137,7 @@ public class SellerController {
 		}
 		
 	}
+	
 	//아이디 찾기 화면
 	@RequestMapping(value = "/seller_login_find_id")
 	public String seller_login_find_id()
@@ -195,37 +196,62 @@ public class SellerController {
 	@RequestMapping(value = "/seller_info")
 	public String seller_info(HttpServletRequest request,Model mo)
 	{
-		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
-		SellerService ss = sqlSession.getMapper(SellerService.class);
-		ArrayList<SellerDTO> list = ss.seller_info(seller_number);
-		mo.addAttribute("list", list);
-		return "seller_info";
+		HttpSession hs = request.getSession();
+		//서버가 재시작 되었을 때 sellerDTO를 비교하여 로그인 페이지로 넘기기
+		if(hs.getAttribute("sellerDTO") != null)
+		{
+			int seller_number=Integer.parseInt(request.getParameter("seller_number"));
+			SellerService ss = sqlSession.getMapper(SellerService.class);
+			ArrayList<SellerDTO> list = ss.seller_info(seller_number);
+			mo.addAttribute("list", list);
+			return "seller_info";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
 	}
 	
 	//판매자 정보 수정 폼
 	@RequestMapping(value = "/seller_info_modify")
-	public String seller_info_modify(int seller_number,Model mo)
+	public String seller_info_modify(int seller_number,Model mo,HttpServletRequest request)
 	{
-		SellerService ss = sqlSession.getMapper(SellerService.class);
-		ArrayList<SellerDTO> list = ss.seller_info_modify(seller_number);
-		mo.addAttribute("list", list);
-		return "seller_info_modify_view";
+			HttpSession hs = request.getSession();
+			
+			if(hs.getAttribute("sellerDTO") != null)
+			{
+			SellerService ss = sqlSession.getMapper(SellerService.class);
+			ArrayList<SellerDTO> list = ss.seller_info_modify(seller_number);
+			mo.addAttribute("list", list);	
+			return "seller_info_modify_view";
+			}
+			else
+			{
+				mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+				return "seller_login";
+			}
 	}
 	
 	//판매자 정보 수정 DB 저장
 	@RequestMapping(value = "/seller_info_modify_update",method=RequestMethod.POST)
 	public String seller_info_modify_update(HttpServletRequest request,Model mo)
 	{
-		String seller_password=request.getParameter("seller_password");
-		String seller_phone_number=request.getParameter("seller_phone_number");
-		String seller_company_number=request.getParameter("seller_company_number");
-		String seller_company_address=request.getParameter("seller_company_address");
-		int seller_number=Integer.parseInt(request.getParameter("seller_number"));
-		SellerService ss = sqlSession.getMapper(SellerService.class);
-		ss.seller_info_modify_update(seller_password,seller_phone_number,seller_company_number,seller_company_address,seller_number);
-		ArrayList<SellerDTO> list = ss.seller_info(seller_number);
-		mo.addAttribute("list", list);
-		return "seller_info";
+		try {
+			String seller_password=request.getParameter("seller_password");
+			String seller_phone_number=request.getParameter("seller_phone_number");
+			String seller_company_number=request.getParameter("seller_company_number");
+			String seller_company_address=request.getParameter("seller_company_address");
+			int seller_number=Integer.parseInt(request.getParameter("seller_number"));
+			SellerService ss = sqlSession.getMapper(SellerService.class);
+			ss.seller_info_modify_update(seller_password,seller_phone_number,seller_company_number,seller_company_address,seller_number);
+			ArrayList<SellerDTO> list = ss.seller_info(seller_number);
+			mo.addAttribute("list", list);
+			return "seller_info";
+		} catch (Exception e) {
+			return "seller_login";
+		}
+		
 	}
 	
 	//판매자 회원 탈퇴
@@ -255,18 +281,29 @@ public class SellerController {
 		}
 	}
 	
+	//판매자 주문 내역 보기
 	@RequestMapping(value = "/seller_product_sales")
 	public String seller_product_sales(HttpServletRequest request,Model mo)
 	{
-		String seller_id=request.getParameter("seller_id");
-		SellerService ss = sqlSession.getMapper(SellerService.class);
-		String seller_number = ss.product_seller_number(seller_id);
-		OrderService os = sqlSession.getMapper(OrderService.class);
-		System.out.println("판매자"+seller_number);
-		ArrayList<OrderDTO> list = os.seller_product_sales(seller_number);
-		mo.addAttribute("list", list);
-		System.out.println(list.size());
-		return "seller_product_sales";
+		HttpSession hs = request.getSession();
+		
+		if(hs.getAttribute("sellerDTO") != null)
+		{
+			String seller_id=request.getParameter("seller_id");
+			SellerService ss = sqlSession.getMapper(SellerService.class);
+			String seller_number = ss.product_seller_number(seller_id);
+			OrderService os = sqlSession.getMapper(OrderService.class);
+			System.out.println("판매자"+seller_number);
+			ArrayList<OrderDTO> list = os.seller_product_sales(seller_number);
+			mo.addAttribute("list", list);
+			System.out.println(list.size());
+			return "seller_product_sales";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
 	}
 
 
