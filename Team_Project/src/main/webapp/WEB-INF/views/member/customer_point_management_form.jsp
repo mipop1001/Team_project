@@ -5,6 +5,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.point_btn{
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 20px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -37,7 +55,7 @@
 		<tr>
 		    <td colspan="2" align="center"><hr>
 		        <div id="submitButton" style="display: none;">
-		            <input type="submit" value="포인트 충전" onclick="pointupdate()">
+		            <input type="submit" class="point_btn" value="포인트 충전" onclick="pointupdate()">
 		        </div>
 		    </td>
 		</tr>

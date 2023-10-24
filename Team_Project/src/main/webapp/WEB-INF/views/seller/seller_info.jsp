@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +38,46 @@ a:hover {
 	width: 100%;
 	padding: 8px;
 	margin: 8px 0;
+}
+
+.modify_btn {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	height: 52px;
+	width: 100px;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.out_btn {
+	height: 52px;
+	width: 120px;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin-left: 10px; 
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.page_name {
+	color: #777;
+	align-content: center;
+	margin-left: 400px;
+	margin-right: 400px;
 }
 </style>
 <script>
@@ -94,11 +134,13 @@ a:hover {
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<hr>
+<!-- <body> -->
+	<hr>
 	<c:forEach items="${list }" var="i">
-		<table align="center" width="600px">
-		<caption>마이페이지</caption>
+		<table align="center">
+			<div class="page_name">
+				<H2>마이페이지<hr></H2>
+			</div>
 			<tr>
 				<th>아이디</th>
 				<td><hr>${i.seller_id }<hr></td>
@@ -131,18 +173,17 @@ a:hover {
 
 			<tr>
 				<th>보유 포인트</th>
-				<td><hr><fmt:formatNumber value="${i.seller_buy_point }" pattern="#,###"/><hr></td>
+				<td><hr>
+					<fmt:formatNumber value="${i.seller_buy_point }" pattern="#,###" />
+					<hr></td>
 			</tr>
-			
+
 			<tr>
+				<td><input type="button" class="modify_btn" value="정보수정"
+					onclick="location.href='seller_info_modify?seller_number=${i.seller_number }'"></td>
 				<td>
-					<button>
-						<a href="seller_info_modify?seller_number=${i.seller_number }">정보수정</a>
-					</button>
-				</td>
-				<td>
-					<!-- 드롭다운 토글 버튼 -->
-					<button onclick="toggleDropdown()">회원 탈퇴하기</button> <!-- 비밀번호 입력 드롭다운 -->
+					<!-- 드롭다운 토글 버튼 --> <input type="button" class="out_btn"
+					onclick="toggleDropdown()" value="회원 탈퇴하기"> <!-- 비밀번호 입력 드롭다운 -->
 					<div id="passwordDropdown" class="dropdown-container">
 						<input class="dropdown-input" type="password"
 							placeholder="비밀번호 입력" name="seller_password"> <input

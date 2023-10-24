@@ -131,4 +131,30 @@ SELECT SUM(PRODUCT_BUY_AMOUNT) FROM product
 SELECT * FROM product
 </select>
 
+<select id="seller_product_out4" resultType="com.team.project.product.ProductDTO">
+SELECT *
+FROM product
+WHERE product_buy_amount >= 10
+ORDER BY product_buy_amount DESC
+</select>
+
+<select id="seller_product_out11" resultType="int">
+select count(*) from product where seller_id = #{param1}
+</select>
+
+<select id="seller_product_out22" resultType="int">
+SELECT SUM(PRODUCT_BUY_AMOUNT) FROM product where seller_id = #{param1}
+</select>
+
+<select id="seller_product_out33" resultType="com.team.project.product.ProductDTO">
+SELECT * FROM product where seller_id = #{param1}
+</select>
+
+<select id="seller_product_out44" resultType="com.team.project.product.ProductDTO">
+SELECT *
+FROM product
+WHERE product_buy_amount >= 10 and seller_id = #{param1}
+ORDER BY product_buy_amount DESC
+</select>
+
 </mapper>

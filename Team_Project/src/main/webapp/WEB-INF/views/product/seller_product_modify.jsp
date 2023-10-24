@@ -25,8 +25,7 @@
 }
 
 .content_box {
-	float: left;
-	width: 100%;
+	width: 1140px;
 	margin: 0;
 	padding: 0;
 	display: block;
@@ -47,6 +46,43 @@ a {
 a:hover {
 	color: black;
 }
+.modify_btn{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}	
+.reset_btn{
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 20px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.page_name {
+	color: #777;
+	align-content: center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -59,8 +95,7 @@ a:hover {
 				<div class="sub_content">
 					<div class="content_box">
 						<div class="page_name">
-							<H2>상품정보수정</H2>
-						</div>
+							<H2>상품정보수정</H2></div>
 						<table align="center">
 							<input type="hidden" value="${dto.seller_id }" name="seller_id">
 							<input type="hidden" value="${dto.product_number }"
@@ -118,10 +153,9 @@ a:hover {
 									name="product_detail_image3" style="width: 300px;"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" value="수정">
-									<button>
-										<a href="seller_product_out?seller_id=${dto.seller_id }">취소</a>
-									</button></td>
+								<td colspan="2" align="center">
+								<input type="submit" class="modify_btn" value="수정">
+									<input type="button" class="reset_btn" value="취소" onclick="location.href='seller_product_out?seller_id=${dto.seller_id }'"></td>
 							</tr>
 						</table>
 					</div>

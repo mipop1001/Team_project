@@ -16,10 +16,10 @@
 	text-align: center;
 	font-weight: bold;
 	line-height: 1.5;
-	width: 125px; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
-}
-
+	width: 125px; 
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .fpw_btn {
 	width: 120px;
@@ -32,10 +32,10 @@
 	background: #323437;
 	text-align: center;
 	font-weight: bold;
-	line-height: 1.5; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
-	margin-left: 20px;
-}
+	line-height: 1.5; 
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 </style>
 <meta charset="UTF-8">

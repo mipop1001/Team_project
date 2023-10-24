@@ -4,6 +4,81 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.save_btn{
+	height: 35px;
+    width: 75px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 20px;
+    margin-top: 10px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.modify_btn{
+	height: 35px;
+    width: 120px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 14px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: -20px;
+    margin-top: 10px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.point_btn{
+	height: 35px;
+    width: 120px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: -20px;
+    margin-top: 10px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.member_out_btn{
+height: 52px;
+    width: 75px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 20px;
+    margin-top: 10px;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.page_name {
+	
+	color: #777;
+	align-content: center;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -181,7 +256,9 @@
 <body>
 <hr>
 	<table align="center" width="600px">
-	<caption>마이페이지</caption>
+		<div class="page_name">
+			<H2>마이페이지</H2>
+		</div>
 		<tr>
 			<th>아이디</th>
 			<td><hr>${dto.member_id }</td>
@@ -189,12 +266,12 @@
 		<tr>
 			<th>패스워드</th>
 			<td><hr>${dto.member_password }</td>
-			<td><hr> <a href="#" onclick="modifypassword()">패스워드 수정</a> </td>
+			<td><input type="button" onclick="modifypassword()" class="modify_btn" value="패스워드 수정"></td>
 		</tr>
 		<tr id="password_row" style="display: none;">
 		    <td colspan="3" align="center">
 		        <input type="text" id="password_input" style="width: 300px;">
-		        <button onclick="savepassword()">저장</button>
+		        <input type="button" onclick="savepassword()" class="save_btn" value="저장">
 		    </td>
 		</tr>			
 		<tr>
@@ -204,23 +281,23 @@
 		<tr>
 		    <th>전화번호</th>
 		    <td><hr>${dto.member_phone_number }</td>
-		    <td><hr> <a href="#" onclick="modifyPhoneNumber()">전화번호 수정</a> </td>
+		    <td><input type="button" onclick="modifyPhoneNumber()" class="modify_btn" value="전화번호 수정"></td>
 		</tr>
 		<tr id="phone_number_row" style="display: none;">
 		    <td colspan="3" align="center">
 		        <input type="text" id="phone_number_input" style="width: 300px;">
-		        <button onclick="savePhoneNumber()">저장</button>
+		        <input type="button" onclick="savePhoneNumber()" class="save_btn" value="저장">
 		    </td>
 		</tr>					
 		<tr>
 		    <th>주소</th>
 		    <td><hr>${dto.member_address }</td>
-		    <td><hr> <a href="#" onclick="modifyAddress()">주소 수정</a> </td>
+		    <td><input type="button" onclick="modifyAddress()" class="modify_btn" value="주소 수정"> </td>
 		</tr>
 		<tr id="address_row" style="display: none;">
 		    <td colspan="3" align="center">
 		        <input type="text" id="address_input" style="width: 300px;">
-		        <button onclick="saveAddress()">저장</button>
+		        <input type="button" onclick="saveAddress()" class="save_btn" value="저장">
 		    </td>
 		</tr>
 		<tr>
@@ -230,14 +307,14 @@
 		<tr>
 			<th>포인트</th>
 			<td><hr>${dto.member_point }</td>
-			<td><hr> <a href="#" onclick="updatePoint()">포인트 업데이트</a> </td>
+			<td><input type="button" onclick="updatePoint()" class="point_btn" value="포인트 업데이트"></td>
 		</tr>			
 		<tr>
 			<th>구입금액</th>
 			<td><hr>${dto.member_buy}</td>
 		</tr>
 		<tr>
-			<td colspan="3" align="right"><hr> <a href="#" onclick="exitcheck()">회원탈퇴</a> </td>
+			<td colspan="3" align="right"><hr><input type="button" onclick="exitcheck()" class="member_out_btn" value="회원탈퇴">  </td>
 		</tr>			
 	</table>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

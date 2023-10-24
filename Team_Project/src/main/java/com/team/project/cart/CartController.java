@@ -37,32 +37,32 @@ public class CartController {
 	@Autowired
 	SqlSession sqlSession;
 	
-//	//장바구니 버튼 누를 시
-//	@RequestMapping(value = "/user_product_cart")
-//	public String user_product_cart(HttpServletRequest request,Model mo)
-//	{
-//		HttpSession hs = request.getSession();
-//		if(hs.getAttribute("memberDTO") != null)
-//		{
-//			
-//		int product_number=Integer.parseInt(request.getParameter("product_number"));
-//		int member_number=Integer.parseInt(request.getParameter("member_number"));
-//		CartService cs = sqlSession.getMapper(CartService.class);
-//		cs.user_product_cart(member_number,product_number);
-//		
-//		ProductService ss = sqlSession.getMapper(ProductService.class);
-//		ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
-//		System.out.println(list.toString());
-//		mo.addAttribute("list", list);
-//
-//		return "user_product_detail";
-//		}
-//		else
-//		{
-//			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
-//			return "customer_login_form";
-//		}
-//	}
+	//장바구니 버튼 누를 시
+	@RequestMapping(value = "/user_product_cart")
+	public String user_product_cart(HttpServletRequest request,Model mo)
+	{
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
+			
+		int product_number=Integer.parseInt(request.getParameter("product_number"));
+		int member_number=Integer.parseInt(request.getParameter("member_number"));
+		CartService cs = sqlSession.getMapper(CartService.class);
+		cs.user_product_cart(member_number,product_number);
+		
+		ProductService ss = sqlSession.getMapper(ProductService.class);
+		ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
+		System.out.println(list.toString());
+		mo.addAttribute("list", list);
+
+		return "user_product_detail";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/user_product_cart_check",method=RequestMethod.POST)
@@ -72,7 +72,7 @@ public class CartController {
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
 		CartService cs = sqlSession.getMapper(CartService.class);
 		int count = cs.user_product_cart_check(product_number,member_number);
-		
+		System.out.println(count);
 		if(count >= 1)
 		{
 			return "already";

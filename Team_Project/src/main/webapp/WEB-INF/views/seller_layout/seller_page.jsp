@@ -125,7 +125,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		// AJAX 요청을 통해 데이터 가져오기
+		// AJAX 요청을 통해 데이터 가져오기 (로그인 전)
 		$.ajax({
 			url : 'seller_product_out1',
 			method : 'GET',
@@ -133,6 +133,60 @@
 				// 가져온 데이터를 HTML 요소에 업데이트
 				$('#producttotal1').text(data.producttotal1);
 				$('#producttotal2').text(data.producttotal2);
+				$('#producttotal3')
+				$('#producttotal4')
+
+				$.each(data.producttotal3, function(index, product) {
+					var row = '<tr>';
+					row += '<td>' + product.product_name + '</td>';
+					row += '<td>' + product.product_price + '</td>';
+					row += '<td>' + product.seller_id + '</td>';
+					row += '</tr>';
+					$('#productList table tbody').append(row);
+				});
+
+				$.each(data.producttotal4, function(index, product) {
+					var row = '<tr>';
+					row += '<td>' + product.product_name + '</td>';
+					row += '<td>' + product.seller_id + '</td>';
+					row += '<td>' + product.product_buy_amount + '</td>';
+					row += '</tr>';
+					$('#productList1 table tbody').append(row);
+				});
+			},
+			error : function() {
+				console.log('데이터를 가져오는 중 오류가 발생했습니다.');
+			}
+		});
+
+		// AJAX 요청을 통해 데이터 가져오기 (로그인 후)
+		$.ajax({
+			url : 'seller_product_out2',
+			method : 'GET',
+			success : function(data) {
+				// 가져온 데이터를 HTML 요소에 업데이트
+				$('#producttotal11').text(data.producttotal11);
+				$('#producttotal22').text(data.producttotal22);
+				$('#producttotal33')
+				$('#producttotal44')
+
+				$.each(data.producttotal33, function(index, product) {
+					var row = '<tr>';
+					row += '<td>' + product.product_name + '</td>';
+					row += '<td>' + product.product_price + '</td>';
+					row += '<td>' + product.seller_id + '</td>';
+					row += '</tr>';
+					$('#productList table tbody').append(row);
+				});
+
+				$.each(data.producttotal44, function(index, product) {
+					var row = '<tr>';
+					row += '<td>' + product.product_name + '</td>';
+					row += '<td>' + product.seller_id + '</td>';
+					row += '<td>' + product.product_buy_amount + '</td>';
+					row += '</tr>';
+					$('#productList3 table tbody').append(row);
+				});
 			},
 			error : function() {
 				console.log('데이터를 가져오는 중 오류가 발생했습니다.');
@@ -141,12 +195,85 @@
 	});
 </script>
 <body>
+<c:choose>
+	<c:when test="${sellerDTO != null }">
 	<div class="wall_main">
 		<div class="body_wall">
 			<div class="body">
 				<main>
 					<div class="container-fluid px-4">
-						<h1 class="mt-4">통계창</h1>
+						<ol class="breadcrumb mb-4">
+							<li class="breadcrumb-item active"><strong>${sellerDTO.seller_id }</strong>님 메인</li>
+						</ol>
+						<div class="row">
+							<div class="col-xl-3 col-md-6">
+								<div class="card bg-info text-white mb-4">
+									<div class="card-body cardTitle">
+									등록한 상품 수량
+										<div id="producttotal11"></div>
+									</div>
+									<div
+										class="card-footer d-flex align-items-center justify-content-between">
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-md-6">
+								<div class="card bg-primary text-white mb-4">
+									<div class="card-body cardTitle">
+										판매된 상품 수량
+										<div id="producttotal22"></div>
+									</div>
+									<div
+										class="card-footer d-flex align-items-center justify-content-between">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-6">
+								<div class="card-header">
+									<h3> <strong> ${sellerDTO.seller_id }님의 인기상품 목록 </strong>(판매량 10개 이상 제품)</h3>
+								</div>
+								<div class="card mb-4">
+									<div class="card-body">
+										<div class="chartjs-size-monitor">
+											<div class="chartjs-size-monitor-expand">
+												<div class=""></div>
+											</div>
+											<div class="chartjs-size-monitor-shrink">
+												<div class=""></div>
+											</div>
+										</div>
+										<div id="productList3">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>상품명</th>
+														<th>판매자명</th>
+														<th>판매수량</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- 제품 목록은 여기에 추가될 것입니다. -->
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="wall_main">
+		<div class="body_wall">
+			<div class="body">
+				<main>
+					<div class="container-fluid px-4">
 						<ol class="breadcrumb mb-4">
 							<li class="breadcrumb-item active">판매자 메인</li>
 						</ol>
@@ -177,7 +304,7 @@
 						<div class="row">
 							<div class="col-xl-6">
 								<div class="card-header">
-									<h3>판매상품 제품목록</h3>
+									<h3><strong> 인기상품 목록 </strong> (판매량 10개 이상 제품)</h3>
 								</div>
 								<div class="card mb-4">
 									<div class="card-body">
@@ -189,31 +316,20 @@
 												<div class=""></div>
 											</div>
 										</div>
-										<canvas id="chatView" width="520" height="208"
-											style="display: block; width: 520px; height: 208px;"
-											class="chartjs-render-monitor"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xl-6">
-								<div class="card-header">
-									<h3>인기상품</h3>
-								</div>
-								<div class="card mb-4">
-									<div class="card-body">
-										<div class="chartjs-size-monitor">
-											<div class="chartjs-size-monitor-expand">
-												<div class=""></div>
-											</div>
-											<div class="chartjs-size-monitor-shrink">
-												<div class=""></div>
-											</div>
+										<div id="productList1">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>상품명</th>
+														<th>판매자명</th>
+														<th>판매수량</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- 제품 목록은 여기에 추가될 것입니다. -->
+												</tbody>
+											</table>
 										</div>
-										<canvas id="chatView" width="520" height="208"
-											style="display: block; width: 520px; height: 208px;"
-											class="chartjs-render-monitor"></canvas>
 									</div>
 								</div>
 							</div>
@@ -223,5 +339,7 @@
 			</div>
 		</div>
 	</div>
+	</c:otherwise>
+</c:choose>
 </body>
 </html>

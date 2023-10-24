@@ -15,10 +15,10 @@
 	text-align: center;
 	font-weight: bold;
 	line-height: 1.5;
-	width: 100px; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
-}
-
+	width: 100px; 
+&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .reset_btn {
 	width: 100px;
@@ -31,11 +31,10 @@
 	background: #323437;
 	text-align: center;
 	font-weight: bold;
-	line-height: 1.5; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
-	margin-left: 20px;
-}
-
+	line-height: 1.5; 
+&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 .table_find {
 	margin-bottom: 50px;
