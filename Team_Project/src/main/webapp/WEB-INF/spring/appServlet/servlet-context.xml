@@ -20,7 +20,7 @@
 	<resources mapping="/product_intro_image/**" location="/product_intro_image/" />
 	<resources mapping="/product_sum_image/**" location="/product_sum_image/" />
 	<resources mapping="/image_etc/**" location="/image_etc/" />
-
+	<resources mapping="/inquiry_images/**" location="/inquiry_images/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<!-- <beans:bean -->
