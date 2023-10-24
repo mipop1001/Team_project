@@ -88,19 +88,7 @@ a:hover {
 	line-height: 1.5;
 	&:hover {
     background: rgb(77,77,77);
-    color: #fff;
-}
-.file_btn {
-	height: 52px;
-	margin: 10px 0 0;
-	padding: 0 10px 0 10px;
-	color: #ffffff;
-	font-size: 16px;
-	border: 1px solid #323437;
-	background: #323437;
-	text-align: center;
-	font-weight: bold;
-	line-height: 1.5;
+    color: #fff;}
 }
 </style>
 <meta charset="UTF-8">
