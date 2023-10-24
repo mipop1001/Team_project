@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.type.TypeReference;
@@ -36,22 +37,33 @@ public class CartController {
 	@Autowired
 	SqlSession sqlSession;
 	
-	//장바구니 버튼 누를 시
-	@RequestMapping(value = "/user_product_cart")
-	public String user_product_cart(HttpServletRequest request,Model mo)
-	{
-		int product_number=Integer.parseInt(request.getParameter("product_number"));
-		int member_number=Integer.parseInt(request.getParameter("member_number"));
-		CartService cs = sqlSession.getMapper(CartService.class);
-		cs.user_product_cart(member_number,product_number);
-		
-		ProductService ss = sqlSession.getMapper(ProductService.class);
-		ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
-		System.out.println(list.toString());
-		mo.addAttribute("list", list);
-
-		return "user_product_detail";
-	}
+//	//장바구니 버튼 누를 시
+//	@RequestMapping(value = "/user_product_cart")
+//	public String user_product_cart(HttpServletRequest request,Model mo)
+//	{
+//		HttpSession hs = request.getSession();
+//		if(hs.getAttribute("memberDTO") != null)
+//		{
+//			
+//		int product_number=Integer.parseInt(request.getParameter("product_number"));
+//		int member_number=Integer.parseInt(request.getParameter("member_number"));
+//		CartService cs = sqlSession.getMapper(CartService.class);
+//		cs.user_product_cart(member_number,product_number);
+//		
+//		ProductService ss = sqlSession.getMapper(ProductService.class);
+//		ArrayList<ProductDTO> list = ss.user_product_detail(product_number);
+//		System.out.println(list.toString());
+//		mo.addAttribute("list", list);
+//
+//		return "user_product_detail";
+//		}
+//		else
+//		{
+//			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+//			return "customer_login_form";
+//		}
+//	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/user_product_cart_check",method=RequestMethod.POST)
 	public String user_product_cart_check(HttpServletRequest request)
@@ -71,9 +83,13 @@ public class CartController {
 		}
 	}
 	
+	//장바구니 버튼
 	@RequestMapping(value = "/user_product_cart_view")
 	public String user_product_cart_view(HttpServletRequest request,Model mo)
 	{
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
 		CartService cs = sqlSession.getMapper(CartService.class);
 		ArrayList<CartDTO> list = cs.user_product_cart_view(member_number);
@@ -88,6 +104,12 @@ public class CartController {
 		mo.addAttribute("list2",list2);
 		mo.addAttribute("member_number",member_number); 
 		return "user_product_cart_view";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 	@ResponseBody
 	@RequestMapping(value = "/get_product_info",method=RequestMethod.POST)
@@ -114,6 +136,10 @@ public class CartController {
 	@RequestMapping(value = "/user_product_order_cart", method = RequestMethod.POST)
 	public String user_product_order_cart(HttpServletRequest request,Model mo) {
 	    // 데이터 처리
+		HttpSession hs = request.getSession();
+		
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		String [] productNumbers=request.getParameterValues("productNumber");
 		int member_number=Integer.parseInt(request.getParameter("member_number"));
 		String [] productPrices=request.getParameterValues("productPrices");
@@ -146,6 +172,12 @@ public class CartController {
 		mo.addAttribute("dto2", dto2);
 		mo.addAttribute("total", total);
 	    return "user_product_order_cart";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 	@RequestMapping(value = "/order_buy_final_cart")
 	public String order_buy_final_cart(HttpServletRequest request)
@@ -199,47 +231,6 @@ public class CartController {
 		
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/purchase_items",method=RequestMethod.POST)
-//	public String purchase_items(HttpServletRequest request) throws IOException
-//	{
-//	       String[] product_numbers = request.getParameterValues("productNumbers[]");
-//	        int member_number = Integer.parseInt(request.getParameter("memberNumber"));
-//	        int totalProductPrice = Integer.parseInt(request.getParameter("totalProductPrice"));
-//	        String updatedQuantities = request.getParameter("updatedQuantities");
-//	        //회원 포인트와 구매한 금액비교하기
-//	        MemberService ms = sqlSession.getMapper(MemberService.class);
-//	        int member_point = ms.pointcheck(member_number);
-//	        String result=null;
-//	        System.out.println(updatedQuantities);
-//	        if(member_point > totalProductPrice)
-//	        {
-//		        //보유 포인트가 구매 금액보다 많다면 상품 번호로 상품 재고 -하기
-//		        ObjectMapper objectMapper = new ObjectMapper();
-//		        try {
-//					JsonNode quantitiesNode = objectMapper.readTree(updatedQuantities);
-//					for (String productNumber : product_numbers) {
-//			            if (quantitiesNode.has(String.valueOf(productNumber))) {
-//			                int quantity = quantitiesNode.get(String.valueOf(productNumber)).asInt();
-//			                System.out.println("상품 번호: " + productNumber + ", 구매 수량: " + quantity);
-//			                ProductService ps = sqlSession.getMapper(ProductService.class);
-//			                ps.product_sell_amount_update(productNumber,quantity);
-//			                ms.product_point_deduction(totalProductPrice, member_number);
-//			            }
-//			        }
-//				} catch (JsonProcessingException e) {
-//					e.printStackTrace();
-//				} 
-//	        	result = "{\"result\":\"ok\"}";
-//	        }
-//	        else if(member_point < totalProductPrice)
-//	        {
-//	        	result = "{\"result\":\"no\"}";
-//	        }
-//	        
-//			return result;
-//	        
-//	        
-//	}
+
 
 }
