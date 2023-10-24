@@ -17,6 +17,9 @@
 	font-weight: bold;
 	line-height: 1.5;
 	width: 340px;
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 
 .member_join_btn {
@@ -30,6 +33,9 @@
 	font-weight: bold;
 	line-height: 1.5;
 	width: 340px;
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
 
 .title {

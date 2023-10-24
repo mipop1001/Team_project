@@ -4,6 +4,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.modify_btn{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}	
+.reset_btn{
+	height: 52px;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+    margin-left: 20px;
+}
+.page_name {
+	color: #777;
+	align-content: center;
+	margin-left: 400px;
+	margin-right: 400px;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -40,12 +81,13 @@
 </script>
 </head>
 <body>
-<hr>
+	<hr>
 	<form action="seller_info_modify_update" method="post"
 		onsubmit="return validateForm();">
 		<c:forEach items="${list }" var="i">
-			<table align="center" width="600px">
-			<caption>정보수정</caption>
+			<table align="center" width="350px">
+						<div class="page_name">
+							<H2>판매자 정보수정</H2><hr></div>
 				<tr>
 					<th>아이디</th>
 					<td><hr>${i.seller_id }<hr></td>
@@ -54,8 +96,10 @@
 					value="${i.seller_number }">
 				<tr>
 					<th>비밀번호</th>
-					<td><hr><input type="text" name="seller_password"
-						value="${i.seller_password }"><hr></td>
+					<td><hr>
+						<input type="text" name="seller_password"
+						value="${i.seller_password }">
+					<hr></td>
 				</tr>
 
 				<tr>
@@ -65,8 +109,10 @@
 
 				<tr>
 					<th>전화번호</th>
-					<td><hr><input type="text" name="seller_phone_number"
-						value="${i.seller_phone_number }"><hr></td>
+					<td><hr>
+						<input type="text" name="seller_phone_number"
+						value="${i.seller_phone_number }">
+					<hr></td>
 				</tr>
 
 				<tr>
@@ -76,21 +122,24 @@
 
 				<tr>
 					<th>사업자 번호</th>
-					<td><hr><input type="text" name="seller_company_number"
-						value="${i.seller_company_number }" maxlength="10"><hr></td>
+					<td><hr>
+						<input type="text" name="seller_company_number"
+						value="${i.seller_company_number }" maxlength="10">
+					<hr></td>
 				</tr>
 
 				<tr>
 					<th>사업장 주소</th>
-					<td><hr><input type="text" id="seller_company_address"
-						name="seller_company_address" value="${i.seller_company_address }"><hr></td>
+					<td><hr>
+						<input type="text" id="seller_company_address"
+						name="seller_company_address" value="${i.seller_company_address }">
+					<hr></td>
 				</tr>
 
 				<tr>
-					<td colspan="2"><input type="submit" value="수정">
-						<button>
-							<a href="seller_page">취소</a>
-						</button></td>
+					<td colspan="2" align="center">
+					<input type="submit" class="modify_btn" value="수정">
+					<input type="button" class="reset_btn" value="취소" onclick="seller_page"></td>
 				</tr>
 			</table>
 		</c:forEach>
