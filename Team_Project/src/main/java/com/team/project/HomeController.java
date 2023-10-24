@@ -70,6 +70,7 @@ public class HomeController {
 	public String main_page(HttpServletRequest request) {
 		HttpSession hs = request.getSession();
 		hs.setAttribute("loginstatus", false);
+		hs.setAttribute("sellerDTO",null);
 		hs.invalidate(); // 세션 무효화
 		return "main_page";
 	}
@@ -88,7 +89,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/seller_page", method = RequestMethod.GET)
-	public String seller_page() {
+	public String seller_page(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		hs.removeAttribute("sellerDTO");
 		return "seller_page";
 	}
 

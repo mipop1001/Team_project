@@ -208,6 +208,7 @@ body {
 							<a href="boardnotice">community(게시글)</a> <a href="customer_qna">QnA(자주묻는질문)</a>
 							<a href="Announcement_list_go">공지사항</a> <a
 								href="javascript:void(0);" onclick="openSurveyWindow()">설문지</a>
+								<a href="customer_inquiry?member_number=${memberDTO.member_number }">1:1 문의</a>
 						</div>
 					</c:when>
 					<c:otherwise>

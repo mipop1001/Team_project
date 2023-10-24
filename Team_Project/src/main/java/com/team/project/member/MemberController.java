@@ -163,10 +163,20 @@ public class MemberController {
 	// 사용자 마이페이지
 	@RequestMapping(value = "/customer_info")
 	public String customer_info(HttpServletRequest request, Model mo) {
+		
+		
 		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
 		mo.addAttribute("dto", dto);
 		return "customer_info_form";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 
 	// ajax
@@ -296,11 +306,19 @@ public class MemberController {
 	@RequestMapping(value = "/customer_point_management")
 	public String customer_point_management(HttpServletRequest request, Model mo) {
 		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
 		MemberService ms = sqlSession.getMapper(MemberService.class);
 		ArrayList<MemberDTO> lsit = ms.point_management(dto.getMember_number());
 		mo.addAttribute("list", lsit);
 		return "customer_point_management_form";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 
 	// 포인트 충전 누르면 포인트 충전
@@ -326,5 +344,13 @@ public class MemberController {
 		ArrayList<AnnouncementDTO> announcement_list = as.announcement_list();
 		mo.addAttribute("announcement_list", announcement_list);
 		return "Announcement_list_view";
+	}
+	
+	//사용자 1:1 문의
+	@RequestMapping(value = "/customer_inquiry")
+	public String customer_inquiry(HttpServletRequest request)
+	{
+		int member_number = Integer.parseInt(request.getParameter("member_number"));
+		return "customer_inquiry_board";
 	}
 }

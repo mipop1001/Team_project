@@ -203,19 +203,21 @@ public class BoardController {
 	@RequestMapping(value = "/my_community_content", method= {RequestMethod.POST,RequestMethod.GET})
 	public String my_community_content(HttpServletRequest request, Model mo)
 	{
-		try {
 			HttpSession hs = request.getSession();
+			if(hs.getAttribute("memberDTO") != null)
+			{
 			MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
 			BoardService bs = sqlSession.getMapper(BoardService.class);
 			ArrayList<BoardDTO> list = bs.my_community_content(dto.getMember_number());
 			mo.addAttribute("list", list);
 			mo.addAttribute("memberDTO", dto);
 			return "my_community_content_view";	
-		} catch (NullPointerException e) {
-			
-			return "customer_login_form";
-		}
-		
+			}
+			else
+			{
+				mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+				return "customer_login_form";
+			}
 			
 	}
 
