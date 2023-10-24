@@ -65,12 +65,18 @@
         .thumbnail li.brand{
             float: left;
             /* 왼쪽 이미지 */
-            background-image: url(https://www.snowpeak.co.kr/updata/image_main/snowpeak_left.jpg);
+            background-image:linear-gradient(
+		        rgba(255, 255, 255, 0.5),
+		        rgba(110, 110, 110, 0.5)
+		      ), url(https://cdn.pixabay.com/photo/2020/10/14/18/35/sign-post-5655110_640.png);
         }
         .thumbnail li.store{
             float: right;
             /* 우측이미지 이미지 */
-            background-image: url(https://www.snowpeak.co.kr/updata/image_main/snowpeak_right.jpg);
+            background-image: linear-gradient(
+		        rgba(255, 255, 255, 0.5),
+		        rgba(125, 125, 125, 0.5)
+		      ),url(https://cdn.pixabay.com/photo/2023/10/07/23/39/girl-8301168_640.png);
         }
         .thumbnail li.no .blur, .thumbnail li.click .blur{
             backdrop-filter: blur(10px);
