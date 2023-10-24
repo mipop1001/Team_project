@@ -101,4 +101,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/Announcement_list_view.jsp"/>
 	</definition>
 	
+	<definition name="customer_inquiry_board" extends="baseLayout_user">
+		<put-attribute name="title" value="1:1 문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/customer_inquiry_board.jsp"/>
+	</definition>
+	
+<definition name="customer_inquiry_form" extends="baseLayout_user">
+		<put-attribute name="title" value="1:1 문의 작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/customer_inquiry_form.jsp"/>
+	</definition>
 </tiles-definitions>

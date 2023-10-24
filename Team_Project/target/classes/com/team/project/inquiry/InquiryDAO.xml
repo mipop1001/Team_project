@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.project.inquiry.InquiryService">
+
+<insert id="customer_inquiry_input_save">
+insert into inquiry (inquiry_number,inquiry_title,member_number,member_name,
+inquiry_content,inquiry_date,inquiry_image1,inquiry_image2,inquiry_image3,
+inquiry_image4,inquiry_status,inquiry_writer_type)
+values(inquiry_number_seq.nextval,
+#{inquiry_title},#{member_number},#{member_name},#{inquiry_content},
+SYSDATE,#{inquiry_image1},#{inquiry_image2},#{inquiry_image3},#{inquiry_image4},
+#{inquiry_status},#{inquiry_writer_type})
+</insert>
+
+<select id="customer_inquiry_view" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where inquiry_writer_type=#{param1}
+</select>
+
+</mapper>
+

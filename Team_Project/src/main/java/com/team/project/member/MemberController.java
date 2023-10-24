@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.project.admin.AnnouncementDTO;
 import com.team.project.admin.AnnouncementService;
+import com.team.project.inquiry.InquiryDTO;
+import com.team.project.inquiry.InquiryService;
 
 @Controller
 public class MemberController {
@@ -348,9 +350,24 @@ public class MemberController {
 	
 	//사용자 1:1 문의
 	@RequestMapping(value = "/customer_inquiry")
-	public String customer_inquiry(HttpServletRequest request)
+	public String customer_inquiry(HttpServletRequest request,Model mo)
 	{
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		String inquiry_writer_type="구매자";
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("memberDTO") != null)
+		{
 		int member_number = Integer.parseInt(request.getParameter("member_number"));
+		ArrayList<InquiryDTO> list = is.customer_inquiry_view(inquiry_writer_type);
+		mo.addAttribute("list", list);
+		System.out.println("gd"+list);
+		
 		return "customer_inquiry_board";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
 	}
 }
