@@ -251,7 +251,7 @@ function createCommentElement(commentData) {
     deleteLink.textContent = "삭제";
     deleteLink.onclick = function () {
         // 삭제 함수 호출 - 삭제 작업을 수행하는 함수를 여기에 호출하십시오
-        deleteComment(commentData.comment_id);
+//         deleteComment(commentData.comment_id);
     };
 
     // 삭제 링크를 댓글에 추가
