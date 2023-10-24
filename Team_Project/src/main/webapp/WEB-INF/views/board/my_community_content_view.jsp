@@ -5,53 +5,97 @@
 <html>
 <head>
 <style type="text/css">
-.container {
-    font-family: 'KOTRA_BOLD-Bold';
+.modify_btn {
+	height: 30px;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	width: 45px; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
 }
 
-@font-face {
-    font-family: 'KOTRA_BOLD-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }
+.delete_btn {
+	width: 45px;
+	height: 30px;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
+}
+
+}
+table {
+	text-align: center;
+	width: 700px;
+	height: auto;
+}
+
+.page_name {
+	color: #777;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+.title_line {
+	text-align: center;
+}
+
+.info_line {
+	padding: 0 10px 0 10px;
+}
+
+
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
 	<hr>
 	<div class="container">
-	<table border="1" align="center" width="1200px" class="table table-striped">
-		<caption>내가 작성한 게시글 목록</caption>
-		<tr>
-			<th colspan="6" height="50px">작성자 : ${memberDTO.member_name }</th>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<th>작성일자</th>
-			<th>지역</th>
-			<th>별점</th>
-			<th>썸네일 이미지</th>
-		</tr>
-		<c:forEach items="${list }" var="a">
+		<table align="center">
+			<div class="page_name">내가 작성한 게시글 목록</div>
 			<tr>
-				<td><a href="customer_community_detail?community_board_number=${a.community_board_number }">${a.community_board_title }</a></td>
-				<td>${a.community_board_date }</td>
-				<td>${a.community_board_location }</td>
-				<td>${a.community_board_grade }</td>
-				<td><img alt="썸네일 이미지"
-					src="product_sum_image/${a.community_board_sum_image }" width="100px" height="50px"></td>
-				<td>
-					<input type="button" value="수정" onclick="location.href='customer_community_modify_get?community_board_number=${a.community_board_number}'">
-					<input type="button" value="삭제" onclick="location.href='customer_community_delete?community_board_number=${a.community_board_number}'">
-				</td>
+				<th colspan="6" height="50px" align="left">작성자 :
+					${memberDTO.member_name }</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<tr class="title_line">
+				<th>제목</th>
+				<th>작성일자</th>
+				<th>지역</th>
+				<th>별점</th>
+				<th>썸네일 이미지</th>
+			</tr>
+			<c:forEach items="${list }" var="a">
+				<tr class="info_line">
+					<td><a
+						href="customer_community_detail?community_board_number=${a.community_board_number }">${a.community_board_title }</a></td>
+					<td>${a.community_board_date }</td>
+					<td>${a.community_board_location }</td>
+					<td>${a.community_board_grade }</td>
+					<td><img alt="썸네일 이미지"
+						src="product_sum_image/${a.community_board_sum_image }"
+						width="100px" height="50px"></td>
+					<td><input type="button" value="수정" class="modify_btn"
+						onclick="location.href='customer_community_modify_get?community_board_number=${a.community_board_number}'">
+						<input type="button" value="삭제" class="delete_btn"
+						onclick="location.href='customer_community_delete?community_board_number=${a.community_board_number}'">
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 	<hr>
 </body>

@@ -1,68 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .right-align {
-            text-align: right;
-            margin-top: 30px;
-          	padding-right: 50px;
-        }
-        
-                .right-align2 {
-            text-align: right;
-            margin-top: 70px;
-          	padding-right: 50px;
-        }
+<style>
+.right-align {
+	text-align: right;
+	margin-top: 30px;
+	padding-right: 50px;
+}
 
-        .product-info {
-            text-align: left;
-            margin-left: 20px;
-        }
+.right-align2 {
+	text-align: right;
+	margin-top: 70px;
+	padding-right: 50px;
+}
 
-        .buy-amount-container {
-            display: flex;
-            align-items: center;
-        }
+.product-info {
+	text-align: left;
+	margin-left: 20px;
+}
 
-        .increment, .decrement {
-            width: 20px;
-            height: 20px;
-            text-align: center;
-            line-height: 20px;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 0 5px;
-            display: flex;
-            justify-content: center;
-        }
+.buy-amount-container {
+	display: flex;
+	align-items: center;
+}
 
-        .buy_amount {
-            background-color: white;
-            color: black;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
+.increment, .decrement {
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	cursor: pointer;
+	margin: 0 5px;
+	display: flex;
+	justify-content: center;
+}
 
-        .product-info-item {
-            display: flex;
-            align-items: center;
-        }
+.buy_amount {
+	background-color: white;
+	color: black;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
 
-        .product-info-image {
-            flex: 1;
-        }
+.product-info-item {
+	display: flex;
+	align-items: center;
+}
 
-        .product-info-details {
-            flex: 2;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
+.product-info-image {
+	flex: 1;
+}
+
+.product-info-details {
+	flex: 2;
+}
+
+.delete_btn {
+	height: 30px;
+	color: #ffffff;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	width: 50px; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
+}
+.list_title{
+padding-top: 10px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
     $(document).ready(function () {
         // 초기화: 선택된 상품 정보를 저장할 배열
         var selectedProducts = [];
@@ -281,97 +299,105 @@ $(document).on('click', '.downItems', function () {
     
     
     </script>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-    <table align="center" width="60%">
-        <tr>
-            <td>리스트에 추가</td>
-            <td>썸네일</td>
-            <td>상품명</td>
-            <td>원산지</td>
-            <td>메이커</td>
-            <td>가격</td>
-            <td>상품등록 날짜</td>
-            <td>남은재고</td>
-            <td>판매자 아이디</td>
-            <td>항목 제거</td>
-        </tr>
-        <hr>
-        <c:forEach items="${list2}" var="product">
-            <tr>
-            	<c:choose>
-            	<c:when test="${product.product_sell_amount == 0  }">
-            	<td><input type="checkbox" class="amount_null"></td>
-            	</c:when>
-            	<c:otherwise>
-                <td><input type="checkbox" class="buy_check" data-product-number="${product.product_number}"></td>
-                </c:otherwise>
-				</c:choose>
-                <td><img src="product_sum_image/${product.product_sum_image}" width="50px" height="30px"></td>
-                <td class="proimg_${product.product_number}" style="display:none;">${product.product_sum_image}</td>
-                <td class="product_name_${product.product_number}">${product.product_name}</td>
-
-                <td>${product.product_country}</td>
-
-                <td>${product.product_maker}</td>
-
-                <td><fmt:formatNumber value="${product.product_price}" pattern="#,###"/></td>
-
-                <td class="product_price_${product.product_number}" style="display: none;">${product.product_price}</td>
-
-                <td>${product.product_date}</td>
+	<table align="center" width="60%">
+		<tr class="list_title">
+		<hr>
+			<td>리스트에 추가</td>
+			<td>썸네일</td>
+			<td>상품명</td>
+			<td>원산지</td>
+			<td>메이커</td>
+			<td>가격</td>
+			<td>상품등록 날짜</td>
+			<td>남은재고</td>
+			<td>판매자 아이디</td>
+			<td>항목 제거</td>
+		
+		</tr>
+		<c:forEach items="${list2}" var="product">
+			<tr>
 				<c:choose>
-				<c:when test="${product.product_sell_amount == 0 }">
-				<td class="product_sell_amount_${product.product_number}">품절</td>
-				</c:when>
-				<c:otherwise>
-                <td class="product_sell_amount_${product.product_number}">${product.product_sell_amount}</td>
-                </c:otherwise>
+					<c:when test="${product.product_sell_amount == 0  }">
+						<td><input type="checkbox" class="amount_null"></td>
+					</c:when>
+					<c:otherwise>
+						<td><input type="checkbox" class="buy_check"
+							data-product-number="${product.product_number}"></td>
+					</c:otherwise>
 				</c:choose>
-                <td>${product.seller_id}</td>
+				<td><img src="product_sum_image/${product.product_sum_image}"
+					width="50px" height="30px"></td>
+				<td class="proimg_${product.product_number}" style="display: none;">${product.product_sum_image}</td>
+				<td class="product_name_${product.product_number}">${product.product_name}</td>
 
-                <td><button onclick="location.href='cart_delete_item?product_number=${product.product_number }&member_number=${member_number}'" >삭제</button></td>
-            </tr>
-            
-        </c:forEach>
-        
-    </table>
-    
-    <table align="center" style='margin-top:20px;border:1px solid #000' width="60%" height="150px">
-        <tr>
-            <td colspan="2">
-            <hr>
-                <div class="product-info">
-                    <!-- 여기에 상품 정보가 나타납니다. -->
-                </div>
-                
-            </td>
-            <td colspan="1" class="right-align">
-                총 0개의 상품<br>
-                가격 : 0원
-            </td>
-        </tr>
-    </table>
-                <div class="proinfo">
-                <!-- 선택한 상품 번호 -->
-            </div>
-            <div class="totalprice">
-                <!-- 선택한 상품 가격 -->
-            </div>
-<form id="purchaseForm" action="user_product_order_cart" method="post">
-    <!-- 폼 내부의 데이터는 JavaScript로 자동으로 생성됩니다. -->
-    <table align="center" width="60%">
-        <tr>
+				<td>${product.product_country}</td>
 
-        </tr>
-        <tr>
-            <input type="hidden" name="member_number" value="${member_number}">
-            <td> <hr> <button class="purchase_button">구매</button></td>
-        </tr>
-    </table>
-</form>
+				<td>${product.product_maker}</td>
+
+				<td><fmt:formatNumber value="${product.product_price}"
+						pattern="#,###" /></td>
+
+				<td class="product_price_${product.product_number}"
+					style="display: none;">${product.product_price}</td>
+
+				<td>${product.product_date}</td>
+				<c:choose>
+					<c:when test="${product.product_sell_amount == 0 }">
+						<td class="product_sell_amount_${product.product_number}">품절</td>
+					</c:when>
+					<c:otherwise>
+						<td class="product_sell_amount_${product.product_number}">${product.product_sell_amount}</td>
+					</c:otherwise>
+				</c:choose>
+				<td>${product.seller_id}</td>
+
+				<td><button
+						onclick="location.href='cart_delete_item?product_number=${product.product_number }&member_number=${member_number}'" class="delete_btn">삭제</button></td>
+			</tr>
+
+		</c:forEach>
+
+	</table>
+
+	<table align="center" style='margin-top: 20px; border: 1px solid #000'
+		width="60%" height="150px">
+		<tr>
+			<td colspan="2">
+				<hr>
+				<div class="product-info">
+					<!-- 여기에 상품 정보가 나타납니다. -->
+				</div>
+
+			</td>
+			<td colspan="1" class="right-align">총 0개의 상품<br> 가격 : 0원
+			</td>
+		</tr>
+	</table>
+	<div class="proinfo">
+		<!-- 선택한 상품 번호 -->
+	</div>
+	<div class="totalprice">
+		<!-- 선택한 상품 가격 -->
+	</div>
+	<form id="purchaseForm" action="user_product_order_cart" method="post">
+		<!-- 폼 내부의 데이터는 JavaScript로 자동으로 생성됩니다. -->
+		<table align="center" width="60%">
+			<tr>
+
+			</tr>
+			<tr>
+				<input type="hidden" name="member_number" value="${member_number}">
+				<td>
+					<hr>
+					<button class="purchase_button">구매</button>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
 

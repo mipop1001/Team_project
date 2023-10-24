@@ -84,7 +84,7 @@ body {
 	margin-top: -1px;
 	border-top: 1px solid #cccccc;
 	padding-top: 75px !important;
-	align : center;
+	align: center;
 }
 
 .content_box {
@@ -177,7 +177,8 @@ body {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
-.item_product_amount{
+
+.item_product_amount {
 	float: left;
 	width: 100%;
 	min-height: 24px;
@@ -235,6 +236,7 @@ body {
 }
 
 .buy {
+	width: 205px;
 	height: 52px;
 	margin: 10px 0 0;
 	padding: 0 10px 0 10px;
@@ -253,22 +255,22 @@ body {
 .intro_image {
 	border-top: 1px solid #000;
 	width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    border: 0 none;
-    vertical-align: top;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-    font-size: 12px;
-    line-height: 1.5;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column
+	max-width: 100%;
+	margin: 0 auto;
+	border: 0 none;
+	vertical-align: top;
+	overflow-clip-margin: content-box;
+	overflow: clip;
+	font-size: 12px;
+	line-height: 1.5;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column
 }
 
 .intro_image img {
 	display: block;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 </style>
 <meta charset="UTF-8">
@@ -279,7 +281,8 @@ body {
 		<div class="content_box">
 			<div class="sub_image_item_info">
 				<div class="sub_image">
-					<img src="product_sum_image/${pnum.product_sum_image }" width="440px" height="auto">
+					<img src="product_sum_image/${pnum.product_sum_image }"
+						width="440px" height="auto">
 				</div>
 				<div class="item_info_box">
 					<div class="item_product_name">${pnum.product_name }</div>
@@ -303,34 +306,37 @@ body {
 							</dd>
 						</dl>
 						<c:choose>
-						<c:when test="${pnum.product_sell_amount > 0 }">
-						<dl class="item_product_amount">
-							<dt>재고</dt>
-							<dd>
-								<strong>${pnum.product_sell_amount }</strong>
-							</dd>
-						</dl>
-						</c:when>
-						<c:otherwise>
-						<dl class="item_product_amount">
-							<dt>재고</dt>
-							<dd>
-								<strong>품절</strong>
-							</dd>
-						</dl>
-						</c:otherwise>
+							<c:when test="${pnum.product_sell_amount > 0 }">
+								<dl class="item_product_amount">
+									<dt>재고</dt>
+									<dd>
+										<strong>${pnum.product_sell_amount }</strong>
+									</dd>
+								</dl>
+							</c:when>
+							<c:otherwise>
+								<dl class="item_product_amount">
+									<dt>재고</dt>
+									<dd>
+										<strong>품절</strong>
+									</dd>
+								</dl>
+							</c:otherwise>
 						</c:choose>
-						
+
 					</div>
 					<div class="item_choise_button">
-						<input type="button" class="cart" value="장바구니" onclick="addToCart(${pnum.product_number}, ${memberDTO.member_number})">
+						<input type="button" class="cart" value="장바구니"
+							onclick="addToCart(${pnum.product_number}, ${memberDTO.member_number})">
 						<c:choose>
-						<c:when test="${memberDTO.member_number != null }">
-							<input type="button" class="buy" value="바로구매" onclick="checkLoginAndRedirect(${pnum.product_number}, ${memberDTO.member_number}, ${pnum.product_sell_amount })">
-						</c:when>
-						<c:otherwise>
-							<input type="button" class="buy" value="로그인 후 구매 가능" onclick="location.href='customer_login'">
-						</c:otherwise>
+							<c:when test="${memberDTO.member_number != null }">
+								<input type="button" class="buy" value="바로구매"
+									onclick="checkLoginAndRedirect(${pnum.product_number}, ${memberDTO.member_number}, ${pnum.product_sell_amount })">
+							</c:when>
+							<c:otherwise>
+								<input type="button" class="buy" value="로그인 후 구매 가능"
+									onclick="location.href='customer_login'">
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
