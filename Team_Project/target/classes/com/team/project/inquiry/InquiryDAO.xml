@@ -5,11 +5,11 @@
 <mapper namespace="com.team.project.inquiry.InquiryService">
 
 <insert id="customer_inquiry_input_save">
-insert into inquiry (inquiry_number,inquiry_title,member_number,member_name,
+insert into inquiry (inquiry_number,inquiry_title,member_number,inquiry_writer_name,
 inquiry_content,inquiry_date,inquiry_image1,inquiry_image2,inquiry_image3,
 inquiry_image4,inquiry_status,inquiry_writer_type)
 values(inquiry_number_seq.nextval,
-#{inquiry_title},#{member_number},#{member_name},#{inquiry_content},
+#{inquiry_title},#{member_number},#{inquiry_writer_name},#{inquiry_content},
 SYSDATE,#{inquiry_image1},#{inquiry_image2},#{inquiry_image3},#{inquiry_image4},
 #{inquiry_status},#{inquiry_writer_type})
 </insert>
@@ -18,5 +18,24 @@ SYSDATE,#{inquiry_image1},#{inquiry_image2},#{inquiry_image3},#{inquiry_image4},
 select * from inquiry where inquiry_writer_type=#{param1}
 </select>
 
+<select id="seller_inquiry_view" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where inquiry_writer_type=#{param1}
+</select>
+
+<select id="inquiry_board_list" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry
+</select>
+
+<select id="inquiry_answer" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where inquiry_number=#{param1}
+</select>
+
+<update id="admin_inquiry_answer_save">
+update inquiry set inquiry_answer=#{param2},inquiry_answer_date=SYSDATE,inquiry_status=#{param3} where inquiry_number=#{param1}
+</update>
+
+<update id="admin_inquiry_answer_modify_save">
+update inquiry set inquiry_answer=#{param2},inquiry_answer_date=SYSDATE where inquiry_number=#{param1}
+</update>
 </mapper>
 

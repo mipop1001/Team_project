@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.inquiry.InquiryDTO;
+import com.team.project.inquiry.InquiryService;
 import com.team.project.member.MemberDTO;
 import com.team.project.order.OrderDTO;
 import com.team.project.order.OrderService;
@@ -306,7 +308,26 @@ public class SellerController {
 		}
 	}
 
-
+	//사용자 1:1 문의
+	@RequestMapping(value = "/seller_inquiry_board")
+	public String customer_inquiry(HttpServletRequest request,Model mo)
+	{
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		String inquiry_writer_type="판매자";
+		HttpSession hs = request.getSession();
+		if(hs.getAttribute("sellerDTO") != null)
+		{
+		ArrayList<InquiryDTO> list = is.seller_inquiry_view(inquiry_writer_type);
+		mo.addAttribute("list", list);
+		
+		return "seller_inquiry_board";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
+	}
 
 	
 }

@@ -24,5 +24,15 @@
 		<put-attribute name="title" value="관리자 페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/announcement_form.jsp" />
 	</definition>
+	
+	<definition name="admin_inquiry_answer" extends="baseLayout">
+		<put-attribute name="title" value="1:1문의 답변 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/admin_inquiry_answer.jsp" />
+	</definition>
+	
+	<definition name="admin_inquiry_answer_modify" extends="baseLayout">
+		<put-attribute name="title" value="1:1문의 답변 수정" />
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/admin_inquiry_answer_modify.jsp" />
+	</definition>
 
 </tiles-definitions>

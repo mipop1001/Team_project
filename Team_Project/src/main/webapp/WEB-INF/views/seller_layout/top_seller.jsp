@@ -188,6 +188,7 @@ body {
 								마이페이지</a> <a href="seller_product_join?seller_id=${seller_id }">상품등록</a>
 							<a href="seller_product_out?seller_id=${sellerDTO.seller_id }">상품
 								조회/수정/삭제</a> <a href="seller_product_sales?seller_id=${sellerDTO.seller_id }">판매내역</a> <a href="main">메인</a>
+							<a href="seller_inquiry_board">1:1 문의</a>
 						</div>
 					</c:when>
 					<c:otherwise>

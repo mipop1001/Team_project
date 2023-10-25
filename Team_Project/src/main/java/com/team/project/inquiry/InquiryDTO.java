@@ -3,10 +3,28 @@ package com.team.project.inquiry;
 public class InquiryDTO {
 
 	int inquiry_number,member_number,seller_number;
-	String inquiry_title,member_name,seller_name,inquiry_content,inquiry_date,inquiry_image1,inquiry_image2,inquiry_image3,inquiry_image4,inquiry_status,inquiry_writer_type;
+	String inquiry_title,inquiry_writer_name,inquiry_content,inquiry_date,inquiry_image1,inquiry_image2,inquiry_image3,inquiry_image4,inquiry_status,inquiry_writer_type,inquiry_answer,inquiry_answer_date;
 	public InquiryDTO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public String getInquiry_answer_date() {
+		return inquiry_answer_date;
+	}
+	public void setInquiry_answer_date(String inquiry_answer_date) {
+		this.inquiry_answer_date = inquiry_answer_date;
+	}
+	public String getInquiry_answer() {
+		return inquiry_answer;
+	}
+	public void setInquiry_answer(String inquiry_answer) {
+		this.inquiry_answer = inquiry_answer;
+	}
+	public String getInquiry_writer_name() {
+		return inquiry_writer_name;
+	}
+	public void setInquiry_writer_name(String inquiry_writer_name) {
+		this.inquiry_writer_name = inquiry_writer_name;
 	}
 	public int getInquiry_number() {
 		return inquiry_number;
@@ -31,18 +49,6 @@ public class InquiryDTO {
 	}
 	public void setInquiry_title(String inquiry_title) {
 		this.inquiry_title = inquiry_title;
-	}
-	public String getMember_name() {
-		return member_name;
-	}
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
-	}
-	public String getSeller_name() {
-		return seller_name;
-	}
-	public void setSeller_name(String seller_name) {
-		this.seller_name = seller_name;
 	}
 	public String getInquiry_content() {
 		return inquiry_content;

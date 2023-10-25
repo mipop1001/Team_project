@@ -90,6 +90,11 @@
 		<put-attribute name="title" value="내 상품 수정"/>
 		<put-attribute name="body" value="/WEB-INF/views/product/seller_product_modify.jsp"/>
 	</definition>
+
+	<definition name="seller_inquiry_board" extends="baseLayout_seller">
+		<put-attribute name="title" value="1:1 문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/seller_inquiry_board.jsp"/>
+	</definition>
 	
 	<definition name="product_buy_amount_update_view" extends="baseLayout_seller">
 		<put-attribute name="title" value="내 상품 재고 추가"/>

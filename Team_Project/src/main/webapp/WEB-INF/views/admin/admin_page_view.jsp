@@ -23,6 +23,7 @@
 				<li><a href="board_list">게시글 목록 보기</a></li>
 				<li><a href="product_list">상품 목록 보기</a></li>
 				<li><a href="announcement_list">공지사항 보기</a></li>
+				<li><a href="inquiry_board_list">1:1 문의</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -176,5 +177,48 @@
 		</c:forEach>
 	</table>
 <hr>
+	<table border="1" align="center" width="1800px" class="table table-striped">
+	<tr>
+		<th>문의글 번호</th>
+		<th>상태</th>
+		<th>작성자</th>
+		<th>날짜</th>
+		<th>답변하기</th>	
+	</tr>
+	<c:forEach items="${inquiry_list }" var="inquiry">
+	<c:choose>
+	<c:when test="${inquiry.inquiry_status == '대기 중' }">
+	<tr>
+	<td>${inquiry.inquiry_number }</td>
+	<td>${inquiry.inquiry_status }</td>
+	<td>${inquiry.inquiry_writer_name }(${inquiry.inquiry_writer_type })</td>
+	<td>${inquiry.inquiry_date }</td>
+	<td><button onclick="admin_inquiry_answer(${inquiry.inquiry_number})">답변하기</button></td>
+	</tr>
+	</c:when>
+	<c:otherwise>
+		<tr>
+	<td>${inquiry.inquiry_number }</td>
+	<td>${inquiry.inquiry_status }</td>
+	<td>${inquiry.inquiry_writer_name }(${inquiry.inquiry_writer_type })</td>
+	<td>${inquiry.inquiry_date }</td>
+	<td><button onclick="admin_inquiry_answer_modify(${inquiry.inquiry_number})">답변수정하기</button></td>
+	</tr>
+	</c:otherwise>
+	</c:choose>
+	</c:forEach>
+	</table>
+	<hr>
 </body>
+<script type="text/javascript">
+function admin_inquiry_answer(inquiry_number) {
+	var nextpageURL = "admin_inquiry_answer?inquiry_number="+inquiry_number;
+	window.location.href = nextpageURL; 
+}
+
+function admin_inquiry_answer_modify(inquiry_number) {
+	var nextpageURL = "admin_inquiry_answer_modify?inquiry_number="+inquiry_number;
+	window.location.href= nextpageURL;
+}
+</script>
 </html>
