@@ -344,6 +344,7 @@ public class ProductController {
 			ProductService ps = sqlSession.getMapper(ProductService.class);
 			ps.product_review_count(product_number);
 			return "user_product_detail";	
+			
 		}
 
 
