@@ -24,7 +24,7 @@
 </tr>
 
 <c:choose>
-<c:when test="${not empty list }">
+<c:when test="${not empty list}">
 <c:forEach items="${list }" var="i">
 <tr>
 <td>${i.inquiry_status }</td>
@@ -38,7 +38,7 @@
 
 <c:otherwise>
 <tr>
-<td colspan="5">문의 내역이 없습니다.</td>
+<td colspan="5" style="text-align: center;">문의 내역이 없습니다.</td>
 </tr>
 </c:otherwise>
 </c:choose>
@@ -46,7 +46,7 @@
 </body>
 <script>
 // 문의하기 버튼 클릭 시 이동할 페이지 URL
-var inquiryURL = "customer_inquiry_form"; // 원하는 페이지 URL로 설정하세요
+var inquiryURL = "seller_inquiry_form"; // 원하는 페이지 URL로 설정하세요
 // 문의하기 버튼 클릭 이벤트 처리
 document.getElementById("inquiryButton").addEventListener("click", function() {
     window.location.href = inquiryURL;

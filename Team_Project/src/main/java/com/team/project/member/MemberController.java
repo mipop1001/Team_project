@@ -349,7 +349,7 @@ public class MemberController {
 	}
 	
 	//사용자 1:1 문의
-	@RequestMapping(value = "/customer_inquiry")
+	@RequestMapping(value = "/customer_inquiry_board")
 	public String customer_inquiry(HttpServletRequest request,Model mo)
 	{
 		InquiryService is = sqlSession.getMapper(InquiryService.class);
@@ -357,7 +357,6 @@ public class MemberController {
 		HttpSession hs = request.getSession();
 		if(hs.getAttribute("memberDTO") != null)
 		{
-		int member_number = Integer.parseInt(request.getParameter("member_number"));
 		ArrayList<InquiryDTO> list = is.customer_inquiry_view(inquiry_writer_type);
 		mo.addAttribute("list", list);
 		System.out.println("gd"+list);

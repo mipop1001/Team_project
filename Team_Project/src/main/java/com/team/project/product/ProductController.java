@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.project.board.PageDTO;
+import com.team.project.inquiry.InquiryDTO;
+import com.team.project.inquiry.InquiryService;
 import com.team.project.seller.SellerDTO;
 
 @Controller
@@ -324,6 +326,7 @@ public class ProductController {
 			ps.product_review_count(product_number);
 			return "user_product_detail";	
 		}
+
 
 
 }
