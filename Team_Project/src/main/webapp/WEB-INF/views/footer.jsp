@@ -203,9 +203,9 @@ p.sub {
 				</div>
 			</div>
 			<div class="sns-wrapper">
-				<a href="http://instagram.com/"><img src="C:\자바\ezen\project\Team_Project\Team_Project\src\main\webapp\image_etc\icon_instagram_fot_re.svg"></a>
-				<a href="https://www.facebook.com/"><img src="C:\자바\ezen\project\Team_Project\Team_Project\src\main\webapp\image_etc\con_facebook_fot_re.svg"></a>
-				<a href="http://www.youtube.com/"><img src="C:\자바\ezen\project\Team_Project\Team_Project\src\main\webapp\image_etc\icon_youtube_fot_re.svg"></a>
+				<a href="http://instagram.com/"><img src="./image_etc/icon_instagram_fot_re.svg"></a>
+				<a href="https://www.facebook.com/"><img src="./image_etc/con_facebook_fot_re.svg"></a>
+				<a href="http://www.youtube.com/"><img src="./image_etc/icon_youtube_fot_re.svg"></a>
 			</div>
 			<div class="copyright" align="center">
 				© 2023 Ezen Camping Inc.

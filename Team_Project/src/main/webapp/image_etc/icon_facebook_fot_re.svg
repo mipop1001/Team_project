@@ -1,0 +1,11 @@
+<svg id="그룹_38" data-name="그룹 38" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46.963" height="46.963" viewBox="0 0 46.963 46.963">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_60" data-name="사각형 60" width="46.963" height="46.963" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="그룹_29" data-name="그룹 29" clip-path="url(#clip-path)">
+    <path id="패스_88" data-name="패스 88" d="M23.482,46.713h0A23.232,23.232,0,1,1,46.714,23.481,23.232,23.232,0,0,1,23.482,46.713Z" fill="none" stroke="#e6e6e6" stroke-miterlimit="10" stroke-width="0.5"/>
+    <path id="패스_89" data-name="패스 89" d="M21.664,23.537V30.3a.176.176,0,0,0,.176.176h2.512a.176.176,0,0,0,.176-.176V23.427H26.35a.176.176,0,0,0,.175-.162l.175-2.071A.176.176,0,0,0,26.525,21h-2v-1.47a.624.624,0,0,1,.624-.623h1.4a.176.176,0,0,0,.176-.176V16.662a.176.176,0,0,0-.176-.176H24.184a2.52,2.52,0,0,0-2.52,2.52v2H20.408a.176.176,0,0,0-.176.176v2.072a.176.176,0,0,0,.176.176h1.256Z" fill="#787878" fill-rule="evenodd"/>
+  </g>
+</svg>
