@@ -86,7 +86,7 @@ body {
 /* /* /* /* /* /*  */
 .wall_main {
 	padding-top: 0;
-	min-height: 15vh;
+	min-height: 20vh;
 }
 
 .head_wall {
@@ -113,10 +113,10 @@ body {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	top: -15px;
+	top: -54px;
 	padding: 0;
 	flex-direction: column;
-	margin-top: 10px;
+	margin-top: 0;
 	display: flex;
 	margin: 0 auto;
 	align-items: center;
@@ -139,7 +139,7 @@ body {
 }
 
 .seller_page {
-	background: url(../images/new_white_cart.svg) no-repeat 45% 32%/30px;
+	background: url(./image_etc/new_white_brand_home.svg) no-repeat 45% 32%/30px;
 	/* url(../images/new_white_cart.svg) image 첨부 필욧  */
 	padding-top: 40px;
 	padding-right: 0;
@@ -181,7 +181,7 @@ body {
 
 				</div>
 				<h1 class="logo">
-					<a href="main">로고 <!-- <img src="/Team_Project/src/main/webapp/product_intro_image/피카츄.png"> --></a>
+					<a href="main"><img src="./image_etc/LOGOn.png" width="auto" height="100px"></a>
 				</h1>
 				<div class="aside_menu">
 					<a href="seller_page" class="seller_page"> <span

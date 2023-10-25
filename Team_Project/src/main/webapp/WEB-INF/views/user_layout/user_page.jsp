@@ -78,11 +78,8 @@ ul li {
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>
-		<b>Ezen Camping</b>
-	</h1>
-	<img id="campingImage" src="./image_etc/캠핑사진1.jpg" width="1400px"
-		height="500px">
+	<img id="campingImage" src="./image_etc/캠핑사진1.jpg" width="1900px"
+		height="600px">
 
 	<hr>
 	<h2>판매 상품 목록</h2>
@@ -92,7 +89,7 @@ ul li {
 				<div class="slide">
 					<a href="user_product_detail?product_number=${a.product_number }">
 						<img src="./product_sum_image/${a.product_sum_image}"
-							width="300px" height="300px">
+							width="auto" height="300px">
 						<p>${a.product_name}</p>
 					</a>
 				</div>
@@ -108,7 +105,7 @@ ul li {
 				<div class="slide1">
 					<a href="customer_community_detail?community_board_number=${a.community_board_number }">
 						<img src="./product_intro_image/${a.community_board_sum_image}"
-							width="300px" height="300px">
+							width="auto" height="300px">
 						<p>${a.community_board_title}</p>
 					</a>
 				</div>
@@ -157,7 +154,7 @@ ul li {
 
 	<script>
 		var imageIndex = 1; // 시작 이미지 인덱스
-		var imageCount = 3; // 전체 이미지 개수
+		var imageCount = 5; // 전체 이미지 개수
 
 		function changeImage() {
 			var imageElement = document.getElementById("campingImage");
