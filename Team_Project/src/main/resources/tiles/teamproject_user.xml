@@ -106,8 +106,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/inquiry/customer_inquiry_board.jsp"/>
 	</definition>
 	
-<definition name="customer_inquiry_form" extends="baseLayout_user">
+	<definition name="customer_inquiry_form" extends="baseLayout_user">
 		<put-attribute name="title" value="1:1 문의 작성"/>
 		<put-attribute name="body" value="/WEB-INF/views/inquiry/customer_inquiry_form.jsp"/>
+	</definition>
+	
+	<definition name="inquiry_answer" extends="baseLayout_user">
+		<put-attribute name="title" value="문의 답변 확인"/>
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/inquiry_answer.jsp"/>
 	</definition>
 </tiles-definitions>

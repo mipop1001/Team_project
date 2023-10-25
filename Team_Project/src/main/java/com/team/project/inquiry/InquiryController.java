@@ -41,13 +41,30 @@ public class InquiryController {
 		}
 	}
 	
+	@RequestMapping(value = "/seller_inquiry_form")
+	public String seller_inquiry_form(HttpServletRequest request,Model mo)
+	{
+		HttpSession hs = request.getSession();
+
+		if(hs.getAttribute("sellerDTO") != null)
+		{
+
+		return "seller_inquiry_form";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "seller_login";
+		}
+	}
+	
 	@RequestMapping(value = "/customer_inquiry_input_save",method=RequestMethod.POST)
-	public String customer_inquiry_input_save(MultipartHttpServletRequest mul) throws IllegalStateException, IOException
+	public String customer_inquiry_input_save(MultipartHttpServletRequest mul,Model mo) throws IllegalStateException, IOException
 	{
 		String inquiry_title = mul.getParameter("inquiry_title");
 		String inquiry_content = mul.getParameter("inquiry_content");
 		int member_number = Integer.parseInt(mul.getParameter("member_number"));
-		String member_name = mul.getParameter("member_name");
+		String inquiry_writer_name = mul.getParameter("member_name");
 		
 		
 		MultipartFile mpf1 = mul.getFile("inquiry_image1");
@@ -67,7 +84,7 @@ public class InquiryController {
 		InquiryDTO dto = new InquiryDTO();
 		dto.setInquiry_title(inquiry_title);
 		dto.setMember_number(member_number);
-		dto.setMember_name(inquiry_writer_type);
+		dto.setInquiry_writer_name(inquiry_writer_name);
 		dto.setInquiry_content(inquiry_content);
 		dto.setInquiry_image1(inquiry_image1);
 		dto.setInquiry_image2(inquiry_image2);
@@ -82,6 +99,64 @@ public class InquiryController {
 		mpf2.transferTo(new File(inquiry_images_path+"\\"+inquiry_image2));
 		mpf3.transferTo(new File(inquiry_images_path+"\\"+inquiry_image3));
 		mpf4.transferTo(new File(inquiry_images_path+"\\"+inquiry_image4));
-		return "customer_inquiry_board";
+		
+		return "redirect:/customer_inquiry_board";
+	}
+	@RequestMapping(value = "/inquiry_answer")
+	public String inquiry_answer(HttpServletRequest request,Model mo)
+	{
+		HttpSession hs = request.getSession();
+		int inquiry_number= Integer.parseInt(request.getParameter("inquiry_number"));
+		System.out.println(inquiry_number);
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		InquiryDTO dto = is.inquiry_answer(inquiry_number);
+		mo.addAttribute("inquiryDTO", dto);
+		if(hs.getAttribute("memberDTO") != null)
+		{
+		return "inquiry_answer";
+		}
+		else
+		{
+			mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+			return "customer_login_form";
+		}
+	}
+	@RequestMapping(value = "/admin_inquiry_answer")
+	public String admin_inquiry_answer(HttpServletRequest request,Model mo)
+	{
+		int inquiry_number = Integer.parseInt(request.getParameter("inquiry_number"));
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		InquiryDTO dto = is.inquiry_answer(inquiry_number);
+		mo.addAttribute("inquiryDTO", dto);
+		return "admin_inquiry_answer";
+	}
+	
+	@RequestMapping(value = "/admin_inquiry_answer_save",method=RequestMethod.POST)
+	public String admin_inquiry_answer_save(HttpServletRequest request)
+	{
+		String inquiry_status="답변 완료";
+		int inquiry_number = Integer.parseInt(request.getParameter("inquiry_number"));
+		String inquiry_answer=request.getParameter("noticeDoc");
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		is.admin_inquiry_answer_save(inquiry_number,inquiry_answer,inquiry_status);
+		return "admin_page_view";
+	}
+	@RequestMapping(value = "admin_inquiry_answer_modify")
+	public String admin_inquiry_answer_modify(HttpServletRequest request,Model mo)
+	{
+		int inquiry_number = Integer.parseInt(request.getParameter("inquiry_number"));
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		InquiryDTO dto = is.inquiry_answer(inquiry_number);
+		mo.addAttribute("inquiryDTO", dto);
+		return "admin_inquiry_answer_modify";
+	}
+	@RequestMapping(value = "/admin_inquiry_answer_modify_save",method=RequestMethod.POST)
+	public String admin_inquiry_answer_modify_save(HttpServletRequest request)
+	{
+		int inquiry_number = Integer.parseInt(request.getParameter("inquiry_number"));
+		String inquiry_answer=request.getParameter("noticeDoc");
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		is.admin_inquiry_answer_modify_save(inquiry_number,inquiry_answer);
+		return "admin_page_view";
 	}
 }

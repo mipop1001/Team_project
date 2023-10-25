@@ -17,6 +17,8 @@ import com.team.project.admin.AnnouncementDTO;
 import com.team.project.admin.AnnouncementService;
 import com.team.project.board.BoardDTO;
 import com.team.project.board.BoardService;
+import com.team.project.inquiry.InquiryDTO;
+import com.team.project.inquiry.InquiryService;
 import com.team.project.member.MemberDTO;
 import com.team.project.member.MemberService;
 import com.team.project.product.ProductDTO;
@@ -133,6 +135,14 @@ public class HomeController {
 		AnnouncementService as = sqlSession.getMapper(AnnouncementService.class);
 		ArrayList<AnnouncementDTO> announcement_list = as.announcement_list();
 		mo.addAttribute("announcement_list", announcement_list);
+		return "admin_page_view";
+	}
+	@RequestMapping(value = "/inquiry_board_list",method=RequestMethod.GET)
+	public String inquiry_board_list(Model mo)
+	{
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		ArrayList<InquiryDTO> list = is.inquiry_board_list();
+		mo.addAttribute("inquiry_list", list);
 		return "admin_page_view";
 	}
 	

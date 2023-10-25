@@ -27,9 +27,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"> <input type="submit" value="등록"> </td>
+				<td colspan="2"> <input type="submit" value="등록"><button onclick="announcement_input_cancel()">취소</button> </td>
 			</tr>
 		</table>
 	</form>
 </body>
+<script type="text/javascript">
+function announcement_input_cancel() {
+	history.back();
+	
+}
+</script>
 </html>
