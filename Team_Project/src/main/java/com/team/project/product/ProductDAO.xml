@@ -157,4 +157,16 @@ WHERE product_buy_amount >= 10 and seller_id = #{param1}
 ORDER BY product_buy_amount DESC
 </select>
 
+<select id="seller_product_out55" resultType="com.team.project.product.ProductDTO">
+SELECT *
+FROM product
+WHERE product_sell_amount <![CDATA[<=]]> 5 and seller_id = #{param1}
+</select>
+
+<update id="product_sell_amount_update_save"> 
+  UPDATE product 
+  SET product_sell_amount = product_sell_amount + #{param2} 
+  WHERE product_number = #{param1}
+</update>
+
 </mapper>

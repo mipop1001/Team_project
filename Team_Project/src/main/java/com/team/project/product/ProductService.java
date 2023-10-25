@@ -48,4 +48,8 @@ public interface ProductService {
 	public int seller_product_out22(String string);
 	public ArrayList<ProductDTO> seller_product_out33(String string);
 	public ArrayList<ProductDTO> seller_product_out44(String string);
+	public ArrayList<ProductDTO> seller_product_out55(String seller_id);
+	
+	//판매자 페이지 로그인 후 재고 수량 업데이트 
+	public void product_sell_amount_update_save(String product_number, String product_sell_amount);
 }
