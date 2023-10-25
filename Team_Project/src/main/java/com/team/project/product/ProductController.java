@@ -2,6 +2,7 @@ package com.team.project.product;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -146,12 +147,30 @@ public class ProductController {
 		int count22 = ss.seller_product_out22(dto.getSeller_id());	
 		ArrayList<ProductDTO> list33 = ss.seller_product_out33(dto.getSeller_id());
 		ArrayList<ProductDTO> list44 = ss.seller_product_out44(dto.getSeller_id());
+		ArrayList<ProductDTO> list55 = ss.seller_product_out55(dto.getSeller_id());
 		Map<String, Object> responseData = new HashMap<String, Object>();
 		responseData.put("producttotal11", count11);
 		responseData.put("producttotal22", count22);
 		responseData.put("producttotal33", list33);
 		responseData.put("producttotal44", list44);
+		responseData.put("producttotal55", list55);
 		return responseData;
+	}
+	
+	//판매자 페이지 로그인 후 상품 재고 추가
+	@RequestMapping(value = "/product_sell_amount_update_save", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public Map<String, String> product_sell_amount_update_save(HttpServletRequest request) {
+	    String product_number = request.getParameter("product_number");
+	    String product_sell_amount = request.getParameter("product_sell_amount");
+	    ProductService ss = sqlSession.getMapper(ProductService.class);
+	    ss.product_sell_amount_update_save(product_number, product_sell_amount);
+
+	    // 작업 성공 또는 실패에 따라 메시지를 반환
+	    Map<String, String> response = new HashMap<String, String>();
+	    response.put("message", "재고가 업데이트되었습니다."); // 또는 오류 메시지
+
+	    return response;
 	}
 	
 	//내 상품 검색

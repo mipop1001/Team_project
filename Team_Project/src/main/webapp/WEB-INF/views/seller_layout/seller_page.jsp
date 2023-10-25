@@ -56,6 +56,8 @@
 	padding-right: 100px;
 	margin-right: auto;
 	margin-left: auto;
+	margin-top: 80px;
+
 }
 
 .breadcrumb {
@@ -169,6 +171,7 @@
 				$('#producttotal22').text(data.producttotal22);
 				$('#producttotal33')
 				$('#producttotal44')
+				$('#producttotal55')
 
 				$.each(data.producttotal33, function(index, product) {
 					var row = '<tr>';
@@ -187,12 +190,50 @@
 					row += '</tr>';
 					$('#productList3 table tbody').append(row);
 				});
+
+				$.each(data.producttotal55, function(index, product) {
+				    var row = '<tr>';
+				    row += '<td>' + product.product_name + '</td>';
+				    row += '<td>' + product.product_buy_amount + '</td>';
+				    row += '<td>' + product.product_sell_amount + '</td>';
+				    row += '<td>';
+				    row += '<form id="updateForm' + product.product_number + '">';
+				    row += '<input type="hidden" name="product_number" value="' + product.product_number + '">';
+				    row += '<input type="number" name="product_sell_amount" min="0" max="99" placeholder="0" value="0">';
+				    row += '<input type="button" value="재고추가" onclick="updateSellAmount(' + product.product_number + ')">';
+				    row += '</form>';
+				    row += '</td>';
+				    row += '</tr>';
+				    $('#productList4 table tbody').append(row);
+				});
+
 			},
 			error : function() {
 				console.log('데이터를 가져오는 중 오류가 발생했습니다.');
 			}
 		});
 	});
+	
+	function updateSellAmount(productNumber) {
+	    var formData = $('#updateForm' + productNumber).serialize();
+
+	    $.ajax({
+	        type: 'POST', // 또는 'GET', 데이터를 전송하는 HTTP 메소드
+	        url: 'product_sell_amount_update_save', // 서버로 요청을 보낼 URL
+	        data: formData, // 폼 데이터를 전송
+	        success: function(response) {
+	            // 성공 시 수행할 작업
+	            alert('재고가 성공적으로 업데이트되었습니다.');
+	         	// 현재 페이지 새로 고침
+	            location.reload();
+	        },
+	        error: function() {
+	            // 오류 발생 시 수행할 작업
+	            alert('오류가 발생했습니다.');
+	        }
+	    });
+	}
+
 </script>
 <body>
 <c:choose>
@@ -251,6 +292,40 @@
 														<th>상품명</th>
 														<th>판매자명</th>
 														<th>판매수량</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- 제품 목록은 여기에 추가될 것입니다. -->
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-6">
+								<div class="card-header">
+									<h3> <strong> ${sellerDTO.seller_id }님의 상품재고 목록	</strong>(재고량 5개 이하 제품)</h3>
+								</div>
+								<div class="card mb-4">
+									<div class="card-body">
+										<div class="chartjs-size-monitor">
+											<div class="chartjs-size-monitor-expand">
+												<div class=""></div>
+											</div>
+											<div class="chartjs-size-monitor-shrink">
+												<div class=""></div>
+											</div>
+										</div>
+										<div id="productList4">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>상품명</th>
+														<th>판매수량</th>
+														<th>재고수량</th>
+														<th>비고</th>
 													</tr>
 												</thead>
 												<tbody>
