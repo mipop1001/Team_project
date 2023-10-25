@@ -140,7 +140,7 @@ ul li {
                 <a href="#">바로가기</a>
             </div>
         </div>
-        <div class="event-item">
+        <div class="event-item"> 
             <img src="./image_etc/d.PNG" alt="이벤트사진" class="image-size">
             <div class "text-box">
                 <div class="title">

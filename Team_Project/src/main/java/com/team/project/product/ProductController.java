@@ -159,7 +159,7 @@ public class ProductController {
 		return responseData;
 	}
 	
-	//판매자 페이지 로그인 후 상품 재고 추가
+	//판매자 페이지 로그인 후 상품 재고 추가ㅇ
 	@RequestMapping(value = "/product_sell_amount_update_save", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public Map<String, String> product_sell_amount_update_save(HttpServletRequest request) {
