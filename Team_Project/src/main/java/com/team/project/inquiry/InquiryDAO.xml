@@ -23,7 +23,11 @@ select * from inquiry where inquiry_writer_type=#{param1}
 </select>
 
 <select id="inquiry_board_list" resultType="com.team.project.inquiry.InquiryDTO">
-select * from inquiry
+select * from inquiry where member_number is null
+</select>
+
+<select id="inquiry_board_list_member" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where seller_number is null
 </select>
 
 <select id="inquiry_answer" resultType="com.team.project.inquiry.InquiryDTO">
@@ -37,5 +41,23 @@ update inquiry set inquiry_answer=#{param2},inquiry_answer_date=SYSDATE,inquiry_
 <update id="admin_inquiry_answer_modify_save">
 update inquiry set inquiry_answer=#{param2},inquiry_answer_date=SYSDATE where inquiry_number=#{param1}
 </update>
+
+<insert id="seller_inquiry_input_save">
+insert into inquiry (inquiry_number,inquiry_title,seller_number,inquiry_writer_name,
+inquiry_content,inquiry_date,inquiry_image1,inquiry_image2,inquiry_image3,
+inquiry_image4,inquiry_status,inquiry_writer_type)
+values(inquiry_number_seq.nextval,
+#{inquiry_title},#{seller_number},#{inquiry_writer_name},#{inquiry_content},
+SYSDATE,#{inquiry_image1},#{inquiry_image2},#{inquiry_image3},#{inquiry_image4},
+#{inquiry_status},#{inquiry_writer_type})
+</insert>
+
+<select id="inquiry_my_only" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where seller_number=#{param1}
+</select>
+
+<select id="inquiry_my_only_member" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry where member_number=#{param1}
+</select>
 </mapper>
 

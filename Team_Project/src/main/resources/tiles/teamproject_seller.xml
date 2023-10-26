@@ -101,4 +101,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/product/product_buy_amount_update_view.jsp"/>
 	</definition>
 	
+	<definition name="seller_inquiry_form" extends="baseLayout_seller">
+		<put-attribute name="title" value="판매자 1:1 문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/inquiry/seller_inquiry_form.jsp"/>
+	</definition>
+	
 </tiles-definitions>
