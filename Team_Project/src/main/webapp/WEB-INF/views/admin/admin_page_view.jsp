@@ -23,7 +23,7 @@
 				<li><a href="board_list">게시글 목록 보기</a></li>
 				<li><a href="product_list">상품 목록 보기</a></li>
 				<li><a href="announcement_list">공지사항 보기</a></li>
-				<li><a href="inquiry_board_list">1:1 문의</a></li>
+				<li><a href="inquiry_board_list_all">1:1 문의</a></li>
 			</ul>
 		</div>
 	</nav>
