@@ -104,7 +104,7 @@ ul li {
 			<c:forEach items="${list2}" var="a">
 				<div class="slide1">
 					<a href="customer_community_detail?community_board_number=${a.community_board_number }">
-						<img src="./product_intro_image/${a.community_board_sum_image}"
+						<img src="./product_sum_image/${a.community_board_sum_image}"
 							width="auto" height="300px">
 						<p>${a.community_board_title}</p>
 					</a>

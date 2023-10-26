@@ -135,9 +135,9 @@ function check() {
 					<th>등록된 이미지</th>
 					<td> 
 						<img alt="" width="100" height="100" src="product_sum_image/${community_modify.community_board_sum_image}"> &emsp;
-						<img alt="" width="100" height="100" src="product_sum_image/${community_modify.community_board_detail_image1}"> &emsp;
-						<img alt="" width="100" height="100" src="product_sum_image/${community_modify.community_board_detail_image2}"> &emsp;
-						<img alt="" width="100" height="100" src="product_sum_image/${community_modify.community_board_detail_image3}"> &emsp;
+						<img alt="" width="100" height="100" src="product_intro_image/${community_modify.community_board_detail_image1}"> &emsp;
+						<img alt="" width="100" height="100" src="product_intro_image/${community_modify.community_board_detail_image2}"> &emsp;
+						<img alt="" width="100" height="100" src="product_intro_image/${community_modify.community_board_detail_image3}"> &emsp;
 					</td>
 				</tr>
 				<tr>
