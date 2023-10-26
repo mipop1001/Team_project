@@ -6,6 +6,17 @@
 <html>
 <head>
 <style type="text/css">
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    
+}
+th {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
 .hidden {
 	display: none;
 }
@@ -39,7 +50,7 @@
 
 .refund_product {
 	height: 35px;
-	width: 110px;
+	width: 130px;
 	padding: 0 10px 0 10px;
 	color: #ffffff;
 	font-size: 16px;
@@ -48,7 +59,23 @@
 	text-align: center;
 	font-weight: bold;
 	line-height: 1.5;
-	margin-left: 20px; 
+	margin: 10px 20px 10px 0; 
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.refund_product_ok{
+	height: 35px;
+	width: 130px;
+	padding: 0 10px 0 10px;
+	color: #ebdd22;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 10px 20px 10px 0; 
     &:hover {
     background: rgb(77,77,77);
     color: #fff;}
@@ -79,8 +106,8 @@ $(document).ready(function () {
                         alert("환불 요청에 성공했습니다.");
                         var $deliveryStatusCell = $button.closest('tr').find('.delivery_status');
                         $deliveryStatusCell.text("환불 요청 중");
-                        var $buttonTd = $button.closest('.refund_status');
-                        $buttonTd.html('환불 요청에 성공 했습니다.');
+                        var $buttonTd = $button.closest('.refund_product');
+                        $buttonTd.html('환불 진행중');
                     } else {
                         alert("이미 배송 출발한 상품입니다.");
                     }
@@ -137,10 +164,12 @@ $(document).ready(function () {
 						</td>
 					</c:when>
 					<c:when test="${i.delivery_status == '환불 요청 중' }">
-						<td>환불 요청에 성공 했습니다.</td>
+						<td><button class="refund_product_ok"
+								data-sell-list-number="#">환불 진행중</button></td>
 					</c:when>
 					<c:otherwise>
-						<td>환불 불가능한 상품 입니다.</td>
+						<td><button class="refund_product"
+								data-sell-list-number="#">환불 불가</button></td>
 					</c:otherwise>
 				</c:choose>
 			</tr>

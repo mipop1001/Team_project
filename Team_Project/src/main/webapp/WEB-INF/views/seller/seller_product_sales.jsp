@@ -5,7 +5,75 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+.page_name {
+	color: #777;
+	align-content: center;
+	margin-bottom: 30px;
+}
+.accept-refund-button{
+	height: 35px;
+	width: 130px;
+	padding: 0 10px 0 20px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 10px 0 10px 10px; 
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.reject-refund-button{
+	height: 35px;
+	width: 130px;
+	padding: 0 10px 0 20px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 10px 0 10px 10px; 
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+.delivery-status-update{
+	height: 35px;
+	width: 275px;
+	padding: 0 10px 0 20px;
+	color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 10px 0 10px 10px; 
+    &:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+th {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+table {
+    background-color: transparent;
+    margin-bottom: 80px;
+}
+td {
+	text-align: center;
+	padding-right: 20px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
     $('.delivery-status-update').on('click', function () {
@@ -114,7 +182,10 @@ $(document).ready(function () {
 <title>Insert title here</title>
 </head>
 <body>
-<table align="center" width="1000px" height="300px">
+	<div class="page_name" align="center">
+		<hr><H2>판매내역</H2><hr>
+	</div>
+<table align="center">
 <tr>
 <th>주문번호</th>
 <th>상품 명</th>

@@ -187,7 +187,7 @@ body {
 							<a href="seller_info?seller_number=${sellerDTO.seller_number}">${sellerDTO.seller_name }님
 								마이페이지</a> <a href="seller_product_join?seller_id=${seller_id }">상품등록</a>
 							<a href="seller_product_out?seller_id=${sellerDTO.seller_id }">상품
-								조회/수정/삭제</a> <a href="seller_product_sales?seller_id=${sellerDTO.seller_id }">판매내역</a> <a href="main">메인</a>
+								조회/수정/삭제</a> <a href="seller_product_sales?seller_id=${sellerDTO.seller_id }">판매내역</a>
 							<a href="seller_inquiry_board">1:1 문의</a>
 						</div>
 					</c:when>
@@ -198,7 +198,7 @@ body {
 							<a href="#" onclick="checkLogin()">마이페이지</a> <a href="#"
 								onclick="checkLogin()">상품등록</a> <a href="#"
 								onclick="checkLogin()">상품 조회/수정/삭제</a> <a href="#"
-								onclick="checkLogin()">판매내역</a> <a href="main">메인</a>
+								onclick="checkLogin()">판매내역</a>
 								
 								
 								<!--기존의 sessionscope.sellerDTO는 자바 스크립트에서 사용 할 수 없어서 display를 none으로 주고data-방식으로 자바 스크립트에 데이터를 가져감-->
