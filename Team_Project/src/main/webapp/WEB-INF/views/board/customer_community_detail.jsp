@@ -103,6 +103,7 @@ white-space: pre-line;
 .image_one img{
 	width: 273px;
 	height: auto;
+	margin: 10px; /* 원하는 간격 크기로 조절하세요 */
 }
 .re_write{
     margin-top: 20px;

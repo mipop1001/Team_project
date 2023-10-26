@@ -63,12 +63,17 @@ li {
 	
 }
 
+.community_travel_list img {
+	margin: 10px; /* 원하는 간격 크기로 조절하세요 */
+}
+
 ol, ul {
 	list-style: none;
 }
 
 .pic img {
-	
+	width: 350px;
+    height: auto;
 }
 
 img {
@@ -79,6 +84,7 @@ img {
 	width: 383.3px;
 	height: auto;
 	-o-object-position: center top;
+	object-position: center top;
 	object-position: center top;
 }
 

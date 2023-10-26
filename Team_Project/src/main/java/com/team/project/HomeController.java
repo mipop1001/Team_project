@@ -137,14 +137,6 @@ public class HomeController {
 		mo.addAttribute("announcement_list", announcement_list);
 		return "admin_page_view";
 	}
-	@RequestMapping(value = "/inquiry_board_list",method=RequestMethod.GET)
-	public String inquiry_board_list(Model mo)
-	{
-		InquiryService is = sqlSession.getMapper(InquiryService.class);
-		ArrayList<InquiryDTO> list = is.inquiry_board_list();
-		mo.addAttribute("inquiry_list", list);
-		return "admin_page_view";
-	}
 	
 	//관리자 페이지 삭제 기능
 	@RequestMapping(value = "/user_list_delete", method = RequestMethod.GET)
