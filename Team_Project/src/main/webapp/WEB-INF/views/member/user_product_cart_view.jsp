@@ -72,9 +72,28 @@
 	text-align: center;
 	font-weight: bold;
 	line-height: 1.5;
-	width: 50px; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
+	width: 50px; 
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
 }
+.purchase_button{
+	height: 30px;
+	color: #ffffff;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 16px;
+	border: 1px solid #323437;
+	background: #323437;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	width: 50px; 
+	&:hover {
+    background: rgb(77,77,77);
+    color: #fff;}
+}
+
 .list_title{
 padding-top: 10px;
 }
