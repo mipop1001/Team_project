@@ -286,4 +286,12 @@ public class InquiryController {
 		ArrayList<InquiryDTO> list = is.inquiry_board_list_member();
 		return list;
 	}
+	@RequestMapping(value = "/inquiry_board_list_all")
+	public String inquiry_board_list_all(Model mo)
+	{
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		ArrayList<InquiryDTO> list = is.inquiry_board_list_all();
+		mo.addAttribute("inquiry_list", list);
+		return "admin_page_view";
+	}
 }

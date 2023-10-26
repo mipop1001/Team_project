@@ -30,6 +30,10 @@ select * from inquiry where member_number is null
 select * from inquiry where seller_number is null
 </select>
 
+<select id="inquiry_board_list_all" resultType="com.team.project.inquiry.InquiryDTO">
+select * from inquiry
+</select>
+
 <select id="inquiry_answer" resultType="com.team.project.inquiry.InquiryDTO">
 select * from inquiry where inquiry_number=#{param1}
 </select>

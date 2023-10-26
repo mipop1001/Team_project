@@ -15,4 +15,5 @@ public interface InquiryService {
 	public ArrayList<InquiryDTO> inquiry_my_only(int seller_number);
 	public ArrayList<InquiryDTO> inquiry_my_only_member(int member_number);
 	public ArrayList<InquiryDTO> inquiry_board_list_member();
+	public ArrayList<InquiryDTO> inquiry_board_list_all();
 }
