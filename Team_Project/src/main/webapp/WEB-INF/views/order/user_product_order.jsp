@@ -74,7 +74,7 @@
                <th>상품명</th>
                <td><hr>${product.product_name}<hr></td>
                <td><img alt=""
-                  src="./product_intro_image/${product.product_sum_image}"
+                  src="./product_sum_image/${product.product_sum_image}"
                   width="100px" height="100px"></td>
             </tr>
             <tr>
