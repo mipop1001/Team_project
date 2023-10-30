@@ -139,7 +139,7 @@
 				<tr>
 					<td colspan="2" align="center">
 					<input type="submit" class="modify_btn" value="수정">
-					<input type="button" class="reset_btn" value="취소" onclick="seller_page"></td>
+					<input type="button" class="reset_btn" value="취소" onclick="back_page()"></td>
 				</tr>
 			</table>
 		</c:forEach>
@@ -163,6 +163,11 @@
 										}).open();
 							});
 		}
+		function back_page(){
+			history.back();
+		}
+		
+		
 	</script>
 </body>
 </html>

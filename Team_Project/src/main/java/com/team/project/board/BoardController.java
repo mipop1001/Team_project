@@ -41,7 +41,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/customer_community_input_save", method = RequestMethod.POST)
-	public String customer_community_input_save(MultipartHttpServletRequest mul) throws IllegalStateException, IOException {
+	public String customer_community_input_save(MultipartHttpServletRequest mul,Model mo) throws IllegalStateException, IOException {
 			
 		HttpSession hs = mul.getSession();
 		MemberDTO dto = (MemberDTO) hs.getAttribute("memberDTO");
@@ -74,8 +74,15 @@ public class BoardController {
 			mf1.transferTo(new File(image_intro_path+"\\"+community_board_detail_image1));
 			mf2.transferTo(new File(image_intro_path+"\\"+community_board_detail_image2));
 			mf3.transferTo(new File(image_intro_path+"\\"+community_board_detail_image3));
-			
+			if(hs.getAttribute("memberDTO") != null)
+			{
 			return "customer_community_input_form";
+			}
+			else
+			{
+				mo.addAttribute("msg","로그인 세션이 만료 되었습니다.");
+				return "customer_login_form";
+			}
 	}
 	
 	@RequestMapping(value = "/customer_community_out")

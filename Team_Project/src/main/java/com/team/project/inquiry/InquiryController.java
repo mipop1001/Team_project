@@ -294,4 +294,21 @@ public class InquiryController {
 		mo.addAttribute("inquiry_list", list);
 		return "admin_page_view";
 	}
+	
+	@RequestMapping(value = "/delete_inquiry")
+	public String delete_inquiry(HttpServletRequest request)
+	{
+		int inquiry_number=Integer.parseInt(request.getParameter("inquiry_number"));
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		is.seller_delete_inquiry(inquiry_number);
+		return "redirect:/seller_inquiry_board";
+	}
+	@RequestMapping(value = "/customer_delete_inquiry")
+	public String customer_delete_inquiry(HttpServletRequest request,Model mo)
+	{
+		int inquiry_number=Integer.parseInt(request.getParameter("inquiry_number"));
+		InquiryService is = sqlSession.getMapper(InquiryService.class);
+		is.customer_seller_delete_inquiry(inquiry_number);
+		return "redirect:/customer_inquiry_board";
+	}
 }

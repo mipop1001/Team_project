@@ -16,4 +16,7 @@ public interface InquiryService {
 	public ArrayList<InquiryDTO> inquiry_my_only_member(int member_number);
 	public ArrayList<InquiryDTO> inquiry_board_list_member();
 	public ArrayList<InquiryDTO> inquiry_board_list_all();
+	public void seller_delete_inquiry(int inquiry_number);
+	public void customer_seller_delete_inquiry(int inquiry_number);
+	public void seller_inquiry_input_save_image1(InquiryDTO dto);
 }
