@@ -157,10 +157,18 @@ function check() {
 					<td><hr><input type="file" id="community_board_detail_image3" name="community_board_detail_image3"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><hr><input type="button" value="수정" onclick="check()"></td>
+					<td colspan="2" align="center"><hr><input type="button" value="수정" onclick="check()">
+					<input type="button" value="취소" onclick="back_user_page()">
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
 </body>
+<script type="text/javascript">
+function back_user_page(){
+	history.back();
+}
+
+</script>
 </html>

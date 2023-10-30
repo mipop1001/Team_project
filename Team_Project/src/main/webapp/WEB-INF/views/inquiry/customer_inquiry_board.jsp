@@ -43,7 +43,9 @@ $(".myPostsCheckbox").change(function() {
                         <td>\${item.inquiry_title}</td>
                         <td>\${item.inquiry_writer_name}</td>
                         <td>\${item.inquiry_date}</td>
-                        <td><button onclick="inquiry_answer('\${item.inquiry_number}')">답변 확인</button></td>
+                        <td><button onclick="inquiry_answer('\${item.inquiry_number}')">답변 확인</button>
+                        <button onclick="confirm_delete(\${item.inquiry_number})">문의 삭제</button>
+                        </td>
                         </tr>`;
                 });
                 $("#myTable").html(inquiry_my_only);
@@ -78,7 +80,9 @@ $(".myPostsCheckbox").change(function() {
                 if (!isOwner) {
                     buttonHtml = `<td>본인의 문의글만 확인 가능합니다.</td>`;
                 } else {
-                    buttonHtml = `<td><button onclick="inquiry_answer('\${item.inquiry_number}')">답변 확인</button></td>`;
+                    buttonHtml = `<td><button onclick="inquiry_answer('\${item.inquiry_number}')">답변 확인</button>
+                    <button onclick="confirm_delete(\${item.inquiry_number})">문의 삭제</button>
+                    </td>`;
                 }
 
                     console.log(buttonHtml);
@@ -130,7 +134,10 @@ $(".myPostsCheckbox").change(function() {
 <td>${i.inquiry_title }</td>
 <td>${i.inquiry_writer_name }</td>
 <td>${i.inquiry_date }</td>
-<td><button onclick="inquiry_answer(${i.inquiry_number})">답변 확인</button></td>
+<td><button onclick="inquiry_answer(${i.inquiry_number})">답변 확인</button>
+<%-- <button onclick="window.location='customer_delete_inquiry?inquiry_number=${i.inquiry_number}'">문의 삭제</button> --%>
+<button onclick="confirm_delete(${i.inquiry_number})">문의 삭제</button>
+</td>
 </tr>
 </c:if>
 <c:if test="${memberDTO.member_number != i.member_number}">
@@ -168,6 +175,14 @@ function inquiry_answer(inquiryNumber) {
     
     // 페이지를 이동
     window.location.href = nextPageURL;
+}
+
+function confirm_delete(inquiry_number) {
+    if (confirm("문의 글을 삭제 하시겠습니까?")) {
+        window.location.href = "customer_delete_inquiry?inquiry_number=" + inquiry_number;
+    } else {
+        // 사용자가 취소 버튼을 눌렀을 때 아무 작업도 하지 않음
+    }
 }
 </script>
 </html>

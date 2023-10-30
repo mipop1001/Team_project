@@ -41,6 +41,8 @@ function setThumbnail(event) {
 
     reader.readAsDataURL(event.target.files[0]);
   }
+  
+  
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -82,9 +84,20 @@ function setThumbnail(event) {
 				<input type="hidden" name="seller_name" value="${sellerDTO.seller_name }" >
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><hr><input type="button" value="등록" onclick="check()"></td>
+				<td colspan="2" align="center">
+				<hr>
+				<input type="button" value="등록" onclick="check()">
+				<button onclick="form_cancel()">취소</button>
+				 </td>
 			</tr>
 		</table>
 	</form>
 </body>
+<script type="text/javascript">
+function form_cancel(){
+	
+	history.back();
+}
+
+</script>
 </html>

@@ -217,7 +217,7 @@ a:hover {
 							<tr>
 								<td colspan="2" align="center"><hr> 
 								<input type="button" class="product_join_btn" value="등록" onclick="check()">
-								<input type="button" value="취소" class="reset_btn" onclick="location.href='seller_page'">
+								<input type="button" value="취소" class="reset_btn" onclick="back_page()">
 									</td>
 							</tr>
 						</table>
@@ -227,4 +227,9 @@ a:hover {
 		</div>
 	</form>
 </body>
+<script type="text/javascript">
+function back_page(){
+	history.back();
+}
+</script>
 </html>
