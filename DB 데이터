@@ -1,0 +1,193 @@
+## DB 테이블 및 시퀀스 쿼리문
+
+게시판	
+"CREATE TABLE board
+(
+community_board_number number(5),
+community_board_title varchar2(30),
+community_board_content varchar2(30),
+community_board_date DATE DEFAULT SYSDATE,
+community_board_location varchar2(30),
+community_board_grade number(5),
+community_board_sum_image varchar2(300),
+community_board_detail_image1 varchar2(300),
+community_board_detail_image2 varchar2(300),
+community_board_detail_image3 varchar2(300),
+member_number number(5)
+);"
+
+게시판 자동 증가
+"CREATE SEQUENCE community_board_number_seq
+  INCREMENT BY 1 MAXVALUE 5000 CYCLE
+  START WITH 1;"
+
+사용자(회원가입)	
+"CREATE TABLE member_project(
+    member_id varchar2(30),
+    member_number number(10),
+    member_password varchar2(30),
+    member_name varchar2(30),
+    member_personal_number varchar2(30),
+    member_age number(3),
+    member_gender varchar2(30),
+    member_phone_number varchar2(30),
+    member_address varchar2(500),
+    member_email varchar2(30),
+    member_birthday varchar2(30),
+    member_point number(10),
+    member_buy number(10),
+    member_role number(2));"	
+
+사용자(회원가입) 자동 증가
+"CREATE SEQUENCE member_NUMBER_SEQ
+  INCREMENT BY 1 MAXVALUE 5000 CYCLE
+  START WITH 1;"
+
+사용자(설문지)	
+"CREATE TABLE survey_project(
+    survey_number number(5),
+    survey_q1 varchar2(200),
+    survey_q2 varchar2(200),
+    survey_q3 varchar2(200),
+    survey_q4 varchar2(200),
+    survey_q5 varchar2(200),
+    member_number number(10));"	
+
+사용자(설문지) 자동 증가
+"CREATE SEQUENCE SURVEY_NUMBER_SEQ
+  INCREMENT BY 1 MAXVALUE 5000 CYCLE
+  START WITH 1;"
+
+사용자(나의 게시글 목록)	
+"CREATE TABLE board_comment(
+    member_id varchar2(30),
+    comment_date date DEFAULT sysdate,
+    COMMUNITY_BOARD_NUMBER number(5),
+    comment_text varchar2(500),
+    comment_number number(5));"	
+
+사용자(나의 게시글 목록) 자동 증가
+"CREATE SEQUENCE comment_number _SEQ
+  INCREMENT BY 1 MAXVALUE 5000 CYCLE
+  START WITH 1;"
+
+사용자(장바구니)	
+"create table cart(
+member_number number(5),
+product_number number(5)
+);"
+
+상품	
+"create table product(
+product_number number(5),
+product_name varchar(200),
+product_country varchar(30),
+product_maker varchar(30),
+product_price number(10),
+product_date date default SYSDATE,
+product_buy_amount number(5),
+product_sell_amount number(5),
+seller_id varchar(30),
+product_review_count number(5),
+product_sum_image varchar(300),
+product_detail_image1 varchar(300),
+product_detail_image2 varchar(300),
+product_detail_image3 varchar(300)
+);"	
+
+상품 자동 증가
+"create sequence product_number_seq
+increment by 1
+start with 1;"
+
+판매자(회원가입)	"create table seller(
+seller_number number(5),
+seller_id varchar(30),
+seller_password varchar(30),
+seller_name varchar(30),
+seller_phone_number varchar(30),
+seller_email varchar(30),
+seller_role number(5),
+seller_company_number varchar(30),
+seller_company_address varchar(30),
+seller_buy_point number(10));"
+
+판매자(회원가입) 자동 증가
+"create SEQUENCE seller_number_seq
+INCREMENT by 1
+start with 1;"
+
+판매내역 	
+"create table product_sell_list(
+sell_list_number number(5),
+seller_number number(5),
+member_number number(5),
+product_number number(5),
+product_sell_amount number(5),
+product_price number(10),
+product_sell_date date default SYSDATE
+);"	
+
+판매내역 자동 증가
+"create SEQUENCE sell_list_number_seq
+INCREMENT by 1
+start with 1;"
+
+주문내역
+"create table product_sell_list(
+sell_list_number number(5),
+seller_number number(5),
+seller_name varchar(30),
+member_number number(5),
+member_name varchar(300),
+product_number number(5),
+product_name varchar(30),
+product_sell_amount number(5),
+product_price number(10),
+product_total_price number(10),
+delivery_status varchar(100),
+member_address varchar(300),
+product_sell_date date default SYSDATE
+);"
+
+주문내역 자동 증가
+"create SEQUENCE sell_list_number_seq
+INCREMENT by 1
+start with 1000;"
+
+관리자(공지사항 게시글)	
+"CREATE TABLE announcement(
+    noticedoc_number number(5),
+    title varchar2(100),
+    writer varchar2(50),
+    noticedoc varchar2(2000),
+    announcement_date date DEFAULT sysdate);"	
+
+관리자(공지사항 게시글) 자동 증가
+"CREATE SEQUENCE noticedoc_number_seq
+INCREMENT by 1
+START WITH 1;"
+
+
+1:1 문의	
+"create table inquiry(
+inquiry_number number(5),
+inquiry_title varchar(100),
+member_number number(5),
+inquiry_writer_name varchar(30),
+seller_number number(5),
+inquiry_content varchar(500),
+inquiry_date date default SYSDATE,
+inquiry_image1 varchar(500),
+inquiry_image2 varchar(500),
+inquiry_image3 varchar(500),
+inquiry_image4 varchar(500),
+inquiry_status varchar(100),
+inquiry_writer_type varchar(30),
+inquiry_answer_date date default SYSDATE
+);"	
+
+1:1 문의 자동 증가
+"create SEQUENCE inquiry_number_seq
+INCREMENT by 1
+start with 1;"
