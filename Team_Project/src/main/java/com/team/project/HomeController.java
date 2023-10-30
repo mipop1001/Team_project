@@ -96,6 +96,18 @@ public class HomeController {
 		hs.removeAttribute("sellerDTO");
 		return "seller_page";
 	}
+	
+	@RequestMapping(value = "/back_seller_page")
+	public String back_seller_page()
+	{
+		return "seller_page";
+	}
+	
+	@RequestMapping(value = "/back_user_page")
+	public String back_user_page()
+	{
+		return "user_page";
+	}
 
 	//관리자 페이지 list 출력
 	@RequestMapping(value = "/user_list", method = RequestMethod.GET)

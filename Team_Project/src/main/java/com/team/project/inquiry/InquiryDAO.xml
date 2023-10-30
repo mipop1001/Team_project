@@ -56,6 +56,14 @@ SYSDATE,#{inquiry_image1},#{inquiry_image2},#{inquiry_image3},#{inquiry_image4},
 #{inquiry_status},#{inquiry_writer_type})
 </insert>
 
+<insert id="seller_inquiry_input_save_image1">
+insert into inquiry (inquiry_number,inquiry_title,seller_number,inquiry_writer_name,
+inquiry_content,inquiry_date,inquiry_image1,inquiry_status,inquiry_writer_type)
+values(inquiry_number_seq.nextval,
+#{inquiry_title},#{seller_number},#{inquiry_writer_name},#{inquiry_content},
+SYSDATE,#{inquiry_image1},#{inquiry_status},#{inquiry_writer_type})
+</insert>
+
 <select id="inquiry_my_only" resultType="com.team.project.inquiry.InquiryDTO">
 select * from inquiry where seller_number=#{param1}
 </select>
@@ -63,5 +71,13 @@ select * from inquiry where seller_number=#{param1}
 <select id="inquiry_my_only_member" resultType="com.team.project.inquiry.InquiryDTO">
 select * from inquiry where member_number=#{param1}
 </select>
+
+<delete id="seller_delete_inquiry">
+delete inquiry where inquiry_number=#{param1}
+</delete>
+
+<delete id="customer_seller_delete_inquiry">
+delete inquiry where inquiry_number=#{param1}
+</delete>
 </mapper>
 
